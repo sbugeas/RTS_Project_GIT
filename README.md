@@ -1,10 +1,11 @@
 Description : 
 
-Prototype RTS 3D médieval réalisé avec Unity. Les objectifs et attendus du jeu ne sont pas encore clairement définit, ayant été initié il y a peu de temps, le but étant de construire un prototype qui servira de base pour un projet plus ambitieux. 
-Grand fan de jeu de gestion, de l'époque médiéval et passionné de développement, j'ai de nombreuses idées en terme de gameplay et de design mais pour le moment, il s'agit de concevoir les première mécaniques de gameplay, 
-tout en commençant à réfléchir et travailler sur quelques designs afin de dévlopper mes compétences sur Blender tout en essayant des styles et en développant l'imagination, ce qui affinera progressivement les objectifs de ce projet. Il s'agit de mon
-projet principal.
+Prototype RTS 3D médieval réalisé avec Unity(non aboutie). Les objectifs et attendus du jeu ne sont pas encore clairement définit, ayant été initié il y a peu de temps, le but étant de construire un prototype qui servira de base pour un projet plus ambitieux.
 
+Grand fan de jeu de gestion, de l'époque médiéval et passionné de développement, j'ai de nombreuses idées en terme de gameplay et de design mais pour le moment, il s'agit de concevoir les première mécaniques de gameplay, 
+tout en commençant à réfléchir et travailler sur quelques designs afin de dévlopper mes compétences sur Blender tout en essayant des styles et en développant l'imagination, ce qui affinera progressivement les objectifs de ce projet.
+
+Il s'agit de mon projet principal.
 
 Je tiens à préciser que je m'inspire de tutoriels et guides proposés par d'autres, dans le cadre de mon activité, c'est dans une démarche d'apprentissage, à savoir que majoritairement, je modifie 
 ce que je trouve car j'aime apporter ma touche. Et, je n'utilise que mes assets(dessin, modèle 3D etc...)
