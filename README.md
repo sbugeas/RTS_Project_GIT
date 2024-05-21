@@ -25,12 +25,14 @@ ACHEVÉ :
 - Préparation animations d'attente, de course et d'attaque (via Blender)
 
 Outils :
+
 - Unity
 - Blender
 - Visual Studio(C#)
+
 
 Sources :
 
 [Make RTS (Mike)](https://www.youtube.com/watch?v=-GfdKB_7mrY&list=PLtLToKUhgzwkCRQ9YAOtUIDbDQN5XXVAs)
 
-[-Navmesh (Tuto Unity FR)](https://www.youtube.com/watch?v=qOQVxPQ-C5Y&t=489s)
+[Navmesh (Tuto Unity FR)](https://www.youtube.com/watch?v=qOQVxPQ-C5Y&t=489s)
