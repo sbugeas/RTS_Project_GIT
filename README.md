@@ -24,8 +24,12 @@ ACHEVÉ :
 - Modèle Soldier(première unité decombat implanté) créée sur Blender(pourra évoluer)
 - Préparation animations d'attente, de course et d'attaque (via Blender)
 
+Outils :
+- Unity
+- Blender
+- Visual Studio(C#)
 
-Sources:
+Sources :
 
 [Make RTS (Mike)](https://www.youtube.com/watch?v=-GfdKB_7mrY&list=PLtLToKUhgzwkCRQ9YAOtUIDbDQN5XXVAs)
 
