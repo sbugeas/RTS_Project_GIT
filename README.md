@@ -13,15 +13,14 @@ Actuellement, seul l'état actuel du projet est présenté, mais, ayant fait du 
 ACHEVÉ :
 
 - Ajout gestion de la Caméra
-- Ajout séletion simple et multiple d'unité (avec limite imposée)
-- Déplacement seul/en groupe d'unité(s)
-- Affichage bon nombre de marqueur de placement lors d'un déplacement en grp + correction bugs
+- Ajout sélection simple et multiple d'unité (Click + Drag Selection, avec limite imposée)
+- Déplacement seul/en groupe d'unité(s) (via Navmesh)
 - Correction Drag Selection -> dynamique (vérifiée constamment pendant le drag)
-- Bases du mode construction (Proposition placement avec contrôle terrain(à finir) + placement dans le monde MAIS les unités peuvent traverser)
-- Réorganisation pour concevoir système de combat (retrait position et formation des unités car trop complexe et mal optimisé)
+- Bases du mode construction (Proposition placement avec contrôle du terrain(à finir) + placement dans le monde MAIS les unités peuvent traverser)
+- Réorganisation pour concevoir système de combat (retrait marqueur position et formation des unités auparavant implémenté car trop complexe et mal optimisé)
 - Début du système de combat (Détection ennemi, following(automatiquement et sur commande du joueur))
-- Ajout système d'état (Attack, Following, Idle) + retrait PV sur ennemi et slider(UI)
-- Modèle Soldier(première unité decombat implanté) créée sur Blender(pourra évoluer)
+- Ajout système d'état (Attack, Following, Idle) + retrait des points de vie de ennemi lors d'une attaque + slider(UI)
+- Modèle Soldier(première unité de combat) créée sur Blender(pourra évoluer)
 - Préparation animations d'attente, de course et d'attaque (via Blender)
 
 Outils :
