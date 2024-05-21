@@ -13,6 +13,8 @@ ce que je trouve car j'aime apporter ma touche. Et, je n'utilise que mes assets(
 
 Actuellement, seul l'état actuel du projet est présenté, mais, ayant fait du versionning, je ne manquerais pas d'enrichir l'historique afin de garantir un meilleur suivi, d'ici peu de temps.
 
+Vous pouvez accéder aux modèles 3D utilisés pour ce projet à cette adresse : https://github.com/sbugeas/3D_Modeles_GIT
+
 
 
 ACHEVÉ :
