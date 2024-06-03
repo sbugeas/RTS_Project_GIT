@@ -3,14 +3,14 @@ Description :
 Prototype RTS 3D médieval réalisé avec Unity(non aboutie). Les objectifs et attendus du jeu ne sont pas encore clairement définit, ayant été initié il y a peu de temps, le but étant de construire un prototype qui servira de base pour un projet plus ambitieux.
 
 Grand fan de jeu de gestion, de l'époque médiéval et passionné de développement, j'ai de nombreuses idées en terme de gameplay et de design mais pour le moment, il s'agit de concevoir les première mécaniques de gameplay, 
-tout en commençant à réfléchir et travailler sur quelques designs afin de dévlopper mes compétences sur Blender tout en essayant des styles et en développant l'imagination, ce qui affinera progressivement les objectifs de ce projet.
+tout en commençant à réfléchir et travailler sur quelques designs afin de développer mes compétences sur Blender tout en essayant des styles, ce qui affinera progressivement les objectifs de ce projet.
 
 Il s'agit de mon projet principal.
 
 Je tiens à préciser que je m'inspire de tutoriels et guides proposés par d'autres, dans le cadre de mon activité, c'est dans une démarche d'apprentissage, à savoir que majoritairement, je modifie 
 ce que je trouve car j'aime apporter ma touche. Et, je n'utilise que mes assets(dessin, modèle 3D etc...)
 
-Actuellement, seul l'état actuel du projet est présenté, mais, ayant fait du versionning, je ne manquerais pas d'enrichir l'historique afin de garantir un meilleur suivi, d'ici peu de temps.
+Actuellement, seul l'état actuel du projet est présenté, mais, ayant fait du versionning, je ne manquerais pas d'enrichir l'historique afin de garantir un meilleur suivi, dès que possible.
 
 Vous pouvez accéder aux modèles 3D utilisés pour ce projet à cette adresse : https://github.com/sbugeas/3D_Modeles_GIT
 
@@ -27,7 +27,14 @@ ACHEVÉ :
 - Début du système de combat (Détection ennemi, following(automatiquement et sur commande du joueur))
 - Ajout système d'état (Attack, Following, Idle) + retrait des points de vie de ennemi lors d'une attaque + slider(UI)
 - Modèle Soldier(première unité de combat) créée sur Blender(pourra évoluer)
-- Préparation animations d'attente, de course et d'attaque (via Blender)
+- Préparation animations d'attente, de course, de garde, d'attaque, et de mort(via Blender)
+- Ajout du curseur d'origine ainsi que le curseur de combat
+
+EN COURS :
+- Positionnement(formation) des unités suite à un déplacement en groupe
+
+PRÉVISIONS :
+- Modèlisation + Rigging + Animation + Import Unity(et config) d'une nouvelle unité, l'archer.
 
 Outils :
 
