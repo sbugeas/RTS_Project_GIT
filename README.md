@@ -34,8 +34,7 @@ EN COURS :
 - Positionnement(formation) des unités suite à un déplacement en groupe
 
 PRÉVISIONS :
-- Modèlisation + Rigging + Animation + Import Unity(et config) d'une nouvelle unité, l'archer
-- 
+- Modèlisation + Rigging + Animation + Import Unity(et config) d'une nouvelle unité, l'archer avec logique(script d'état) associée
 
 Outils :
 
