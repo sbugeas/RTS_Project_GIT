@@ -21,8 +21,8 @@ ACHEVÉ :
 - Ajout gestion de la Caméra
 - Ajout sélection simple et multiple d'unité (Click + Drag Selection, avec limite imposée)
 - Déplacement seul/en groupe d'unité(s) (via Navmesh)
-- Correction Drag Selection -> dynamique (vérifiée constamment pendant le drag)
-- Bases du mode construction (Proposition placement avec contrôle du terrain(à finir) + placement dans le monde MAIS les unités peuvent traverser)
+- Correction Drag Selection -> Le rend dynamique (unités sélectionnées constamment MAJ pendant le drag)
+- Bases du mode construction. Proposition placement avec contrôle du terrain puis placement(à finir)
 - Réorganisation pour concevoir système de combat (retrait marqueur position et formation des unités auparavant implémenté car trop complexe et mal optimisé)
 - Début du système de combat (Détection ennemi, following(automatiquement et sur commande du joueur))
 - Ajout système d'état (Attack, Following, Idle) + retrait des points de vie de ennemi lors d'une attaque + slider(UI)
@@ -34,7 +34,8 @@ EN COURS :
 - Positionnement(formation) des unités suite à un déplacement en groupe
 
 PRÉVISIONS :
-- Modèlisation + Rigging + Animation + Import Unity(et config) d'une nouvelle unité, l'archer.
+- Modèlisation + Rigging + Animation + Import Unity(et config) d'une nouvelle unité, l'archer
+- 
 
 Outils :
 
@@ -48,3 +49,6 @@ Sources :
 [Make RTS (Mike)](https://www.youtube.com/watch?v=-GfdKB_7mrY&list=PLtLToKUhgzwkCRQ9YAOtUIDbDQN5XXVAs)
 
 [Navmesh (Tuto Unity FR)](https://www.youtube.com/watch?v=qOQVxPQ-C5Y&t=489s)
+
+[Unity - changer le curseur de la souris(MakeYourGame)](https://www.youtube.com/watch?v=qifz_CXe4CQ&t=321s)
+
