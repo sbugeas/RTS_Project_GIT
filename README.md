@@ -26,15 +26,23 @@ ACHEVÉ :
 - Réorganisation pour concevoir système de combat (retrait marqueur position et formation des unités auparavant implémenté car trop complexe et mal optimisé)
 - Début du système de combat (Détection ennemi, following(automatiquement et sur commande du joueur))
 - Ajout système d'état (Attack, Following, Idle) + retrait des points de vie de ennemi lors d'une attaque + slider(UI)
-- Modèle Soldier(première unité de combat) créée sur Blender(pourra évoluer)
-- Préparation animations d'attente, de course, de garde, d'attaque, et de mort(via Blender)
+- Modèle Soldier(première unité de combat) créée sur Blender
+- Préparation animations Soldier d'attente, de course, de garde, d'attaque, et de mort(via Blender)
 - Ajout du curseur d'origine ainsi que le curseur de combat
+- Positionnement(formation) des unités suite à un déplacement en groupe(Quelques bugs à corriger)
+- Logique de récolte du bois (Sera également utilisé pour la récolte de la pierre et du fer)
 
 EN COURS :
-- Positionnement(formation) des unités suite à un déplacement en groupe
+- Modèle + animations(attente, marche, marche avec rondin et coupe) d'une nouvelle unité via Blender, le bûcheron.
 
 PRÉVISIONS :
-- Modèlisation + Rigging + Animation + Import Unity(et config) d'une nouvelle unité, l'archer avec logique(script d'état) associée
+- Modèle de l'arbre + animation(chute)
+- Modèle du camp de bûcheron
+- Modèle du hall (bâtiment principal / = HDV)
+- Première carte
+- Modèle + animation d'une nouvelle unité, le mineur
+- Modèle de la pierre(récoltable)
+...
 
 Outils :
 
