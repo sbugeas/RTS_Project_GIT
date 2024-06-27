@@ -5,7 +5,8 @@ Prototype RTS 3D médieval réalisé avec Unity(non aboutie). Les objectifs et a
 Grand fan de jeu de gestion, de l'époque médiéval et passionné de développement, j'ai de nombreuses idées en terme de gameplay et de design mais pour le moment, il s'agit de concevoir les première mécaniques de gameplay, 
 tout en commençant à réfléchir et travailler sur quelques designs afin de développer mes compétences sur Blender tout en essayant des styles, ce qui affinera progressivement les objectifs de ce projet.
 
-Il s'agit de mon projet principal. Étant donné le travail qu'il représente, je ne mettrais plus à jour le projet sur cette page publique, afin de le "protéger", mais très prochainement, je vous proposerai un lien itch.io sur lequel vous pourrez tester l'application et me faire des retours, si vous le souhaitez. Je souhaite avant cela implanter les bases des différentes mécaniques de jeu(Combat, récolte & transformation des ressources, construction, gestion de la main d'oeuvre etc...).
+Il s'agit de mon projet principal. Étant donné le travail qu'il représente, je ne mettrai plus à jour le projet sur cette page publique, afin de le "protéger", mais très prochainement, je vous proposerai un lien "itch.io" sur lequel vous pourrez tester l'application et me faire des retours, si vous le souhaitez. 
+Je souhaite avant cela implanter les bases des différentes mécaniques de jeu(Combat, récolte & transformation des ressources, construction, gestion de la main d'oeuvre etc...).
 
 Je tiens à préciser que je m'inspire de tutoriels et guides proposés par d'autres, dans le cadre de mon activité, c'est dans une démarche d'apprentissage, à savoir que majoritairement, je modifie 
 ce que je trouve car j'aime apporter ma touche. Et, je n'utilise que mes assets(dessin, modèle 3D etc...)
