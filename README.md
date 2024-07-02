@@ -5,11 +5,14 @@ Prototype RTS 3D médieval réalisé avec Unity(non aboutie). Les objectifs et a
 Grand fan de jeu de gestion, de l'époque médiéval et passionné de développement, j'ai de nombreuses idées en terme de gameplay et de design mais pour le moment, il s'agit de concevoir les première mécaniques de gameplay, 
 tout en commençant à réfléchir et travailler sur quelques designs afin de développer mes compétences sur Blender tout en essayant des styles, ce qui affinera progressivement les objectifs de ce projet.
 
-Il s'agit de mon projet principal. Étant donné le travail qu'il représente, je ne mettrai plus à jour le projet sur cette page publique, afin de le "protéger", mais très prochainement, je vous proposerai un lien "itch.io" sur lequel vous pourrez tester l'application et me faire des retours, si vous le souhaitez. 
-Je souhaite avant cela implanter les bases des différentes mécaniques de jeu(Combat, récolte & transformation des ressources, construction, gestion de la main d'oeuvre etc...).
+Il s'agit de mon projet principal/actuel. Il est repertorié ici et l'avancement du projet est mis à jour mais, étant donné le travail qu'il représente, je ne mettrai plus à jour le dossier projet sur cette page publique qui permet l'accès au code source. 
+Je travaille actuellement sur un nouveau portfolio plus présentable(Github n'est pas idéal pour ça) dont vous retrouverez le lien ici, lorsqu'il sera terminé.
+Ce nouveau portfolio vous présentera le jeu tel qu'il est actuellement(avec screenshot, vidéo et explications) et me permettra de "protéger" mon travail(pas d'accès au code source et autres fichiers) pour lequel j'ai consacré et je consacrerai beaucoup de temps.
 
-Je tiens à préciser que je m'inspire de tutoriels et guides proposés par d'autres, dans le cadre de mon activité, c'est dans une démarche d'apprentissage, à savoir que majoritairement, je modifie 
-ce que je trouve car j'aime apporter ma touche. Et, je n'utilise que mes assets(dessin, modèle 3D etc...)
+Je souhaite avant cela implanter les bases des différentes mécaniques de jeu(Formation d'unité et combat, récolte et transformation des ressources, construction, gestion de la main d'oeuvre etc...).
+
+Je tiens à préciser que je m'inspire de tutoriels et guides proposés par d'autres(Voir les sources plus bas), dans le cadre de mon activité. Ceci est dans une démarche d'apprentissage, à savoir que majoritairement, je modifie et adapte ce que je trouve(script, modèle 3D etc...) car j'aime comprendre et apporter ma touche. 
+De plus, je n'utilise que mes assets(dessin, modèle 3D etc...)
 
 Vous pouvez accéder aux modèles 3D utilisés pour ce projet à cette adresse : https://github.com/sbugeas/3D_Modeles_GIT
 
@@ -30,14 +33,15 @@ ACHEVÉ :
 - Ajout du curseur d'origine ainsi que le curseur de combat
 - Positionnement(formation) des unités suite à un déplacement en groupe(Quelques bugs à corriger)
 - Logique de récolte du bois (Sera également utilisé pour la récolte de la pierre et du fer)
+- Modèle(+ animation d'attente et de marche) d'une nouvelle unité via Blender, le bûcheron
 
 EN COURS :
-- Modèle + animations(attente, marche, marche avec rondin et coupe) d'une nouvelle unité via Blender, le bûcheron.
+- Animations de transport de rondin et de coupe (bûcheron)
 
 PRÉVISIONS :
 - Modèle de l'arbre + animation(chute)
 - Modèle du camp de bûcheron
-- Modèle du hall (bâtiment principal / = HDV)
+- Modèle du hall (bâtiment principal)
 - Première carte
 - Modèle + animation d'une nouvelle unité, le mineur
 - Modèle de la pierre(récoltable)
