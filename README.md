@@ -6,7 +6,9 @@ Grand fan de jeu de gestion, de l'époque médiéval et passionné de développe
 tout en commençant à réfléchir et travailler sur quelques designs afin de développer mes compétences sur Blender tout en essayant des styles, ce qui affinera progressivement les objectifs de ce projet.
 
 Il s'agit de mon projet principal/actuel. Il est repertorié ici et l'avancement du projet est mis à jour mais, étant donné le travail qu'il représente, je ne mettrai plus à jour le dossier projet sur cette page publique qui permet l'accès au code source. 
+
 Je travaille actuellement sur un nouveau portfolio plus présentable(Github n'est pas idéal pour ça) dont vous retrouverez le lien ici, lorsqu'il sera terminé.
+
 Ce nouveau portfolio vous présentera le jeu tel qu'il est actuellement(avec screenshot, vidéo et explications) et me permettra de "protéger" mon travail(pas d'accès au code source et autres fichiers) pour lequel j'ai consacré et je consacrerai beaucoup de temps.
 
 Je souhaite avant cela implanter les bases des différentes mécaniques de jeu(Formation d'unité et combat, récolte et transformation des ressources, construction, gestion de la main d'oeuvre etc...).
