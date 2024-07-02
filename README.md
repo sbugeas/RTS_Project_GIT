@@ -11,7 +11,7 @@ Je travaille actuellement sur un nouveau portfolio plus présentable(Github n'es
 
 Ce nouveau portfolio vous présentera le jeu tel qu'il est actuellement(avec screenshot, vidéo et explications) et me permettra de "protéger" mon travail(pas d'accès au code source et autres fichiers) pour lequel j'ai consacré et je consacrerai beaucoup de temps.
 
-Je souhaite avant cela implanter les bases des différentes mécaniques de jeu(Formation d'unité et combat, récolte et transformation des ressources, construction, gestion de la main d'oeuvre etc...).
+J'envisage également de le proposer prochainement sur Itch.io  mais je souhaite avant cela implanter les bases des différentes mécaniques de jeu(Formation d'unité et combat, récolte et transformation des ressources, construction, gestion de la main d'oeuvre etc...).
 
 Je tiens à préciser que je m'inspire de tutoriels et guides proposés par d'autres(Voir les sources plus bas), dans le cadre de mon activité. Ceci est dans une démarche d'apprentissage, à savoir que majoritairement, je modifie et adapte ce que je trouve(script, modèle 3D etc...) car j'aime comprendre et apporter ma touche. 
 De plus, je n'utilise que mes assets(dessin, modèle 3D etc...)
