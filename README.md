@@ -9,7 +9,7 @@ Il s'agit de mon projet principal/actuel. Il est repertorié ici et l'avancement
 
 Je travaille actuellement sur un nouveau portfolio plus présentable(Github n'est pas idéal pour ça) dont vous retrouverez le lien ici, lorsqu'il sera terminé.
 
-Ce nouveau portfolio vous présentera le jeu tel qu'il est actuellement(avec screenshot, vidéo et explications) et me permettra de "protéger" mon travail(pas d'accès au code source et autres fichiers) pour lequel j'ai consacré et je consacrerai beaucoup de temps.
+Ce nouveau portfolio vous présentera le jeu tel qu'il est actuellement avec quelques screenshot, vidéo et davantage d'explications.
 
 J'envisage également de le proposer prochainement sur Itch.io  mais je souhaite avant cela implanter les bases des différentes mécaniques de jeu(Formation d'unité et combat, récolte et transformation des ressources, construction, gestion de la main d'oeuvre etc...).
 
