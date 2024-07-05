@@ -31,18 +31,13 @@ ACHEVÉ :
 - Ajout du curseur "de base" ainsi que le curseur de combat (indicateur pour le joueur)
 - Positionnement(formation) des unités suite à un déplacement en groupe(Quelques bugs à corriger)
 - Logique de récolte du bois (Sera également utilisé pour la récolte de la pierre et du fer)
-- Modèle(+ animation d'attente et de marche) d'une nouvelle unité via Blender, le bûcheron (+ hache)
-
-EN COURS :
-- Animations de transport de rondin et de coupe (bûcheron)
+- Modèle(+ animation d'attente, de marche, de coupe et de transport de rondin) d'une nouvelle unité via Blender, le bûcheron (+ hache)
+- Modèle arbre + animation(chute)
+- Modèle(basique) du camp de bûcheron, du hall (bâtiment principal) et de l'entrepôt
 
 PRÉVISIONS :
-- Modèle de l'arbre + animation(chute)
-- Modèle du camp de bûcheron
-- Modèle du hall (bâtiment principal)
 - Première carte
-- Modèle + animation d'une nouvelle unité, le mineur
-- Modèle de la pierre(récoltable)
+- Finalisation système de construction (Contrôle de placement sur terrain avec relief)
 ...
 
 Outils :
