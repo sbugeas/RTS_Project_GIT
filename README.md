@@ -4,11 +4,17 @@ Projet 3D personnel qui est un prototype RTS (Real Time Strategy) qui permettra 
 CONTROLES
 
 Flèches directionnelles (↓↑←→) : Déplacer la caméra
+
 Molette souris : Zoom caméra
+
 Molette souris(rester appuyé) : Rotation caméra
+
 T : Construire une maison (Temporaire/Pour tests)
+
 Clique gauche : Sélectionne unité(militaire)
+
 Clique droit(unité(s) sélectionnée(s)) : Déplacement seul ou en groupe(formation)
+
 Clique droit(unité(s) sélectionnée(s)) + cible ennemie) : Commande d'attaque
 
 Achevé
