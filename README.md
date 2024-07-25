@@ -1,7 +1,10 @@
-Description
+DESCRIPTION
+
+
 Projet 3D personnel qui est un prototype RTS (Real Time Strategy) qui permettra à 2 joueurs de s’affronter, dans un univers médiéval.
 
 CONTROLES
+
 
 Flèches directionnelles (↓↑←→) : Déplacer la caméra
 
@@ -17,7 +20,8 @@ Clique droit(unité(s) sélectionnée(s)) : Déplacement seul ou en groupe(forma
 
 Clique droit(unité(s) sélectionnée(s)) + cible ennemie) : Commande d'attaque
 
-Achevé
+
+ACHEVÉ
 
 - Ajout gestion de la Caméra
 - Ajout sélection simple et multiple d'unité
@@ -32,20 +36,22 @@ Achevé
 - Modèle arbre + animation(chute)
 - Modèle(basique) du camp de bûcheron, du hall (bâtiment principal) et de l'entrepôt
 
-Prévisions
+
+PRÉVISIONS
 
 - Affectation(via UI) de la main d’œuvre aux bâtiments de production (et retrait pour redéploiement)
 - Modélisation d’une carte test, avec relief
 - Finalisation du système de construction (Contrôle de placement sur terrain avec relief)
+  
 
-Outils :
+OUTILS
 
 - Unity
 - Blender
 - Visual Studio(C#)
 
 
-Sources :
+SOURCES
 
 [Make RTS (Mike)](https://www.youtube.com/watch?v=-GfdKB_7mrY&list=PLtLToKUhgzwkCRQ9YAOtUIDbDQN5XXVAs)
 
