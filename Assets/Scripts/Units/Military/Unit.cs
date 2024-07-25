@@ -9,9 +9,6 @@ public class Unit : MonoBehaviour
     public bool isCommandedToAttack;
     public bool isAlive;
 
-    //Pour tests
-    public bool isTested = false;
-
     //DONNEES (ownerPlayer,stats etc...)
     public int unitHealth;
     public int unitMaxHealth = 200;

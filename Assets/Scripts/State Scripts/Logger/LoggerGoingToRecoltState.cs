@@ -5,34 +5,31 @@ using UnityEngine.AI;
 
 public class LoggerGoingToRecoltState : StateMachineBehaviour
 {
-    PeasantData peasantData;
+    LoggerData loggerData;
     NavMeshAgent agent;
 
     public float recoltingDistance = 3.0f;
 
-    //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        peasantData = animator.GetComponent<PeasantData>();
+        loggerData = animator.GetComponent<LoggerData>();
 
         //Active & désactive bons objets
-        peasantData.carriedLog.SetActive(false);
-        peasantData.loggerAxe.SetActive(true);
+        loggerData.carriedLog.SetActive(false);
+        loggerData.loggerAxe.SetActive(true);
 
-        if (peasantData.targetTree != null) 
+        if (loggerData.targetTree != null) 
         {
-            agent.SetDestination(peasantData.targetTree.position);
+            agent.SetDestination(loggerData.targetTree.position);
         }
         
     }
 
     
-
-    //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Transform target = peasantData.targetTree;
+        Transform target = loggerData.targetTree;
 
         if (target == null) 
         {

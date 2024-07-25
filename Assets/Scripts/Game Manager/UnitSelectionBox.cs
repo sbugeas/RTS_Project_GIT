@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class UnitSelectionBox : MonoBehaviour
 {
@@ -27,21 +29,24 @@ public class UnitSelectionBox : MonoBehaviour
 
     private void Update()
     {
-        // When Clicked
         if (Input.GetMouseButtonDown(0))
         {
-            //Test, peut être à mettre dans la boucle if suivante
+            //Vérifie si un élément de l'UI(ex : bouton) n'est pas ciblé pour éviter concurrence
+            if (EventSystem.current.IsPointerOverGameObject()) 
+            {
+                isDragging = false;
+                return;
+            }
+
             isDragging = true;
-
             startPosition = Input.mousePosition;
-
-            // For selection the Units
             selectionBox = new Rect();
         }
 
-        // When Dragging
-        if (Input.GetMouseButton(0))
+        //Dragging
+        if (Input.GetMouseButton(0) && isDragging)
         {
+            //Selection dynamique
             if (boxVisual.rect.width > 0 || boxVisual.rect.height > 0) 
             {
                 SelectUnits();
@@ -52,14 +57,15 @@ public class UnitSelectionBox : MonoBehaviour
             DrawSelection();
         }
 
-        // When Releasing
-        if (Input.GetMouseButtonUp(0))
+        //End of dragging
+        if (Input.GetMouseButtonUp(0) && isDragging)
         {
             if (boxVisual.rect.width > 0 || boxVisual.rect.height > 0)
             {
                 SelectUnits();
             }
 
+            //Réinitialisation
             startPosition = Vector2.zero;
             endPosition = Vector2.zero;
             DrawVisual();
@@ -69,23 +75,24 @@ public class UnitSelectionBox : MonoBehaviour
 
     void DrawVisual()
     {
-        // Calculate the starting and ending positions of the selection box.
         Vector2 boxStart = startPosition;
         Vector2 boxEnd = endPosition;
 
-        // Calculate the center of the selection box.
+        // Calcul du centre de la box (visuel)
         Vector2 boxCenter = (boxStart + boxEnd) / 2;
 
-        // Set the position of the visual selection box based on its center.
+        // Ajuste position par rapport au centre de la box (visuel) 
         boxVisual.position = boxCenter;
 
-        // Calculate the size of the selection box in both width and height.
+        // Détermine la taille(hauteur et largeur) de la box (visuel) 
         Vector2 boxSize = new Vector2(Mathf.Abs(boxStart.x - boxEnd.x), Mathf.Abs(boxStart.y - boxEnd.y));
 
-        // Set the size of the visual selection box based on its calculated size.
+        // Applique la taille (visuel) 
         boxVisual.sizeDelta = boxSize;
     }
 
+
+    //Fait la MAJ des positions de début et de fin de la box selon orientation par rapport à la position de départ
     void DrawSelection()
     {
         if (Input.mousePosition.x < startPosition.x)
@@ -112,6 +119,7 @@ public class UnitSelectionBox : MonoBehaviour
         }
     }
 
+    //Sélectionne les unités présentent dans la box
     void SelectUnits()
     {
         foreach (GameObject unit in UnitSelectionManager.instance.allUnitsList)
@@ -126,7 +134,7 @@ public class UnitSelectionBox : MonoBehaviour
                 }
               
             }
-            else // Sinon on déselectionne -> test (pas de else normalement) / => Unité pas dans la box
+            else // Sinon on déselectionne
             {
                 if(UnitSelectionManager.instance.selectedUnitsList.Contains(unit) == true) 
                 {

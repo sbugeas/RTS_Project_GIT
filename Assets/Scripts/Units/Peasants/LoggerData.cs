@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PeasantData : MonoBehaviour
+public class LoggerData : MonoBehaviour
 {
     public Transform workBuilding;
     public Transform targetTree;

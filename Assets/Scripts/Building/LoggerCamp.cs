@@ -18,7 +18,6 @@ public class LoggerCamp : MonoBehaviour
 
     public Transform hallCheckpoint;
     public Transform warehouseCheckPoint;
-    //public Transform campCheckpoint;
 
     [SerializeField] private LayerMask treeLayer;
 
@@ -27,10 +26,9 @@ public class LoggerCamp : MonoBehaviour
     private float radiusIncr = 25f;
 
 
-
     void Start()
     {
-        AddLoggers(starterLoggerCount); //Modifier param si besoin
+        AddLoggers(starterLoggerCount);
 
     }
 
@@ -51,7 +49,7 @@ public class LoggerCamp : MonoBehaviour
                 if(ResourcesManager.instance.inactivePopulationCount > 0) 
                 {
                     GameObject newLogger = Instantiate(loggersPrefab, hit.position, Quaternion.identity);
-                    newLogger.GetComponent<PeasantData>().workBuilding = this.gameObject.transform;
+                    newLogger.GetComponent<LoggerData>().workBuilding = this.gameObject.transform;
                     loggers.Add(newLogger);
                     loggersCount++;
                     ResourcesManager.instance.RemToInactivePop(1);
@@ -72,9 +70,10 @@ public class LoggerCamp : MonoBehaviour
         //Remove n loggers
         for (int i = 0; i < n; i++)
         {
-            PeasantData curLoggerScript = loggers[i].GetComponent<PeasantData>();
+            LoggerData curLoggerScript = loggers[i].GetComponent<LoggerData>();
 
-            //Penser à changer état du bûcheron via Trigger (aller au hallCheckpoint)
+            //Change l'état du bûcheron (aller au hallCheckpoint)
+            loggers[i].GetComponent<Animator>().SetBool("isFired", true);
 
             //Retirer stock, bâtiment de travail et arbre cible(+ maj isTargeted arbre cible)
             curLoggerScript.workBuilding = null;
@@ -86,7 +85,7 @@ public class LoggerCamp : MonoBehaviour
             }
             curLoggerScript.targetTree = null;
 
-            //Suppression liste loggers et maj nombre loggers
+            //Suppression de l'unité dans liste loggers + MAJ nombre loggers
             loggers.RemoveAt(i);
             loggersCount--;
         }
@@ -127,7 +126,7 @@ public class LoggerCamp : MonoBehaviour
 
     
     private void OnDrawGizmos() 
-    {   //startRadius : 25f / maxRadius : 75f / radiusIncr = 25f
+    {
         Gizmos.color = UnityEngine.Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 25f);
     }

@@ -60,12 +60,9 @@ public class BuildingManager : MonoBehaviour
             }
             else
             {
-                //Sécurité(si pas de hit)
+                //Si pas de hit
                 targetBuilding = currBuilding.transform.position;
             }
-
-            //Marge pour placer correctement (test / à modifier ! )
-            targetBuilding.y -= 0.5f; //
 
             //Prépositionnement sur terrain(ground)
             currBuilding.transform.position = targetBuilding;
@@ -90,6 +87,10 @@ public class BuildingManager : MonoBehaviour
     private void PrepareToCreateHome()
     {
         currBuilding = Instantiate(homePrefab, this.gameObject.transform);
+
+        Transform _buildings = GameObject.Find("Buildings").transform; 
+        currBuilding.transform.SetParent(_buildings);
+
         buildingInstantiated = true;
     }
 

@@ -4,6 +4,9 @@ using System.Drawing;
 using UnityEngine;
 using UnityEngine.AI;
 
+//Je me suis aidé d'une source pour réaliser ce script. Comme indiqué dans le ReadMe, ceci est dans une démarche d'apprentissage.
+//Vous pouvez retrouver ma source dans le ReadMe
+
 public class AttackController : MonoBehaviour
 {
     [SerializeField] private string enemyUnitTag;
@@ -19,9 +22,6 @@ public class AttackController : MonoBehaviour
         targetToAttack = null;
     }
 
-    //Peut être faire une liste d'unités qui attaque l'unité considérée, ajouter quand commande d'attaque, retirer quand commande déplacement 
-    //ET on ajoute (et retire) lorsqu'une cible est donné (et supprimé) par le script Attack Controller (Pour l'ajout, uniquement dans le cas où !isCommandedToAttack
-
     private void Update()
     {
         //Si l'unité a une cible mais que la cible n'est plus en vie (sûrement mieux à faire, + opti)
@@ -36,7 +36,6 @@ public class AttackController : MonoBehaviour
                 agent.SetDestination(transform.position);
             }
         }
-        ////
 
         if (targetToAttack == null && unitsInTrigger.Count > 0)
         {
@@ -108,7 +107,7 @@ public class AttackController : MonoBehaviour
     }
 
 
-    //Gizmos for tests
+    //Gizmos pour tests
     private void OnDrawGizmos()
     {
         /*

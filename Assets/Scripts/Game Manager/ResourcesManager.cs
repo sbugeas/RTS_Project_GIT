@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class ResourcesManager : MonoBehaviour
 {
     //---------- DATA ------------
-    //public int limitOfPopulation = 40;
+    //public int limitOfPopulation = 10;
     public int totalPopulation = 10;
-    public int inactivePopulationCount = 10; //Dans l'idée, 3 construisent donc actifs(sera fait + tard)
+    public int inactivePopulationCount = 10;
 
     public int woodCound = 0;
     public int rockCount = 0;
@@ -22,7 +22,7 @@ public class ResourcesManager : MonoBehaviour
 
     public static ResourcesManager instance;
 
-    public void Awake()
+    private void Awake()
     {
         if (instance != null)
         {
@@ -36,8 +36,8 @@ public class ResourcesManager : MonoBehaviour
     public void Start()
     {
         //Initialisation UI
-        totalPopulationCountTxt.text = totalPopulation.ToString();
-        inactivePopulationCountTxt.text = inactivePopulationCount.ToString();
+        UpdatePopulation();
+        UpdateWood();
 
     }
 
@@ -45,8 +45,7 @@ public class ResourcesManager : MonoBehaviour
     {
         woodCound += count;
 
-        //Maj canvas
-        woodCountTxt.text = woodCound.ToString();
+        UpdateWood();
     }
 
     public void RemoveWood(int count)
@@ -58,20 +57,32 @@ public class ResourcesManager : MonoBehaviour
             woodCound = 0;
         }
 
-        //Maj canvas
+        UpdateWood();
+
+    }
+
+    //Maj canvas
+    private void UpdateWood() 
+    {
         woodCountTxt.text = woodCound.ToString();
+    }
+
+    private void UpdatePopulation() 
+    {
+        totalPopulationCountTxt.text = totalPopulation.ToString();
+        inactivePopulationCountTxt.text = inactivePopulationCount.ToString();
     }
 
     public void AddToTotalPop(int count) 
     {
         totalPopulation += count;
-        totalPopulationCountTxt.text = totalPopulation.ToString();
+        UpdatePopulation();
     }
 
     public void AddToInactivePop(int count)
     {
         inactivePopulationCount += count;
-        inactivePopulationCountTxt.text = inactivePopulationCount.ToString();
+        UpdatePopulation();
     }
 
     public void RemToTotalPop(int count)
@@ -81,8 +92,8 @@ public class ResourcesManager : MonoBehaviour
         if (totalPopulation < 0) 
         {
             totalPopulation = 0;
-        } 
-        totalPopulationCountTxt.text = totalPopulation.ToString();
+        }
+        UpdatePopulation();
     }
 
     public void RemToInactivePop(int count)
@@ -93,8 +104,8 @@ public class ResourcesManager : MonoBehaviour
         {
             inactivePopulationCount = 0;
         }
-        inactivePopulationCountTxt.text = inactivePopulationCount.ToString();
+        UpdatePopulation();
     }
 
-
+    
 }

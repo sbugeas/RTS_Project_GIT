@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Je me suis aidé d'une source pour réaliser ce script. Comme indiqué dans le ReadMe, ceci est dans une démarche d'apprentissage.
+//Vous pouvez retrouver ma source dans le ReadMe
+
 public class CameraMotion : MonoBehaviour
 {
     [SerializeField] private float speed = 1f;

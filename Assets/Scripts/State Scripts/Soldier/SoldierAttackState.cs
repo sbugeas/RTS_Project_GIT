@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+//Je me suis aidé d'une source pour réaliser ce script. Comme indiqué dans le ReadMe, ceci est dans une démarche d'apprentissage.
+//Vous pouvez retrouver ma source dans le ReadMe
+
 public class SoldierAttackState : StateMachineBehaviour
 {
     NavMeshAgent agent;
@@ -11,7 +14,6 @@ public class SoldierAttackState : StateMachineBehaviour
     private float timeSinceLastAttack;
     private float attckCooldwn;
 
-    //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
@@ -22,8 +24,6 @@ public class SoldierAttackState : StateMachineBehaviour
     }
 
 
-
-    //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //Si attaque possible
@@ -72,17 +72,16 @@ public class SoldierAttackState : StateMachineBehaviour
 
     private void Attack(Animator _animator) 
     {
-        //Animation attaque
         _animator.SetTrigger("Attack");
 
-        //Get unit damage
+        //Récupération dégât
         int unitDamage = attackController.transform.GetComponent<Unit>().unitDamage;
 
-        //Check if enemy will die
+        //Vérification si l'ennemi a été tué
         int enemyCurHealth = attackController.targetToAttack.transform.GetComponent<Unit>().unitHealth;
         bool enemyWillDie = (unitDamage >= enemyCurHealth);
 
-        //Call TakeDamage() method on the enemy unit
+        //Applique les dégats
         attackController.targetToAttack.transform.GetComponent<Unit>().TakeDamage(unitDamage);
 
         if (enemyWillDie) 

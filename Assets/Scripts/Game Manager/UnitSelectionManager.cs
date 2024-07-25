@@ -27,7 +27,6 @@ public class UnitSelectionManager : MonoBehaviour
     public int max_size_group = 10;
     public float gapUnit = 1.5f;
 
-    //Test
     public Transform groundMarker;
 
     [SerializeField] GameObject UnitSelectionBoxGO;
@@ -59,7 +58,6 @@ public class UnitSelectionManager : MonoBehaviour
     private void Update()
     {
 
-        //Clique gauche
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -86,7 +84,7 @@ public class UnitSelectionManager : MonoBehaviour
             //Si on détecte ennemi
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyUnitsLayer))
             {
-                //Afficher curseur combat(+ tard)
+                //Pour l'affichage du curseur combat
                 enemyDetected = true;
 
                 //Détécter clique droit(= engager combat)
@@ -115,7 +113,6 @@ public class UnitSelectionManager : MonoBehaviour
                     int totalSelectedUnits = selectedUnitsList.Count;
                     Vector3 target = hit.point;
 
-                    //Tests
                     Vector3 groupPos = GiveGrpMiddlePos(selectedUnitsList);
 
                     Vector3 movementDir = (target - groupPos).normalized;
@@ -175,7 +172,7 @@ public class UnitSelectionManager : MonoBehaviour
 
     //-------------------------------------------------
 
-    private void MoveUnitGroup(Vector3 _target, Vector3 movementDir, Vector3 lineDir) //Peut être passer liste d'unité en param et/ou utiliser liste par ligne(tester avant)
+    private void MoveUnitGroup(Vector3 _target, Vector3 movementDir, Vector3 lineDir)
     {
         //On récupère le nombre d'unités pour chaque ligne
         int nbUnit_fstLine;
@@ -194,7 +191,6 @@ public class UnitSelectionManager : MonoBehaviour
         nbUnit_scndLine = totalSelectedUnits - nbUnit_fstLine;
         
         //Déclaration + remplissage listes par ligne
-
         List<GameObject> unitFstLine = new List<GameObject>();
         List<GameObject> unitScndLine = new List<GameObject>();
 
@@ -269,14 +265,11 @@ public class UnitSelectionManager : MonoBehaviour
 
     }
 
-    //A améliorer(pour rotation etc...)
+
     private void MoveUnitToPosition(GameObject unit, Vector3 unitPos)
     {
         unit.GetComponent<NavMeshAgent>().SetDestination(unitPos);
     }
-
-
-    //-------------------------------------------------
 
     private Vector3 GiveGrpMiddlePos(List<GameObject> unitGroup) 
     { 
@@ -290,10 +283,13 @@ public class UnitSelectionManager : MonoBehaviour
         return (totalPos / unitGroup.Count);
     }
 
-    private void SetWantedCursor(Texture2D text) 
+
+    //Retiré momentanément car les textures sont mal configurée
+    private void SetWantedCursor(Texture2D _texture) 
     {
-        Cursor.SetCursor(text, hotSpot, CursorMode.Auto);
+        //Cursor.SetCursor(_texture, hotSpot, CursorMode.Auto);
     }
+
 
     private void TriggerSelectionIndicator(GameObject _unit, bool isVisible)
     {
@@ -337,4 +333,3 @@ public class UnitSelectionManager : MonoBehaviour
 
         
 }
-   

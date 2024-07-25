@@ -5,25 +5,24 @@ using UnityEngine.AI;
 
 public class LoggerIdleState : StateMachineBehaviour
 {
-    PeasantData peasantData;
+    LoggerData loggerData;
     NavMeshAgent agent;
 
     LoggerCamp loggerCamp;
     Transform target;
 
-    //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("isGoingToRecolt", false);
         animator.SetBool("isRecolting", false);
 
         agent = animator.transform.GetComponent<NavMeshAgent>();
-        peasantData = animator.transform.GetComponent<PeasantData>();
+        loggerData = animator.transform.GetComponent<LoggerData>();
 
         //Si pas de cible (ET stock nul)
-        if ((peasantData.targetTree == null) && (peasantData.stock == 0))
+        if ((loggerData.targetTree == null) && (loggerData.stock == 0))
         {
-            loggerCamp = peasantData.workBuilding.GetComponent<LoggerCamp>();
+            loggerCamp = loggerData.workBuilding.GetComponent<LoggerCamp>();
 
             //On essaie d'en attribuer une
             target = loggerCamp.GiveNearestValidTree();
@@ -35,7 +34,7 @@ public class LoggerIdleState : StateMachineBehaviour
             else 
             {
                 target.GetComponent<HealthTree>().isTargeted = true;
-                peasantData.targetTree = target;
+                loggerData.targetTree = target;
                 animator.SetBool("isGoingToRecolt", true);
             }
 
