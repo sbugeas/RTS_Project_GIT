@@ -1,7 +1,7 @@
 DESCRIPTION
 
-
 Projet 3D personnel qui est un prototype RTS (Real Time Strategy) qui permettra à 2 joueurs de s’affronter, dans un univers médiéval.
+
 
 CONTROLES
 
@@ -21,6 +21,7 @@ Clique droit(unité(s) sélectionnée(s)) : Déplacement seul ou en groupe(forma
 Clique droit(unité(s) sélectionnée(s)) + cible ennemie) : Commande d'attaque
 
 
+
 ACHEVÉ
 
 - Ajout gestion de la Caméra
@@ -37,6 +38,7 @@ ACHEVÉ
 - Modèle(basique) du camp de bûcheron, du hall (bâtiment principal) et de l'entrepôt
 
 
+
 PRÉVISIONS
 
 - Affectation(via UI) de la main d’œuvre aux bâtiments de production (et retrait pour redéploiement)
@@ -44,11 +46,13 @@ PRÉVISIONS
 - Finalisation du système de construction (Contrôle de placement sur terrain avec relief)
   
 
+
 OUTILS
 
 - Unity
 - Blender
 - Visual Studio(C#)
+
 
 
 SOURCES
