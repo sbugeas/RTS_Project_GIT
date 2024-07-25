@@ -2,6 +2,7 @@ Description
 Projet 3D personnel qui est un prototype RTS (Real Time Strategy) qui permettra à 2 joueurs de s’affronter, dans un univers médiéval.
 
 CONTROLES
+
 Flèches directionnelles (↓↑←→) : Déplacer la caméra
 Molette souris : Zoom caméra
 Molette souris(rester appuyé) : Rotation caméra
