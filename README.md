@@ -1,9 +1,9 @@
-DESCRIPTION
+--- DESCRIPTION ---
 
 Projet 3D personnel qui est un prototype RTS (Real Time Strategy) qui permettra à 2 joueurs de s’affronter, dans un univers médiéval.
 
 
-CONTROLES
+--- CONTROLES ---
 
 
 Flèches directionnelles (↓↑←→) : Déplacer la caméra
@@ -22,9 +22,7 @@ Clique droit(unité(s) sélectionnée(s)) + cible ennemie) : Commande d'attaque
 
 
 
-
-
-ACHEVÉ
+--- ACHEVÉ ---
 
 - Ajout gestion de la Caméra
 - Ajout sélection simple et multiple d'unité
@@ -41,7 +39,7 @@ ACHEVÉ
 
 
 
-PRÉVISIONS
+--- PRÉVISIONS ---
 
 - Affectation(via UI) de la main d’œuvre aux bâtiments de production (et retrait pour redéploiement)
 - Modélisation d’une carte test, avec relief
@@ -49,7 +47,7 @@ PRÉVISIONS
   
 
 
-OUTILS
+--- OUTILS ---
 
 - Unity
 - Blender
@@ -57,7 +55,7 @@ OUTILS
 
 
 
-SOURCES
+--- SOURCES ---
 
 [Make RTS (Mike)](https://www.youtube.com/watch?v=-GfdKB_7mrY&list=PLtLToKUhgzwkCRQ9YAOtUIDbDQN5XXVAs)
 
