@@ -41,9 +41,9 @@ Clique droit(unité(s) sélectionnée(s)) + cible ennemie) : Commande d'attaque
 
 --- PRÉVISIONS ---
 
-- Affectation(via UI) de la main d’œuvre aux bâtiments de production (et retrait pour redéploiement)
+- Affectation(via UI) de la main d’œuvre aux bâtiments de production (et retrait) → en cours
+- Système de construction (+ contrôle de placement sur terrain avec relief)
 - Modélisation d’une carte test, avec relief
-- Finalisation du système de construction (Contrôle de placement sur terrain avec relief)
   
 
 
