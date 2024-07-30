@@ -18,25 +18,31 @@ public class LoggerGoToWarehouseState : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         loggerData = animator.GetComponent<LoggerData>();
 
+        animator.SetBool("isGoingToRecolt", false);
+        animator.SetBool("isRecolting", false);
+
         //Active & désactive bons objets
         loggerData.carriedLog.SetActive(true);
         loggerData.loggerAxe.SetActive(false);
 
-        //Position entrepôt
+        //On récupère le checkpoint de l'entrepôt et on y envoie le bûcheron
         wareHouse = loggerData.workBuilding.GetComponent<LoggerCamp>().warehouseCheckPoint;
+
+        if(wareHouse != null) 
+        {
+            agent.SetDestination(wareHouse.position);
+        }
+        
     }
 
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (wareHouse != null)
+        if (wareHouse != null && !animator.GetBool("isFired"))
         {
-            agent.SetDestination(wareHouse.position);
-
             //Si à portée de l'entrepôt
             if (Vector3.Distance(animator.transform.position, wareHouse.position) <= depositRange)
             {
-                //On arrête l'agent (test)
                 agent.SetDestination(animator.transform.position);
 
                 //On dépose le stock dans l'entrepôt

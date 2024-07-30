@@ -34,61 +34,60 @@ public class LoggerCamp : MonoBehaviour
 
     public void AddLoggers(int n) 
     {
-        NavMeshHit hit;
-
-        if (NavMesh.SamplePosition(hallCheckpoint.position, out hit, 1.0f, NavMesh.AllAreas)) 
+        if((loggersCount + n) <= maxLoggerCount) 
         {
-            //Pour ne pas dépasser le max
-            if ((n + loggers.Count) > maxLoggerCount)
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(hallCheckpoint.position, out hit, 1.0f, NavMesh.AllAreas))
             {
-                n = maxLoggerCount - loggers.Count;
-            }
-            //Add n loggers
-            for (int i = 0; i < n; i++)
-            {
-                if(ResourcesManager.instance.inactivePopulationCount > 0) 
+                //Add n loggers
+                for (int i = 0; i < n; i++)
                 {
-                    GameObject newLogger = Instantiate(loggersPrefab, hit.position, Quaternion.identity);
-                    newLogger.GetComponent<LoggerData>().workBuilding = this.gameObject.transform;
-                    loggers.Add(newLogger);
-                    loggersCount++;
-                    ResourcesManager.instance.RemToInactivePop(1);
+                    if (ResourcesManager.instance.inactivePopulationCount > 0)
+                    {
+                        GameObject newLogger = Instantiate(loggersPrefab, hit.position, Quaternion.identity);
+                        newLogger.GetComponent<LoggerData>().workBuilding = this.gameObject.transform;
+                        loggers.Add(newLogger);
+                        loggersCount++;
+                        ResourcesManager.instance.RemToInactivePop(1);
+                    }
+
                 }
 
             }
 
         }
+    
     }
 
     public void RemoveLoggers(int n) 
     {
-        //Pour ne pas dépasser loggers.Count
-        if (n > loggers.Count) 
+        if(loggers.Count >= n)
         {
-            n = loggers.Count;
-        }
-        //Remove n loggers
-        for (int i = 0; i < n; i++)
-        {
-            LoggerData curLoggerScript = loggers[i].GetComponent<LoggerData>();
-
-            //Change l'état du bûcheron (aller au hallCheckpoint)
-            loggers[i].GetComponent<Animator>().SetBool("isFired", true);
-
-            //Retirer stock, bâtiment de travail et arbre cible(+ maj isTargeted arbre cible)
-            curLoggerScript.workBuilding = null;
-            curLoggerScript.stock = 0;
-
-            if ((curLoggerScript.targetTree != null) && curLoggerScript.targetTree.GetComponent<HealthTree>().isTargeted) 
+            //Remove n loggers
+            for (int i = 0; i < n; i++)
             {
-                curLoggerScript.targetTree.GetComponent<HealthTree>().isTargeted = false;
-            }
-            curLoggerScript.targetTree = null;
+                LoggerData curLoggerScript = loggers[i].GetComponent<LoggerData>();
 
-            //Suppression de l'unité dans liste loggers + MAJ nombre loggers
-            loggers.RemoveAt(i);
-            loggersCount--;
+                //Change l'état du bûcheron (aller au hallCheckpoint)
+                loggers[i].GetComponent<Animator>().SetBool("isFired", true);
+
+                //Retirer stock et arbre cible(+ maj isTargeted arbre cible) --> bâtiment de travail retiré dans script State ReturnHall
+                curLoggerScript.stock = 0;
+
+                if ((curLoggerScript.targetTree != null) && curLoggerScript.targetTree.GetComponent<HealthTree>().isTargeted)
+                {
+                    curLoggerScript.targetTree.GetComponent<HealthTree>().isTargeted = false;
+                }
+                curLoggerScript.targetTree = null;
+
+                //Suppression de l'unité dans liste loggers + MAJ nombre loggers
+                loggers.RemoveAt(i);
+                loggersCount--;
+            }
+
         }
+
     }
 
 

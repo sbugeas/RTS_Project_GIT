@@ -19,6 +19,8 @@ public class LoggerIdleState : StateMachineBehaviour
         agent = animator.transform.GetComponent<NavMeshAgent>();
         loggerData = animator.transform.GetComponent<LoggerData>();
 
+        agent.stoppingDistance = 1;
+
         //Si pas de cible (ET stock nul)
         if ((loggerData.targetTree == null) && (loggerData.stock == 0))
         {

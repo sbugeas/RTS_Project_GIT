@@ -40,6 +40,7 @@ public class LoggerGoingToRecoltState : StateMachineBehaviour
             if (Vector3.Distance(animator.transform.position, target.position) < recoltingDistance) 
             {
                 animator.SetBool("isRecolting", true);
+                //animator.SetBool("isGoingToRecolt", false); //test
             }
         }
 

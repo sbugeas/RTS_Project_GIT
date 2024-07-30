@@ -34,4 +34,9 @@ public class LoggerData : MonoBehaviour
         }
 
     }
+
+    public void RemoveWorkBuilding()
+    {
+        workBuilding = null;
+    }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 
 public class UnitSelectionManager : MonoBehaviour
@@ -22,12 +23,15 @@ public class UnitSelectionManager : MonoBehaviour
     public LayerMask unitsLayer;
     public LayerMask enemyUnitsLayer;
     public LayerMask ground;
+    public LayerMask buildingLayerP1;
+
     public string unitsTag;
 
     public int max_size_group = 10;
     public float gapUnit = 1.5f;
 
     public Transform groundMarker;
+    public Transform selectedBuilding;
 
     [SerializeField] GameObject UnitSelectionBoxGO;
     private UnitSelectionBox unitSelectionBoxScript;
@@ -49,6 +53,7 @@ public class UnitSelectionManager : MonoBehaviour
 
     private void Start()
     {
+        selectedBuilding = null;
         cam = Camera.main;
         unitSelectionBoxScript = UnitSelectionBoxGO.GetComponent<UnitSelectionBox>();
     }
@@ -57,20 +62,41 @@ public class UnitSelectionManager : MonoBehaviour
 
     private void Update()
     {
-
+        //Clique gauche
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            //Si ne cible pas un élément de l'UI
+            if (EventSystem.current.IsPointerOverGameObject() == false)
+            {
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, unitsLayer))
-            {
-                SelectByClicking(hit.collider.gameObject);
+                //On détécte une unité
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, unitsLayer))
+                {
+                    SelectByClicking(hit.collider.gameObject);
+                }
+                else
+                {
+                    DeselectAll();
+                    CanvasManager.instance.CloseAllBuildingsPanel();
+                    //CanvasManager.instance.UpdateLoggerCamp(null); /!\
+
+                    //On détécte un bâtiment
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, buildingLayerP1))
+                    {
+                        Debug.Log("Bâtiment détecté");
+
+                        selectedBuilding = hit.transform;
+
+                        //On le sélectionne
+                        CanvasManager.instance.SelectBuilding(selectedBuilding);
+                    }
+
+                    
+                }
             }
-            else 
-            {
-                DeselectAll();
-            }
+
 
         }
 

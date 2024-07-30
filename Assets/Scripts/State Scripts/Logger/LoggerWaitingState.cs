@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class LoggerWaitingState : StateMachineBehaviour
 {
@@ -19,18 +20,41 @@ public class LoggerWaitingState : StateMachineBehaviour
         loggerData.carriedLog.SetActive(false);
         loggerData.loggerAxe.SetActive(false);
 
-        //Détermine index de position d'attente
-        int ind = loggerCamp.inactiveLoggers.Count;
-
         //Ajout à liste de bûcherons inactifs
         loggerCamp.inactiveLoggers.Add(animator.transform.gameObject);
 
-        //Détermine position d'attente
-        target = loggerCamp.gameObject.transform.GetChild(ind);
+        //Détermine index de position d'attente
+        int ind = loggerCamp.inactiveLoggers.Count - 1;
 
-        //Déplacement à la position d'attente
+        //On récupère le checkpoint
+        target = loggerCamp.transform.GetChild(ind);
+        //Sécurité si l'enfant n'existe pas(on affecte le 1er)
+        if (target == null)
+        {
+            target = loggerCamp.transform.GetChild(0);
+        }
+
+        //Déplacement à la position d'attente(target)
         agent.SetDestination(target.position);
+        agent.stoppingDistance = 0;
     }
 
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
+    {
+        //Si non renvoyé et pas au camp
+        if (!animator.GetBool("isFired") && !animator.GetBool("isIntoTheCamp")) 
+        {
+            //Vérifier si arrivé à destination : si oui -> s'arrêter
+            if (Vector3.Distance(animator.transform.position, target.position) <= 0.5f) 
+            {
+                animator.SetBool("isIntoTheCamp", true);
+                Debug.Log("Arrivé au camp"); //test
+                agent.SetDestination(animator.transform.position);
+            }
+
+        }
+        
+        
+    }
 
 }
