@@ -12,7 +12,6 @@ public class LoggerReturnHallState : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
         //Get component
         agent = animator.transform.GetComponent<NavMeshAgent>();
         loggerData = animator.transform.GetComponent<LoggerData>();

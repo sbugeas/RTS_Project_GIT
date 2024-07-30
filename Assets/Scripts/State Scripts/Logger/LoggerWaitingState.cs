@@ -48,7 +48,6 @@ public class LoggerWaitingState : StateMachineBehaviour
             if (Vector3.Distance(animator.transform.position, target.position) <= 0.5f) 
             {
                 animator.SetBool("isIntoTheCamp", true);
-                Debug.Log("Arrivé au camp"); //test
                 agent.SetDestination(animator.transform.position);
             }
 

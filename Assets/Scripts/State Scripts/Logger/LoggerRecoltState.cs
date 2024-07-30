@@ -13,7 +13,7 @@ public class LoggerRecoltState : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("isGoingToRecolt", false); //test
+        animator.SetBool("isGoingToRecolt", false);
 
         agent = animator.GetComponent<NavMeshAgent>();
         loggerData = animator.GetComponent<LoggerData>();
@@ -22,13 +22,12 @@ public class LoggerRecoltState : StateMachineBehaviour
         loggerData.carriedLog.SetActive(false);
         loggerData.loggerAxe.SetActive(true);
 
-        animator.transform.LookAt(loggerData.targetTree);
+        agent.SetDestination(animator.transform.position); //
+        animator.transform.LookAt(loggerData.targetTree); //
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(animator.transform.position); //Essayer de mettre dans Enter(?)
-
         timeSinceLastHit += Time.deltaTime;
 
         if (loggerData.targetTree != null) 
@@ -48,7 +47,7 @@ public class LoggerRecoltState : StateMachineBehaviour
                 animator.SetBool("isCarryingWood", true);
             }
 
-            animator.SetBool("isRecolting", false); //test
+            animator.SetBool("isRecolting", false);
 
         }
 
