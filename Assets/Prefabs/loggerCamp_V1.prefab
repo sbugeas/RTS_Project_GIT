@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6007503046098618211}
   m_Layer: 0
-  m_Name: campCheckpoint_3
+  m_Name: campCheckpoint_4
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6112591192713327524}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6501596084872340962
 GameObject:
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 638662332446002597}
   m_Layer: 0
-  m_Name: campCheckpoint_4
+  m_Name: campCheckpoint_3
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -122,7 +122,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6112591192713327524}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6890395147896072478
 GameObject:
@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 6007503044934538323}
   - component: {fileID: 6007503044934538316}
   - component: {fileID: 153820290}
+  - component: {fileID: 517092771550243450}
   m_Layer: 12
   m_Name: loggerCamp_V1
   m_TagString: loggerCamp
@@ -160,8 +161,8 @@ Transform:
   m_Children:
   - {fileID: 6007503046064146207}
   - {fileID: 6007503045397049535}
-  - {fileID: 6007503046098618211}
   - {fileID: 638662332446002597}
+  - {fileID: 6007503046098618211}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
@@ -283,3 +284,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &517092771550243450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6890395147896072478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aad58009e7eaa540b5a22bd9d3380cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodCost: 5
+  popGiven: 0
+  maxHealth: 100
+  currentHealth: 100

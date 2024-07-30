@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -32,6 +33,7 @@ public class LoggerCamp : MonoBehaviour
 
     }
 
+    //Ajout loggers (en fin)
     public void AddLoggers(int n) 
     {
         if((loggersCount + n) <= maxLoggerCount) 
@@ -60,6 +62,7 @@ public class LoggerCamp : MonoBehaviour
     
     }
 
+    //Suppression loggers (en fin)
     public void RemoveLoggers(int n) 
     {
         if(loggers.Count >= n)
@@ -67,10 +70,10 @@ public class LoggerCamp : MonoBehaviour
             //Remove n loggers
             for (int i = 0; i < n; i++)
             {
-                LoggerData curLoggerScript = loggers[i].GetComponent<LoggerData>();
+                LoggerData curLoggerScript = loggers[loggers.Count - 1].GetComponent<LoggerData>();
 
                 //Change l'état du bûcheron (aller au hallCheckpoint)
-                loggers[i].GetComponent<Animator>().SetBool("isFired", true);
+                curLoggerScript.transform.GetComponent<Animator>().SetBool("isFired", true);
 
                 //Retirer stock et arbre cible(+ maj isTargeted arbre cible) --> bâtiment de travail retiré dans script State ReturnHall
                 curLoggerScript.stock = 0;
@@ -81,9 +84,16 @@ public class LoggerCamp : MonoBehaviour
                 }
                 curLoggerScript.targetTree = null;
 
+                //Suppression de l'unité dans liste des inactifs (si elle s'y trouve)
+                if (inactiveLoggers.Contains(curLoggerScript.gameObject))
+                {
+                    inactiveLoggers.Remove(curLoggerScript.gameObject);
+                }
+
                 //Suppression de l'unité dans liste loggers + MAJ nombre loggers
-                loggers.RemoveAt(i);
+                loggers.RemoveAt(loggers.Count - 1);
                 loggersCount--;
+
             }
 
         }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ResourcesManager : MonoBehaviour
 {
     //---------- DATA ------------
-    //public int limitOfPopulation = 10;
+    public int populationMax = 40;
     public int totalPopulation = 10;
     public int inactivePopulationCount = 10;
 
@@ -75,7 +75,15 @@ public class ResourcesManager : MonoBehaviour
 
     public void AddToTotalPop(int count) 
     {
+        //Vérifie si on ne dépasse pas populationMax
+        if (totalPopulation + count > populationMax) 
+        {
+            count = populationMax - totalPopulation;
+        }
+
         totalPopulation += count;
+        inactivePopulationCount += count;
+
         UpdatePopulation();
     }
 

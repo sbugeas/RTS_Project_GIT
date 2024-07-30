@@ -6,21 +6,25 @@ using static UnityEngine.GraphicsBuffer;
 
 public class LoggerWaitingState : StateMachineBehaviour
 {
-    NavMeshAgent agent;
-    LoggerData loggerData;
     Transform target;
+
+    NavMeshAgent agent;
+
+    LoggerData loggerData;
+    LoggerCamp loggerCamp;
+
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.transform.GetComponent<NavMeshAgent>();
         loggerData = animator.transform.GetComponent<LoggerData>();
-        LoggerCamp loggerCamp = loggerData.workBuilding.GetComponent<LoggerCamp>();
+        loggerCamp = loggerData.workBuilding.GetComponent<LoggerCamp>();
 
         //Active & désactive objets selon état (hache et rondin)
         loggerData.carriedLog.SetActive(false);
         loggerData.loggerAxe.SetActive(false);
 
-        //Ajout à liste de bûcherons inactifs
+        //Ajout dans la liste de bûcherons inactifs
         loggerCamp.inactiveLoggers.Add(animator.transform.gameObject);
 
         //Détermine index de position d'attente
@@ -41,7 +45,7 @@ public class LoggerWaitingState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
-        //Si non renvoyé et pas au camp
+        //Si non renvoyé(isFired) et pas au camp
         if (!animator.GetBool("isFired") && !animator.GetBool("isIntoTheCamp")) 
         {
             //Vérifier si arrivé à destination : si oui -> s'arrêter

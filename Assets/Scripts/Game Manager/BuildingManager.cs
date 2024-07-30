@@ -108,7 +108,6 @@ public class BuildingManager : MonoBehaviour
             buildingInstantiated = false;
 
             ResourcesManager.instance.AddToTotalPop(dataScript.popGiven);
-            ResourcesManager.instance.AddToInactivePop(dataScript.popGiven);
             ResourcesManager.instance.RemoveWood(dataScript.woodCost);
 
         }

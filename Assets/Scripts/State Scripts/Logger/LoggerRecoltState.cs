@@ -22,8 +22,8 @@ public class LoggerRecoltState : StateMachineBehaviour
         loggerData.carriedLog.SetActive(false);
         loggerData.loggerAxe.SetActive(true);
 
-        agent.SetDestination(animator.transform.position); //
-        animator.transform.LookAt(loggerData.targetTree); //
+        agent.SetDestination(animator.transform.position);
+        animator.transform.LookAt(loggerData.targetTree);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -42,7 +42,8 @@ public class LoggerRecoltState : StateMachineBehaviour
         }
         else 
         {
-            if (loggerData.stock >= 0) 
+            //Si stock > 0 et n'a pas été renvoyé entre temps
+            if (loggerData.stock >= 0 && !animator.GetBool("isFired")) 
             {
                 animator.SetBool("isCarryingWood", true);
             }

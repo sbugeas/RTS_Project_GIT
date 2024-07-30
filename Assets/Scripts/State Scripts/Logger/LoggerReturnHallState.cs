@@ -16,8 +16,8 @@ public class LoggerReturnHallState : StateMachineBehaviour
         agent = animator.transform.GetComponent<NavMeshAgent>();
         loggerData = animator.transform.GetComponent<LoggerData>();
 
-        //Tests (sûrement bcp mieux à faire)
-        animator.SetBool("isWorking", false); //Problématique car isWorking permet dans le layer Animation de jouer anim de marche
+        //Update parameters
+        animator.SetBool("isWorking", false);
         animator.SetBool("isIntoTheCamp", false);
         animator.SetBool("isGoingToRecolt", false);
         animator.SetBool("isRecolting", false);
@@ -27,7 +27,7 @@ public class LoggerReturnHallState : StateMachineBehaviour
         loggerData.carriedLog.SetActive(false);
         loggerData.loggerAxe.SetActive(false);
 
-        //Immobilisation (test)
+        //Immobilisation(for reset target)
         agent.SetDestination(animator.transform.position);
 
         //Get hall checkpoint position

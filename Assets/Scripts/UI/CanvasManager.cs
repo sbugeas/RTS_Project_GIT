@@ -7,21 +7,21 @@ using TMPro;
 //Script en cours/non terminé
 public class CanvasManager : MonoBehaviour
 {
-    //LOGGER CAMP
-    public GameObject loggerCampPanel;
-
-    [SerializeField]TextMeshProUGUI loggerCountTxt;
-    [SerializeField]TextMeshProUGUI maxLoggerTxt;
-
     private Camera cam;
-
     public static CanvasManager instance;
 
-    public Button addLoggerButton; //
-    public Button removeLoggerButton; //
+    //------------- LOGGER CAMP ---------------
+    [SerializeField] TextMeshProUGUI loggerCountTxt;
+    [SerializeField] TextMeshProUGUI maxLoggerTxt;
+    [SerializeField] Slider loggerCampSlider;
 
-    private LoggerCamp loggerCamp; //
+    public GameObject loggerCampPanel;
 
+    public Button addLoggerButton;
+    public Button removeLoggerButton;
+
+    private LoggerCamp loggerCamp;
+    //-----------------------------------------
 
     private void Awake()
     {
@@ -65,8 +65,22 @@ public class CanvasManager : MonoBehaviour
     {
         if(loggerCamp != null) 
         {
+            //Update text
             loggerCountTxt.text = loggerCamp.loggersCount.ToString();
             maxLoggerTxt.text = loggerCamp.maxLoggerCount.ToString();
+
+            //Update health bar
+            BuildingData buildingData = loggerCamp.GetComponent<BuildingData>();
+
+            if (buildingData != null) 
+            {
+                int _maxHealth = buildingData.maxHealth;
+                int _currentHealth = buildingData.currentHealth;
+
+                loggerCampSlider.maxValue = _maxHealth;
+                loggerCampSlider.value = _currentHealth;
+            }
+            
         }
 
         
