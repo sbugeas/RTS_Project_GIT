@@ -1,6 +1,7 @@
 --- DESCRIPTION ---
 
-Projet 3D personnel qui est un prototype RTS (Real Time Strategy) qui permettra à 2 joueurs de s’affronter, dans un univers médiéval.
+Projet 3D personnel qui est un prototype RTS (Real Time Strategy) solo s’inscrivant dans un univers médiéval. 
+Le joueur devra développer sa colonie, faire prospérer son peuple et le défendre face aux attaques de pillard.
 
 
 --- CONTROLES ---
