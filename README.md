@@ -19,7 +19,7 @@ Clique gauche : Sélectionne unité(militaire)
 
 Clique droit(unité(s) sélectionnée(s)) : Déplacement seul ou en groupe(formation)
 
-Clique droit(unité(s) sélectionnée(s)) + cible ennemie) : Commande d'attaque
+Clique droit(unité(s) militaire(s) sélectionnée(s)) sur cible ennemie : Commande d'attaque
 
 
 
