@@ -12,11 +12,12 @@ public class ResourcesManager : MonoBehaviour
     public int totalPopulation = 0;
 
     public int woodCound = 0;
-    public int rockCount = 0;
+    public int stoneCount = 0;
     public int gold = 0;
     //----------------------------
 
     public TextMeshProUGUI woodCountTxt;
+    public TextMeshProUGUI stoneCountTxt;
     public TextMeshProUGUI totalPopulationCountTxt;
     public TextMeshProUGUI maxPopulationCountTxt;
 
@@ -66,6 +67,32 @@ public class ResourcesManager : MonoBehaviour
     {
         woodCountTxt.text = woodCound.ToString();
     }
+
+    public void AddStone(int count)
+    {
+        stoneCount += count;
+
+        UpdateStone();
+    }
+
+    public void RemoveStone(int count)
+    {
+        stoneCount -= count;
+
+        if (stoneCount < 0)
+        {
+            stoneCount = 0;
+        }
+
+        UpdateStone();
+
+    }
+
+    private void UpdateStone() 
+    {
+        stoneCountTxt.text = stoneCount.ToString();
+    }
+
 
     private void UpdatePopulation() 
     {

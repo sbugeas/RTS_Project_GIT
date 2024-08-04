@@ -3,43 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class LoggerWaitingState : StateMachineBehaviour
+public class StoneMinerWaitingState : StateMachineBehaviour
 {
     Transform target;
 
     NavMeshAgent agent;
 
-    LoggerData loggerData;
-    LoggerCamp loggerCamp;
+    StoneMinerData stoneMinerData;
+    StoneQuarry stoneQuarry;
 
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.transform.GetComponent<NavMeshAgent>();
-        loggerData = animator.transform.GetComponent<LoggerData>();
-        loggerCamp = loggerData.workBuilding.GetComponent<LoggerCamp>();
+        stoneMinerData = animator.transform.GetComponent<StoneMinerData>();
+        stoneQuarry = stoneMinerData.workBuilding.GetComponent<StoneQuarry>();
 
         //Active & désactive objets selon état (hache et rondin)
-        loggerData.carriedLog.SetActive(false);
-        loggerData.loggerAxe.SetActive(false);
+        stoneMinerData.carriedStone.SetActive(false);
+        stoneMinerData.stoneMinerPick.SetActive(false);
 
         //Ajout dans la liste de bûcherons inactifs
-        loggerCamp.inactiveLoggers.Add(animator.transform.gameObject);
+        stoneQuarry.inactiveStoneMiners.Add(animator.transform.gameObject);
 
         //Détermine index de position d'attente
-        int ind = loggerCamp.inactiveLoggers.Count - 1;
+        int ind = stoneQuarry.inactiveStoneMiners.Count - 1;
 
         //On récupère le checkpoint
-        target = loggerCamp.transform.GetChild(ind);
+        target = stoneQuarry.transform.GetChild(ind);
 
         //Sécurité : si l'enfant n'existe pas, on affecte le 1er. Si il n'en a pas, on affecte la position du bâtiment
         if (target == null)
         {
-            target = loggerCamp.transform.GetChild(0);
+            target = stoneQuarry.transform.GetChild(0);
 
-            if (target == null)
+            if(target == null) 
             {
-                target = loggerCamp.transform;
+                target = stoneQuarry.transform;
             }
         }
 
@@ -48,21 +48,22 @@ public class LoggerWaitingState : StateMachineBehaviour
         agent.stoppingDistance = 0;
     }
 
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //Si non renvoyé(isFired) et pas au camp
-        if (!animator.GetBool("isFired") && !animator.GetBool("isIntoTheCamp")) 
+        if (!animator.GetBool("isFired") && !animator.GetBool("isIntoTheHut"))
         {
             //Vérifier si arrivé à destination : si oui -> s'arrêter
-            if (Vector3.Distance(animator.transform.position, target.position) <= 0.5f) 
+            if (Vector3.Distance(animator.transform.position, target.position) <= 0.5f)
             {
-                animator.SetBool("isIntoTheCamp", true);
+                animator.SetBool("isIntoTheHut", true);
                 agent.SetDestination(animator.transform.position);
             }
 
         }
-        
-        
+
+
     }
+
 
 }

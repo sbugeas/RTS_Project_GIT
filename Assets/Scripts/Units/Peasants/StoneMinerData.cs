@@ -12,6 +12,8 @@ public class StoneMinerData : MonoBehaviour
 
     public int stock = 0;
 
+    private int hitsCount = 0; //Incrémenté et réinitialisée dans méthode "CheckIfHitCountIsValid"
+
     public void RecoltStone()
     {
         if (targetRock != null)
@@ -33,4 +35,19 @@ public class StoneMinerData : MonoBehaviour
     {
         workBuilding = null;
     }
+
+    
+    public void CheckHitsCount() 
+    {
+        hitsCount++;
+
+        if (targetRock != null && (hitsCount >= targetRock.GetComponent<HealthRock>().totalHitToRecolt)) 
+        {
+            RecoltStone();
+            hitsCount = 0;
+        }
+    }
+    
+
+
 }

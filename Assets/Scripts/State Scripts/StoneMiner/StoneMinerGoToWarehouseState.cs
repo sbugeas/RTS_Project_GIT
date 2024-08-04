@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class LoggerGoToWarehouseState : StateMachineBehaviour
+public class StoneMinerGoToWarehouseState : StateMachineBehaviour
 {
-    LoggerData loggerData;
+    StoneMinerData stoneMinerData;
     NavMeshAgent agent;
 
     public float depositRange = 3.0f;
@@ -15,28 +15,28 @@ public class LoggerGoToWarehouseState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        loggerData = animator.GetComponent<LoggerData>();
+        stoneMinerData = animator.GetComponent<StoneMinerData>();
 
         animator.SetBool("isGoingToRecolt", false);
         animator.SetBool("isRecolting", false);
 
         //Active & désactive bons objets
-        loggerData.carriedLog.SetActive(true);
-        loggerData.loggerAxe.SetActive(false);
+        stoneMinerData.carriedStone.SetActive(true);
+        stoneMinerData.stoneMinerPick.SetActive(false);
 
-        //On récupère le checkpoint de l'entrepôt et on y envoie le bûcheron
-        wareHouse = loggerData.workBuilding.GetComponent<LoggerCamp>().warehouseCheckPoint;
+        //On récupère le checkpoint de l'entrepôt et on y envoie le mineur
+        wareHouse = stoneMinerData.workBuilding.GetComponent<StoneQuarry>().warehouseCheckPoint;
 
-        if(wareHouse != null) 
+        if (wareHouse != null)
         {
             agent.SetDestination(wareHouse.position);
         }
-        else 
+        else
         {
             animator.SetBool("isWorking", false);
-            animator.SetBool("isCarryingWood", false);
+            animator.SetBool("isCarryingStone", false);
         }
-        
+
     }
 
 
@@ -50,13 +50,13 @@ public class LoggerGoToWarehouseState : StateMachineBehaviour
                 agent.SetDestination(animator.transform.position);
 
                 //On dépose le stock dans l'entrepôt
-                ResourcesManager.instance.AddWood(loggerData.stock);
-                loggerData.stock = 0;
+                ResourcesManager.instance.AddStone(stoneMinerData.stock);
+                stoneMinerData.stock = 0;
 
                 //On repasse dans l'état Idle
-                animator.SetBool("isCarryingWood", false);
+                animator.SetBool("isCarryingStone", false);
             }
-        }        
+        }
 
     }
 }

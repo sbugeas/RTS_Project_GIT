@@ -16,6 +16,7 @@ TagManager:
   - wareHouse
   - hall
   - rock
+  - stoneMinerHut
   layers:
   - Default
   - TransparentFX
