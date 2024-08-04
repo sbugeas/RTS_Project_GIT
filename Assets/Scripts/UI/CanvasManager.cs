@@ -10,18 +10,39 @@ public class CanvasManager : MonoBehaviour
     private Camera cam;
     public static CanvasManager instance;
 
-    //------------- LOGGER CAMP ---------------
+    //-------------- TEXTS ---------------
     [SerializeField] TextMeshProUGUI loggerCountTxt;
     [SerializeField] TextMeshProUGUI maxLoggerTxt;
+
+    //[SerializeField] TextMeshProUGUI stoneMinerCountTxt;
+    //[SerializeField] TextMeshProUGUI maxStoneMinerTxt;
+    //-----------------------------------
+
+    //------------- PANELS ---------------
+    [SerializeField] GameObject buildingPanel;
+    [SerializeField] GameObject loggerCampPanel;
+    //[SerializeField] GameObject stoneQuarryPanel;
+    //-----------------------------------
+
+    //------------- BUTTONS ---------------
+    [SerializeField] Button openBuildingPanelButton;
+
+    [SerializeField] Button addLoggerButton;
+    [SerializeField] Button removeLoggerButton;
+
+    //[SerializeField] Button addStoneMinerButton;
+    //[SerializeField] Button removeStoneMinerButton;
+
+    //-------------------------------------
+
+    //------------- SLIDERS ----------------
     [SerializeField] Slider loggerCampSlider;
-
-    public GameObject loggerCampPanel;
-
-    public Button addLoggerButton;
-    public Button removeLoggerButton;
+    //[SerializeField] Slider stoneQuarrySlider;
+    //-------------------------------------
 
     private LoggerCamp loggerCamp;
-    //-----------------------------------------
+    //private StoneQuarry stoneQuarry; //OK
+
 
     private void Awake()
     {
@@ -41,7 +62,56 @@ public class CanvasManager : MonoBehaviour
         loggerCamp = null;
     }
 
-    
+
+    public void SelectBuilding(Transform _structure)
+    {
+        loggerCamp = null;
+        //stoneQuarry = null; //OK
+
+        //Si c'est un camp de bûcheron
+        if (_structure.CompareTag("loggerCamp"))
+        {
+            loggerCamp = _structure.GetComponent<LoggerCamp>();
+            OpenLoggerCampPanel();
+        }
+        else if (_structure.CompareTag("stoneQuarry"))
+        {
+            //stoneQuarry = _structure.GetComponent<StoneQuarry>(); //OK
+            //OpenStoneQuarryPanel(); //OK
+        }
+
+
+    }
+
+    public void OpenBuildingPanel()
+    {
+        buildingPanel.SetActive(true);
+    }
+
+    public void CloseBuildingPanel()
+    {
+        buildingPanel.SetActive(false);
+    }
+
+    public void DisplayBuildingButton(bool val)
+    {
+        openBuildingPanelButton.gameObject.SetActive(val);
+    }
+
+    public void CloseAllOpenedPanel()
+    {
+        if (BuildingManager.instance.buildingInstantiated == false)
+        {
+            CloseBuildingPanel();
+            DisplayBuildingButton(true);
+        }
+
+
+        CloseLoggerCampPanel();
+        //CloseStoneQuarryPanel(); //OK
+    }
+
+
     public void OpenLoggerCampPanel() 
     {
         //Update button
@@ -92,24 +162,70 @@ public class CanvasManager : MonoBehaviour
         loggerCampPanel.SetActive(false);
     }
 
-    public void CloseAllBuildingsPanel()
+
+    /*
+    public void OpenLoggerCampPanel()
     {
-        CloseLoggerCampPanel();
-        //...
-        //...
+        //Update button
+        addStoneMinerButton.onClick.RemoveAllListeners();
+        addStoneMinerButton.onClick.AddListener(OnAddStoneMinerClick);
+        removeStoneMinerButton.onClick.RemoveAllListeners();
+        removeStoneMinerButton.onClick.AddListener(OnRemoveStoneMinerClick);
+
+        //Update UI
+        UpdateStoneQuarryPanel();
+
+        //Display UI
+        if (!stoneQuarryPanel.activeInHierarchy)
+        {
+            stoneQuarryPanel.SetActive(true);
+        }
     }
 
 
-    public void SelectBuilding(Transform _structure) 
+
+
+
+
+    //Maj panel LoggerCamp selon donnée du bâtiment sélectionné
+    public void UpdateStoneQuarryPanel()
     {
-        //Si c'est un camp de bûcheron
-        if (_structure.CompareTag("loggerCamp"))
+        if (stoneQuarry != null)
         {
-            loggerCamp = _structure.GetComponent<LoggerCamp>();
-            OpenLoggerCampPanel();
+            //Update text
+            stoneMinerCountTxt.text = stoneQuarry.stoneMinerCount.ToString();
+            maxStoneMinerTxt.text = stoneQuarry.maxStoneMiner.ToString();
+
+            //Update health bar
+            BuildingData buildingData = stoneQuarry.GetComponent<BuildingData>();
+
+            if (buildingData != null)
+            {
+                int _maxHealth = buildingData.maxHealth;
+                int _currentHealth = buildingData.currentHealth;
+
+                stoneQuarrySlider.maxValue = _maxHealth;
+                stoneQuarrySlider.value = _currentHealth;
+            }
+
         }
 
+
     }
+    */
+
+
+
+
+
+
+    /*
+    public void CloseStoneQuarryPanel()
+    {
+        stoneQuarryPanel.SetActive(false);
+    }
+    */
+
 
     void OnAddLoggerClick() 
     {
@@ -132,8 +248,30 @@ public class CanvasManager : MonoBehaviour
 
     }
 
-    public void UpdateLoggerCamp(LoggerCamp _loggerCamp) 
+    /*
+    
+    void OnAddStoneMinerClick() //OK
     {
-        loggerCamp = _loggerCamp;
+        if (stoneQuarry != null)
+        {
+            stoneQuarry.AddStoneMiner(1);
+        }
+        UpdateStoneQuarryPanel();
+
+
     }
+
+    void OnRemoveStoneMinerClick() //OK
+    {
+        if (stoneQuarry != null)
+        {
+            stoneQuarry.RemoveStoneMiner(1);
+        }
+        UpdateStoneQuarryPanel();
+
+    }
+
+    */
+
+
 }

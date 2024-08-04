@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class LoggerCamp : MonoBehaviour
 {
     public int loggersCount = 0;
-    public int maxLoggerCount = 3;
+    public int maxLoggerCount = 4;
     public int starterLoggerCount = 0;
 
     public List<GameObject> loggers = new List<GameObject>();
@@ -29,14 +29,17 @@ public class LoggerCamp : MonoBehaviour
 
     void Start()
     {
+        hallCheckpoint = GameObject.Find("hallCheckpoint").transform;
+        warehouseCheckPoint = GameObject.Find("wareHouseCheckpoint").transform;
+
         AddLoggers(starterLoggerCount);
 
     }
 
     //Ajout loggers (en fin)
-    public void AddLoggers(int n) 
+    public void AddLoggers(int n) //Améliorer(idem pour StoneQuarry) pour par ex ajouter 2 bûcheron, si on souhaite en ajouter 5 et qu'on ne peut en ajouter que 2
     {
-        if((loggersCount + n) <= maxLoggerCount) 
+        if(((loggersCount + n) <= maxLoggerCount) && (hallCheckpoint != null)) 
         {
             NavMeshHit hit;
 
@@ -45,13 +48,15 @@ public class LoggerCamp : MonoBehaviour
                 //Add n loggers
                 for (int i = 0; i < n; i++)
                 {
-                    if (ResourcesManager.instance.inactivePopulationCount > 0)
+                    ResourcesManager resourcesManagerScript = ResourcesManager.instance;
+
+                    if (resourcesManagerScript.totalPopulation < resourcesManagerScript.populationMax) // Inutile, retirer après travail en cours (idem pour StoneQuarry)
                     {
                         GameObject newLogger = Instantiate(loggersPrefab, hit.position, Quaternion.identity);
                         newLogger.GetComponent<LoggerData>().workBuilding = this.gameObject.transform;
                         loggers.Add(newLogger);
                         loggersCount++;
-                        ResourcesManager.instance.RemToInactivePop(1);
+                        ResourcesManager.instance.AddToTotalPop(1);
                     }
 
                 }

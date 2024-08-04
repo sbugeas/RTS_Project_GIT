@@ -8,13 +8,17 @@ using UnityEngine.UIElements;
 
 public class BuildingManager : MonoBehaviour
 {
-    [SerializeField] GameObject homePrefab;
+    [SerializeField] GameObject homePrefab; //Rajouter les autre prefabs
+    [SerializeField] GameObject loggerCampPrefab;
+
     [SerializeField] Camera cam;
-    [SerializeField] GameObject currBuilding;
+    [SerializeField] GameObject currBuilding; //champ sérialisé pour tests
+
+    private GameObject currentPrefab;
 
     public LayerMask ground;
 
-    private bool buildingInstantiated = false;
+    public bool buildingInstantiated = false;
 
     public static BuildingManager instance;
 
@@ -32,15 +36,18 @@ public class BuildingManager : MonoBehaviour
     private void Start()
     {
         currBuilding = null;
+        currentPrefab = null;
     }
 
     void Update()
     {
+        //Remplacer par AddListener sur UI contruction(créer méthode ou l'intégrer dans une)
         if (Input.GetKeyDown(KeyCode.T))
         {
             if (!buildingInstantiated) 
             {
-                PrepareToCreateHome();
+                //Sera changé pour être valable peut importe le bâtiment
+                PrepareToCreateBuilding();
             }
             
         }
@@ -64,12 +71,13 @@ public class BuildingManager : MonoBehaviour
                 targetBuilding = currBuilding.transform.position;
             }
 
-            //Prépositionnement sur terrain(ground)
+            //Positionnement sur terrain(ground)
             currBuilding.transform.position = targetBuilding;
 
             if(Input.GetMouseButtonDown(0) && (currBuilding.GetComponent<BuildingPlacement>().isBuildable)) 
             {
-                PlaceHome();
+                //Sera changer pour s'adapter à tous les bâtiment
+                PlaceBuilding();
             }
             else if (Input.GetMouseButtonDown(1)) 
             {
@@ -84,17 +92,37 @@ public class BuildingManager : MonoBehaviour
         
     }
 
-    private void PrepareToCreateHome()
+    public void SelectHomePrefab() 
     {
-        currBuilding = Instantiate(homePrefab, this.gameObject.transform);
-
-        Transform _buildings = GameObject.Find("Buildings").transform; 
-        currBuilding.transform.SetParent(_buildings);
-
-        buildingInstantiated = true;
+        currentPrefab = homePrefab;
     }
 
-    private void PlaceHome()
+    public void SelectLoggerCampPrefab()
+    {
+        currentPrefab = loggerCampPrefab;
+    }
+
+
+    //Améliorer pour être utilisé avec tous les bâtiments(prefab en paramêtre)
+    public void PrepareToCreateBuilding()
+    {
+        if(!buildingInstantiated && currentPrefab != null)
+        {
+            //Instanciation
+            currBuilding = Instantiate(currentPrefab, this.gameObject.transform);
+
+            //Parentage
+            Transform _buildings = GameObject.Find("Buildings").transform;
+            currBuilding.transform.SetParent(_buildings);
+
+            buildingInstantiated = true;
+        }
+
+    }
+
+    //Améliorer pour être utilisé avec tous les bâtiments(BuildingData doit rester) --> PlaceBuilding()
+    //Pour les spécificités, faire vérif dans la fonction selon tag
+    private void PlaceBuilding()
     {
         if(currBuilding != null)
         {
@@ -104,16 +132,42 @@ public class BuildingManager : MonoBehaviour
 
             currBuilding.GetComponent<NavMeshObstacle>().enabled = true;
             currBuilding.GetComponent<BoxCollider>().isTrigger = false;
-            currBuilding = null;
+
             buildingInstantiated = false;
 
-            ResourcesManager.instance.AddToTotalPop(dataScript.popGiven);
-            ResourcesManager.instance.RemoveWood(dataScript.woodCost);
+            //Si c'est une maison
+            if (currBuilding.CompareTag("home"))
+            {
+                BuildHome(dataScript);
+            }
+            else if (currBuilding.CompareTag("loggerCamp"))
+            {
+                BuildLoggerCamp(dataScript);
+            }
 
+            currBuilding = null;
+            currentPrefab = null;
+
+            CanvasManager.instance.CloseAllOpenedPanel();
         }
 
     }
 
+    private void BuildHome(BuildingData dataScript) 
+    {
+        ResourcesManager.instance.RemoveWood(dataScript.woodCost);
+        ResourcesManager.instance.AddToMaxPop(dataScript.popGiven);
+    }
 
+    private void BuildLoggerCamp(BuildingData dataScript) 
+    {
+        ResourcesManager.instance.RemoveWood(dataScript.woodCost);
+
+        if(dataScript.transform.GetComponent<LoggerCamp>() != null) 
+        {
+            dataScript.transform.GetComponent<LoggerCamp>().enabled = true;
+        }
+
+    }
 
 }

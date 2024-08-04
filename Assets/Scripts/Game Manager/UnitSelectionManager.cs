@@ -63,7 +63,7 @@ public class UnitSelectionManager : MonoBehaviour
     private void Update()
     {
         //Clique gauche
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && (BuildingManager.instance.buildingInstantiated == false))
         {
             //Si ne cible pas un élément de l'UI
             if (EventSystem.current.IsPointerOverGameObject() == false)
@@ -79,14 +79,11 @@ public class UnitSelectionManager : MonoBehaviour
                 else
                 {
                     DeselectAll();
-                    CanvasManager.instance.CloseAllBuildingsPanel();
-                    //CanvasManager.instance.UpdateLoggerCamp(null); /!\
+                    CanvasManager.instance.CloseAllOpenedPanel();
 
                     //On détécte un bâtiment
                     if (Physics.Raycast(ray, out hit, Mathf.Infinity, buildingLayerP1))
                     {
-                        Debug.Log("Bâtiment détecté");
-
                         selectedBuilding = hit.transform;
 
                         //On le sélectionne

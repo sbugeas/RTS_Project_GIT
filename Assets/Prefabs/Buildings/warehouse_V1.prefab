@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 388202817986830645}
   m_Layer: 0
   m_Name: warehouse_V1
-  m_TagString: structure
+  m_TagString: wareHouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

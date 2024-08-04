@@ -47,7 +47,7 @@ public class LoggerReturnHallState : StateMachineBehaviour
         //If he arrived at hall
         if (Vector3.Distance(animator.transform.position, target) <= 1f)
         {
-            ResourcesManager.instance.AddToInactivePop(1);
+            ResourcesManager.instance.AddToTotalPop(1);
             Destroy(animator.gameObject);
         }
     }

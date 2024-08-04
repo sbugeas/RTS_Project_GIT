@@ -32,6 +32,11 @@ public class LoggerGoToWarehouseState : StateMachineBehaviour
         {
             agent.SetDestination(wareHouse.position);
         }
+        else 
+        {
+            animator.SetBool("isWorking", false);
+            animator.SetBool("isCarryingWood", false);
+        }
         
     }
 

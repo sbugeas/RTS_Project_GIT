@@ -12,6 +12,10 @@ TagManager:
   - tree
   - logger
   - loggerCamp
+  - home
+  - wareHouse
+  - hall
+  - rock
   layers:
   - Default
   - TransparentFX
@@ -27,7 +31,7 @@ TagManager:
   - peasant
   - buildingPlayer_1
   - buildingPlayer_2
-  - 
+  - rock
   - 
   - 
   - 

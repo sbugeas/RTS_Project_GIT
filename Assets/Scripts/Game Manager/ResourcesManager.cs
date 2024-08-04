@@ -7,18 +7,18 @@ using UnityEngine.UI;
 public class ResourcesManager : MonoBehaviour
 {
     //---------- DATA ------------
-    public int populationMax = 40;
-    public int totalPopulation = 10;
-    public int inactivePopulationCount = 10;
+    public int population_limit = 100;
+    public int populationMax = 10;
+    public int totalPopulation = 0;
 
     public int woodCound = 0;
     public int rockCount = 0;
-    public int ironCount = 0;
+    public int gold = 0;
     //----------------------------
 
     public TextMeshProUGUI woodCountTxt;
     public TextMeshProUGUI totalPopulationCountTxt;
-    public TextMeshProUGUI inactivePopulationCountTxt;
+    public TextMeshProUGUI maxPopulationCountTxt;
 
     public static ResourcesManager instance;
 
@@ -70,7 +70,7 @@ public class ResourcesManager : MonoBehaviour
     private void UpdatePopulation() 
     {
         totalPopulationCountTxt.text = totalPopulation.ToString();
-        inactivePopulationCountTxt.text = inactivePopulationCount.ToString();
+        maxPopulationCountTxt.text = populationMax.ToString();
     }
 
     public void AddToTotalPop(int count) 
@@ -82,14 +82,19 @@ public class ResourcesManager : MonoBehaviour
         }
 
         totalPopulation += count;
-        inactivePopulationCount += count;
 
         UpdatePopulation();
     }
 
-    public void AddToInactivePop(int count)
+    public void AddToMaxPop(int count)
     {
-        inactivePopulationCount += count;
+        populationMax += count;
+
+        if (populationMax > population_limit) 
+        {
+            populationMax = population_limit;
+        }
+
         UpdatePopulation();
     }
 
@@ -104,13 +109,13 @@ public class ResourcesManager : MonoBehaviour
         UpdatePopulation();
     }
 
-    public void RemToInactivePop(int count)
+    public void RemToMaxPop(int count)
     {
-        inactivePopulationCount -= count;
+        populationMax -= count;
 
-        if (inactivePopulationCount < 0)
+        if (populationMax < 0)
         {
-            inactivePopulationCount = 0;
+            populationMax = 0;
         }
         UpdatePopulation();
     }

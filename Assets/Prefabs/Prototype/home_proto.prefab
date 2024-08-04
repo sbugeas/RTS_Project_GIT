@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 8661229763985387140}
   - component: {fileID: 4358307991045790610}
   - component: {fileID: 2499351525788088231}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: home_proto
-  m_TagString: structure
+  m_TagString: home
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,6 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   woodCost: 5
   popGiven: 8
+  maxHealth: 100
+  currentHealth: 0
 --- !u!114 &2499351525788088231
 MonoBehaviour:
   m_ObjectHideFlags: 0

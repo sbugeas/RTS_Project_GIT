@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 6007503044934538316}
   - component: {fileID: 153820290}
   - component: {fileID: 517092771550243450}
+  - component: {fileID: 2192435367659323772}
   m_Layer: 12
   m_Name: loggerCamp_V1
   m_TagString: loggerCamp
@@ -224,7 +225,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6890395147896072478}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.06347881, y: 0.07364551, z: 0.06784062}
@@ -236,7 +237,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6890395147896072478}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
   m_Extents: {x: 0.032, y: 0.037, z: 0.034}
@@ -252,7 +253,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6890395147896072478}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b385ffd4962cdfa48a7f2077cedc5984, type: 3}
   m_Name: 
@@ -300,3 +301,17 @@ MonoBehaviour:
   popGiven: 0
   maxHealth: 100
   currentHealth: 100
+--- !u!114 &2192435367659323772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6890395147896072478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b728fa3153e984496026a18b9222a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBuildable: 1
+  _collisionHit: 0

@@ -10,9 +10,12 @@ public class BuildingPlacement : MonoBehaviour
     [SerializeField]private int _collisionHit = 0;
 
     private BuildingData _buildingData;
+
     private int _woodCost;
+    //private int _stoneCost;
 
     private Material[] materials;
+
     private Color[] originalColor;
 
 
@@ -22,6 +25,7 @@ public class BuildingPlacement : MonoBehaviour
 
         _buildingData = gameObject.GetComponent<BuildingData>();
         _woodCost = _buildingData.woodCost;
+        //_stoneCost = _buildingData.stoneCost;
     }
 
     private void FixedUpdate()
