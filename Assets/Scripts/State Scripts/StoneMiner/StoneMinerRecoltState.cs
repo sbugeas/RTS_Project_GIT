@@ -7,6 +7,7 @@ public class StoneMinerRecoltState : StateMachineBehaviour
 {
     StoneMinerData stoneMinerData;
     NavMeshAgent agent;
+    NavMeshObstacle obstacle;
 
     float recolt_cooldown = 1.5f;
     private float timeSinceLastHit = 0.0f;
@@ -16,6 +17,8 @@ public class StoneMinerRecoltState : StateMachineBehaviour
         animator.SetBool("isGoingToRecolt", false);
 
         agent = animator.GetComponent<NavMeshAgent>();
+        obstacle = animator.GetComponent<NavMeshObstacle>();
+
         stoneMinerData = animator.GetComponent<StoneMinerData>();
 
         //Active & désactive bons objets
@@ -25,6 +28,11 @@ public class StoneMinerRecoltState : StateMachineBehaviour
         agent.SetDestination(animator.transform.position);
         animator.transform.LookAt(stoneMinerData.targetRock);
 
+        //Immobilisation
+        agent.enabled = false;
+        obstacle.enabled = true;
+
+
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -33,6 +41,9 @@ public class StoneMinerRecoltState : StateMachineBehaviour
 
         if (stoneMinerData.targetRock != null)
         {
+            //On regarde le rocher
+            animator.transform.LookAt(stoneMinerData.targetRock);
+
             //Si cooldown atteint, on mine
             if (timeSinceLastHit >= recolt_cooldown)
             {
@@ -42,10 +53,14 @@ public class StoneMinerRecoltState : StateMachineBehaviour
                 timeSinceLastHit = 0;
             }
         }
-        else
+        else //Plus de cible
         {
+            //Fin de l'immobilisation
+            obstacle.enabled = false;
+            agent.enabled = true;
+
             //Si stock > 0 et n'a pas été renvoyé entre temps
-            if (stoneMinerData.stock >= 0 && !animator.GetBool("isFired"))
+            if (stoneMinerData.stock > 0 && !animator.GetBool("isFired"))
             {
                 animator.SetBool("isCarryingStone", true);
             }
@@ -55,4 +70,5 @@ public class StoneMinerRecoltState : StateMachineBehaviour
         }
 
     }
+
 }
