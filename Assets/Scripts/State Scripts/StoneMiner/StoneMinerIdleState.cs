@@ -8,7 +8,7 @@ public class StoneMinerIdleState : StateMachineBehaviour
     StoneMinerData stoneMinerData;
     NavMeshAgent agent;
 
-    StoneQuarry stoneQuarry;
+    StoneMinerHut stoneMinerHut;
     Transform target;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,10 +24,10 @@ public class StoneMinerIdleState : StateMachineBehaviour
         //Si pas de cible (ET stock nul)
         if ((stoneMinerData.targetRock == null) && (stoneMinerData.stock == 0))
         {
-            stoneQuarry = stoneMinerData.workBuilding.GetComponent<StoneQuarry>();
+            stoneMinerHut = stoneMinerData.workBuilding.GetComponent<StoneMinerHut>();
 
             //On essaie d'en attribuer une
-            target = stoneQuarry.GiveNearestValidRock();
+            target = stoneMinerHut.GiveNearestValidRock();
 
             if (target == null)
             {

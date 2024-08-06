@@ -30,7 +30,7 @@ public class StoneMinerReturnHallState : StateMachineBehaviour
         agent.SetDestination(animator.transform.position);
 
         //Get hall checkpoint position
-        target = stoneMinerData.workBuilding.GetComponent<StoneQuarry>().hallCheckpoint.position;
+        target = stoneMinerData.workBuilding.GetComponent<StoneMinerHut>().hallCheckpoint.position;
         agent.stoppingDistance = 0;
 
         stoneMinerData.RemoveWorkBuilding();
@@ -46,7 +46,7 @@ public class StoneMinerReturnHallState : StateMachineBehaviour
         //If he arrived at hall
         if (Vector3.Distance(animator.transform.position, target) <= 1f)
         {
-            ResourcesManager.instance.AddToTotalPop(1);
+            ResourcesManager.instance.RemToTotalPop(1);
             Destroy(animator.gameObject);
         }
     }

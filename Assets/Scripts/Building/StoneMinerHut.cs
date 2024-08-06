@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 //Script activé suite à construction (lorsque achevée)
-public class StoneQuarry : MonoBehaviour
+public class StoneMinerHut : MonoBehaviour
 {
     public int stoneMinerCount = 0;
     public int maxStoneMiner = 4;

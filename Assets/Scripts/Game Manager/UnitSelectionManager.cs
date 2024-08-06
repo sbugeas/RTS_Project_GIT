@@ -65,6 +65,8 @@ public class UnitSelectionManager : MonoBehaviour
         //Clique gauche
         if (Input.GetMouseButtonDown(0) && (BuildingManager.instance.buildingInstantiated == false))
         {
+            selectedBuilding = null;
+
             //Si ne cible pas un élément de l'UI
             if (EventSystem.current.IsPointerOverGameObject() == false)
             {

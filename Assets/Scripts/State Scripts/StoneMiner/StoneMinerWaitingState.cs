@@ -10,36 +10,36 @@ public class StoneMinerWaitingState : StateMachineBehaviour
     NavMeshAgent agent;
 
     StoneMinerData stoneMinerData;
-    StoneQuarry stoneQuarry;
+    StoneMinerHut stoneMinerHut;
 
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.transform.GetComponent<NavMeshAgent>();
         stoneMinerData = animator.transform.GetComponent<StoneMinerData>();
-        stoneQuarry = stoneMinerData.workBuilding.GetComponent<StoneQuarry>();
+        stoneMinerHut = stoneMinerData.workBuilding.GetComponent<StoneMinerHut>();
 
         //Active & désactive objets selon état (hache et rondin)
         stoneMinerData.carriedStone.SetActive(false);
         stoneMinerData.stoneMinerPick.SetActive(false);
 
         //Ajout dans la liste de bûcherons inactifs
-        stoneQuarry.inactiveStoneMiners.Add(animator.transform.gameObject);
+        stoneMinerHut.inactiveStoneMiners.Add(animator.transform.gameObject);
 
         //Détermine index de position d'attente
-        int ind = stoneQuarry.inactiveStoneMiners.Count - 1;
+        int ind = stoneMinerHut.inactiveStoneMiners.Count - 1;
 
         //On récupère le checkpoint
-        target = stoneQuarry.transform.GetChild(ind);
+        target = stoneMinerHut.transform.GetChild(ind);
 
         //Sécurité : si l'enfant n'existe pas, on affecte le 1er. Si il n'en a pas, on affecte la position du bâtiment
         if (target == null)
         {
-            target = stoneQuarry.transform.GetChild(0);
+            target = stoneMinerHut.transform.GetChild(0);
 
             if(target == null) 
             {
-                target = stoneQuarry.transform;
+                target = stoneMinerHut.transform;
             }
         }
 

@@ -22,15 +22,18 @@ public class LoggerCamp : MonoBehaviour
 
     [SerializeField] private LayerMask treeLayer;
 
-    private float startRadius = 25f;
-    private float maxRadius = 75f;
-    private float radiusIncr = 25f;
+    private float startRadius = 100f;
+    private float maxRadius = 600f;
+    private float radiusIncr = 100f;
+    private float currentRadius;
 
 
     void Start()
     {
         hallCheckpoint = GameObject.Find("hallCheckpoint").transform;
         warehouseCheckPoint = GameObject.Find("wareHouseCheckpoint").transform;
+
+        currentRadius = startRadius;
 
         AddLoggers(starterLoggerCount);
 
@@ -110,14 +113,13 @@ public class LoggerCamp : MonoBehaviour
     //Méthode pour donner cible au bûcheron si il n'en a pas (appellée via script d'état Idle du bûcheron)
     public Transform GiveNearestValidTree() 
     {
-        float curRadius = startRadius;
-
         Transform target = null;
         float distanceOfTarget = Mathf.Infinity;
 
-        while((target == null) && (curRadius <= maxRadius)) 
+        while((target == null) && (currentRadius <= maxRadius)) 
         {
-            Collider[] trees = Physics.OverlapSphere(transform.position, curRadius, treeLayer);
+            Collider[] trees = Physics.OverlapSphere(transform.position, currentRadius, treeLayer);
+            Transform curTarget = null;
 
             foreach(Collider tree in trees) 
             { 
@@ -126,14 +128,15 @@ public class LoggerCamp : MonoBehaviour
 
                 if (curDistance < distanceOfTarget && !treeCoords.GetComponent<HealthTree>().isTargeted) 
                 {
-                    target = treeCoords;
+                    curTarget = treeCoords;
                     distanceOfTarget = curDistance;
                 }
             }
-
-            curRadius += radiusIncr;
+            target = curTarget;
+            currentRadius += radiusIncr;
         }
 
+        currentRadius = startRadius;
         return target;
 
     }
@@ -141,8 +144,13 @@ public class LoggerCamp : MonoBehaviour
     
     private void OnDrawGizmos() 
     {
+        //Portée de départ
         Gizmos.color = UnityEngine.Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, 25f);
+        Gizmos.DrawWireSphere(transform.position, startRadius);
+
+        //Portée max
+        Gizmos.color = UnityEngine.Color.blue;
+        Gizmos.DrawWireSphere(transform.position, maxRadius);
     }
 
 

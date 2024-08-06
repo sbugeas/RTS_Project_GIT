@@ -8,7 +8,8 @@ public class LoggerGoToWarehouseState : StateMachineBehaviour
     LoggerData loggerData;
     NavMeshAgent agent;
 
-    public float depositRange = 3.0f;
+    private float initialSpeed;
+    private float depositRange = 3.0f;
 
     Transform wareHouse;
 
@@ -23,6 +24,10 @@ public class LoggerGoToWarehouseState : StateMachineBehaviour
         //Active & désactive bons objets
         loggerData.carriedLog.SetActive(true);
         loggerData.loggerAxe.SetActive(false);
+
+        //Réduction vitesse d'1/3 (+ save vitesse initiale)
+        initialSpeed = agent.speed;
+        agent.speed = (initialSpeed / 1.5f);
 
         //On récupère le checkpoint de l'entrepôt et on y envoie le bûcheron
         wareHouse = loggerData.workBuilding.GetComponent<LoggerCamp>().warehouseCheckPoint;
@@ -58,5 +63,10 @@ public class LoggerGoToWarehouseState : StateMachineBehaviour
             }
         }        
 
+    }
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        agent.speed = initialSpeed;
     }
 }

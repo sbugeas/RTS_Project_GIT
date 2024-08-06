@@ -8,7 +8,8 @@ public class StoneMinerGoToWarehouseState : StateMachineBehaviour
     StoneMinerData stoneMinerData;
     NavMeshAgent agent;
 
-    public float depositRange = 3.0f;
+    private float initialSpeed;
+    private float depositRange = 3.0f;
 
     Transform wareHouse;
 
@@ -24,8 +25,12 @@ public class StoneMinerGoToWarehouseState : StateMachineBehaviour
         stoneMinerData.carriedStone.SetActive(true);
         stoneMinerData.stoneMinerPick.SetActive(false);
 
+        //Réduction vitesse d'1/3 (+ save vitesse initiale)
+        initialSpeed = agent.speed;
+        agent.speed = (initialSpeed / 2);
+
         //On récupère le checkpoint de l'entrepôt et on y envoie le mineur
-        wareHouse = stoneMinerData.workBuilding.GetComponent<StoneQuarry>().warehouseCheckPoint;
+        wareHouse = stoneMinerData.workBuilding.GetComponent<StoneMinerHut>().warehouseCheckPoint;
 
         if (wareHouse != null)
         {
@@ -58,5 +63,10 @@ public class StoneMinerGoToWarehouseState : StateMachineBehaviour
             }
         }
 
+    }
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        agent.speed = initialSpeed;
     }
 }

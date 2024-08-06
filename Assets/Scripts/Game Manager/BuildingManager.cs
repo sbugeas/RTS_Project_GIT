@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 
 
 public class BuildingManager : MonoBehaviour
 {
-    [SerializeField] GameObject homePrefab; //Rajouter les autre prefabs
+    [SerializeField] GameObject homePrefab;
     [SerializeField] GameObject loggerCampPrefab;
+    [SerializeField] GameObject stoneMinerHutPrefab;
 
     [SerializeField] Camera cam;
     [SerializeField] GameObject currBuilding; //champ sérialisé pour tests
@@ -41,18 +43,6 @@ public class BuildingManager : MonoBehaviour
 
     void Update()
     {
-        //Remplacer par AddListener sur UI contruction(créer méthode ou l'intégrer dans une)
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (!buildingInstantiated) 
-            {
-                //Sera changé pour être valable peut importe le bâtiment
-                PrepareToCreateBuilding();
-            }
-            
-        }
-
-        
 
         if (buildingInstantiated) 
         {
@@ -74,12 +64,15 @@ public class BuildingManager : MonoBehaviour
             //Positionnement sur terrain(ground)
             currBuilding.transform.position = targetBuilding;
 
-            if(Input.GetMouseButtonDown(0) && (currBuilding.GetComponent<BuildingPlacement>().isBuildable)) 
+            if(Input.GetMouseButtonDown(0)) 
             {
-                //Sera changer pour s'adapter à tous les bâtiment
-                PlaceBuilding();
+                //Si 'buildable' et ne cible pas un élément de l'UI
+                if ((EventSystem.current.IsPointerOverGameObject() == false) && (currBuilding.GetComponent<BuildingPlacement>().isBuildable)) 
+                {
+                    PlaceBuilding();
+                }
             }
-            else if (Input.GetMouseButtonDown(1)) 
+            else if (Input.GetMouseButtonDown(1)) //On annule la construction
             {
                 Destroy(currBuilding);
                 currBuilding = null;
@@ -102,8 +95,11 @@ public class BuildingManager : MonoBehaviour
         currentPrefab = loggerCampPrefab;
     }
 
+    public void SelectStoneMinerHutPrefab()
+    {
+        currentPrefab = stoneMinerHutPrefab;
+    }
 
-    //Améliorer pour être utilisé avec tous les bâtiments(prefab en paramêtre)
     public void PrepareToCreateBuilding()
     {
         if(!buildingInstantiated && currentPrefab != null)
@@ -120,8 +116,6 @@ public class BuildingManager : MonoBehaviour
 
     }
 
-    //Améliorer pour être utilisé avec tous les bâtiments(BuildingData doit rester) --> PlaceBuilding()
-    //Pour les spécificités, faire vérif dans la fonction selon tag
     private void PlaceBuilding()
     {
         if(currBuilding != null)
@@ -140,9 +134,13 @@ public class BuildingManager : MonoBehaviour
             {
                 BuildHome(dataScript);
             }
-            else if (currBuilding.CompareTag("loggerCamp"))
+            else if (currBuilding.CompareTag("loggerCamp")) //Si c'est un camp de bûcheron
             {
                 BuildLoggerCamp(dataScript);
+            }
+            else if (currBuilding.CompareTag("stoneMinerHut")) //Si c'est une cabane de mineur
+            {
+                BuildStoneMinerHut(dataScript);
             }
 
             currBuilding = null;
@@ -167,7 +165,16 @@ public class BuildingManager : MonoBehaviour
         {
             dataScript.transform.GetComponent<LoggerCamp>().enabled = true;
         }
+    }
 
+    private void BuildStoneMinerHut(BuildingData dataScript)
+    {
+        ResourcesManager.instance.RemoveWood(dataScript.woodCost);
+
+        if (dataScript.transform.GetComponent<StoneMinerHut>() != null)
+        {
+            dataScript.transform.GetComponent<StoneMinerHut>().enabled = true;
+        }
     }
 
 }
