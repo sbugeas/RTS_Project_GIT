@@ -147,7 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aad58009e7eaa540b5a22bd9d3380cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  woodCost: 5
+  woodCost: 8
+  stoneCost: 2
   popGiven: 8
   maxHealth: 100
   currentHealth: 0

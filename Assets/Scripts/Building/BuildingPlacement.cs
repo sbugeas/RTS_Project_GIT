@@ -12,7 +12,7 @@ public class BuildingPlacement : MonoBehaviour
     private BuildingData _buildingData;
 
     private int _woodCost;
-    //private int _stoneCost;
+    private int _stoneCost;
 
     private Material[] materials;
 
@@ -25,12 +25,12 @@ public class BuildingPlacement : MonoBehaviour
 
         _buildingData = gameObject.GetComponent<BuildingData>();
         _woodCost = _buildingData.woodCost;
-        //_stoneCost = _buildingData.stoneCost;
+        _stoneCost = _buildingData.stoneCost;
     }
 
     private void FixedUpdate()
     {
-        if ((_collisionHit < 1) && (_woodCost <= ResourcesManager.instance.woodCound))
+        if ((_collisionHit < 1) && HasEnoughResources())
         {
             isBuildable = true;
         }
@@ -52,7 +52,7 @@ public class BuildingPlacement : MonoBehaviour
         }
     }
 
-
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -107,5 +107,8 @@ public class BuildingPlacement : MonoBehaviour
         }
     }
 
-
+    private bool HasEnoughResources() 
+    {
+        return ((_buildingData.woodCost <= ResourcesManager.instance.woodCound) && (_buildingData.stoneCost <= ResourcesManager.instance.stoneCount));
+    }
 }

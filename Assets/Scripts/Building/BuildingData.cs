@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BuildingData : MonoBehaviour
 {
-    public int woodCost = 5;
-    public int popGiven = 8;
+    public int woodCost = 8;
+    public int stoneCost = 2;
+    public int popGiven = 5;
     public int maxHealth = 100;
     public int currentHealth;
 

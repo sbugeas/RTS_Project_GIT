@@ -37,9 +37,15 @@ public class ResourcesManager : MonoBehaviour
     public void Start()
     {
         //Initialisation UI
+        UpdateResourcesPanel();
+
+    }
+
+    public void UpdateResourcesPanel() 
+    {
         UpdatePopulation();
         UpdateWood();
-
+        UpdateStone();
     }
 
     public void AddWood(int count) 

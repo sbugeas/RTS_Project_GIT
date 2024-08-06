@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   woodCost: 10
+  stoneCost: 0
   popGiven: 0
   maxHealth: 500
   currentHealth: 500

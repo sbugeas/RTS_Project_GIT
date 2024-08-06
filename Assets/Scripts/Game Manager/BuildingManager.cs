@@ -74,9 +74,7 @@ public class BuildingManager : MonoBehaviour
             }
             else if (Input.GetMouseButtonDown(1)) //On annule la construction
             {
-                Destroy(currBuilding);
-                currBuilding = null;
-                buildingInstantiated = false;
+                CancelConstruction();
             }
             
         }
@@ -102,8 +100,13 @@ public class BuildingManager : MonoBehaviour
 
     public void PrepareToCreateBuilding()
     {
-        if(!buildingInstantiated && currentPrefab != null)
+        if(currentPrefab != null) 
         {
+            if (buildingInstantiated) 
+            {
+                CancelConstruction();
+            }
+
             //Instanciation
             currBuilding = Instantiate(currentPrefab, this.gameObject.transform);
 
@@ -113,8 +116,8 @@ public class BuildingManager : MonoBehaviour
 
             buildingInstantiated = true;
         }
-
     }
+
 
     private void PlaceBuilding()
     {
@@ -151,9 +154,20 @@ public class BuildingManager : MonoBehaviour
 
     }
 
+    private void CancelConstruction() 
+    {
+        if(currBuilding != null) 
+        {
+            Destroy(currBuilding);
+        }
+        currBuilding = null;
+        buildingInstantiated = false;
+    }
+
     private void BuildHome(BuildingData dataScript) 
     {
         ResourcesManager.instance.RemoveWood(dataScript.woodCost);
+        ResourcesManager.instance.RemoveStone(dataScript.stoneCost);
         ResourcesManager.instance.AddToMaxPop(dataScript.popGiven);
     }
 
