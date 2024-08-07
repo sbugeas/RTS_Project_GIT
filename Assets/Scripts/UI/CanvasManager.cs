@@ -16,6 +16,16 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI stoneMinerCountTxt;
     [SerializeField] TextMeshProUGUI maxStoneMinerTxt;
+
+    //COST (UI) -> Building Panel
+    [SerializeField] TextMeshProUGUI home_woodCost_txt;
+    [SerializeField] TextMeshProUGUI home_stoneCost_txt;
+
+    [SerializeField] TextMeshProUGUI loggerCamp_woodCost_txt;
+    [SerializeField] TextMeshProUGUI loggerCamp_stoneCost_txt;
+
+    [SerializeField] TextMeshProUGUI stoneMinerHut_woodCost_txt;
+    [SerializeField] TextMeshProUGUI stoneMinerHut_stoneCost_txt;
     //-----------------------------------
 
     //------------- PANELS ---------------
@@ -60,6 +70,8 @@ public class CanvasManager : MonoBehaviour
     {
         cam = Camera.main;
         loggerCamp = null;
+
+        UpdateTextCostOnBuildingPanel();
     }
 
 
@@ -109,6 +121,21 @@ public class CanvasManager : MonoBehaviour
 
         CloseLoggerCampPanel();
         CloseStoneMinerHutPanel();
+    }
+
+    public void UpdateTextCostOnBuildingPanel() //Appelée une fois, au début (les coûts ne changent pas durant la partie)
+    {
+        //Home
+        home_woodCost_txt.text = BuildingManager.instance.homePrefab.GetComponent<BuildingData>().woodCost.ToString();
+        home_stoneCost_txt.text = BuildingManager.instance.homePrefab.GetComponent<BuildingData>().stoneCost.ToString();
+
+        //Logger camp
+        loggerCamp_woodCost_txt.text = BuildingManager.instance.loggerCampPrefab.GetComponent<BuildingData>().woodCost.ToString();
+        loggerCamp_stoneCost_txt.text = BuildingManager.instance.loggerCampPrefab.GetComponent<BuildingData>().stoneCost.ToString();
+
+        //Stone miner's hut
+        stoneMinerHut_woodCost_txt.text = BuildingManager.instance.stoneMinerHutPrefab.GetComponent<BuildingData>().woodCost.ToString();
+        stoneMinerHut_stoneCost_txt.text = BuildingManager.instance.stoneMinerHutPrefab.GetComponent<BuildingData>().stoneCost.ToString();
     }
 
     //------------- GENERAL --------------

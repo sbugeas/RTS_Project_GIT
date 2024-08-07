@@ -29,13 +29,16 @@ public class LoggerWaitingState : StateMachineBehaviour
         //Détermine index de position d'attente
         int ind = loggerCamp.inactiveLoggers.Count - 1;
 
+        //On accède à l'enfant "checkPoints" (qui contient les emplacements d'attente)
+        Transform checkPoints = loggerCamp.transform.Find("checkPoints");
+
         //On récupère le checkpoint
-        target = loggerCamp.transform.GetChild(ind);
+        target = checkPoints.transform.GetChild(ind);
 
         //Sécurité : si l'enfant n'existe pas, on affecte le 1er. Si il n'en a pas, on affecte la position du bâtiment
         if (target == null)
         {
-            target = loggerCamp.transform.GetChild(0);
+            target = checkPoints.transform.GetChild(0);
 
             if (target == null)
             {

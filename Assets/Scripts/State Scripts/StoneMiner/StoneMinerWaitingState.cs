@@ -29,13 +29,16 @@ public class StoneMinerWaitingState : StateMachineBehaviour
         //Détermine index de position d'attente
         int ind = stoneMinerHut.inactiveStoneMiners.Count - 1;
 
+        //On accède à l'enfant "checkPoints" (qui contient les emplacements d'attente)
+        Transform checkPoints = stoneMinerHut.transform.Find("checkPoints");
+
         //On récupère le checkpoint
-        target = stoneMinerHut.transform.GetChild(ind);
+        target = checkPoints.transform.GetChild(ind);
 
         //Sécurité : si l'enfant n'existe pas, on affecte le 1er. Si il n'en a pas, on affecte la position du bâtiment
         if (target == null)
         {
-            target = stoneMinerHut.transform.GetChild(0);
+            target = checkPoints.transform.GetChild(0);
 
             if(target == null) 
             {

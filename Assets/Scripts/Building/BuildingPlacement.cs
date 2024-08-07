@@ -7,7 +7,7 @@ public class BuildingPlacement : MonoBehaviour
 {
     public bool isBuildable = true;
 
-    [SerializeField]private int _collisionHit = 0;
+    [SerializeField] private BuildingTmpCollider buildingTmpCol;
 
     private BuildingData _buildingData;
 
@@ -30,7 +30,7 @@ public class BuildingPlacement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((_collisionHit < 1) && HasEnoughResources())
+        if ((buildingTmpCol.collisionHit < 1) && HasEnoughResources())
         {
             isBuildable = true;
         }
@@ -52,29 +52,6 @@ public class BuildingPlacement : MonoBehaviour
         }
     }
 
-    
-
-    private void OnTriggerEnter(Collider other)
-    {
-        GameObject go = other.gameObject;
-
-        if (!go.CompareTag("ground"))
-        {
-            _collisionHit++;
-        }
-        
-
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        GameObject go = other.gameObject;
-
-        if (!go.CompareTag("ground"))
-        {
-            _collisionHit--;
-        }
-    }
 
     private void SetRedColor() 
     {

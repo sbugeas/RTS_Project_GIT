@@ -9,17 +9,16 @@ using UnityEngine.UIElements;
 
 public class BuildingManager : MonoBehaviour
 {
-    [SerializeField] GameObject homePrefab;
-    [SerializeField] GameObject loggerCampPrefab;
-    [SerializeField] GameObject stoneMinerHutPrefab;
-
     [SerializeField] Camera cam;
     [SerializeField] GameObject currBuilding; //champ sérialisé pour tests
 
     private GameObject currentPrefab;
 
-    public LayerMask ground;
+    public GameObject homePrefab;
+    public GameObject loggerCampPrefab;
+    public GameObject stoneMinerHutPrefab;
 
+    public LayerMask ground;
     public bool buildingInstantiated = false;
 
     public static BuildingManager instance;
@@ -125,6 +124,10 @@ public class BuildingManager : MonoBehaviour
         {
             BuildingData dataScript = currBuilding.GetComponent<BuildingData>();
 
+            //Retirer collider de construction
+            Destroy(currBuilding.transform.Find("buildingTmpCollider").gameObject);
+
+            //Retirer script de placement
             Destroy(currBuilding.GetComponent<BuildingPlacement>());
 
             currBuilding.GetComponent<NavMeshObstacle>().enabled = true;
