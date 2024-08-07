@@ -1,7 +1,7 @@
 --- DESCRIPTION ---
 
 Projet 3D personnel qui est un prototype RTS (Real Time Strategy) solo s’inscrivant dans un univers médiéval. 
-Le joueur devra développer sa colonie, faire prospérer son peuple et le défendre face aux attaques de pillard.
+Le joueur devra développer sa colonie, faire prospérer son peuple et le défendre face aux attaques de pillards.
 
 
 --- CONTROLES ---
@@ -37,15 +37,19 @@ Clique droit(unité(s) militaire(s) sélectionnée(s)) sur cible ennemie : Comma
 - Modèle(+ animation d'attente, de marche, de coupe et de transport de rondin) d'une nouvelle unité via Blender, le bûcheron (+ hache)
 - Modèle arbre + animation(chute)
 - Modèle(basique) du camp de bûcheron, du hall (bâtiment principal) et de l'entrepôt
-- Affectation et retrait(via UI) de la main d’œuvre au camp de bûcheron(Logger Camp)
-
-
+- Gestion(via UI) de la main d’œuvre du camp de bûcheron(Logger Camp)
+- Logique de récolte de la pierre (légèrement différent de la récolte du bois)
+- Animation minage du mineur de pierre
+- Modèle rocher
+- Modèle cabane de mineur de pierre
+- Gestion(via UI) de la main d’œuvre de la cabane de mineur de pierre(Logger Camp)
+- Système de construction (sur terrain plat) + UI(menu de construction)
 
 --- PRÉVISIONS ---
-
-- Système de construction (sur terrain plat) + UI : en cours
-- Modélisation d’une carte test, avec relief
-- Amélioration système de construction : Contrôle du placement sur terrain avec relief
+- Modélisation(et import) + config + UI de la caserne(permettra recrutement de soldat) : en cours
+- Modélisation(et import) + config + UI de la mine d'or
+- Modélisation(et import) + config + UI de la ferme
+- Amélioration logique de combat pour permettre l'attaque de bâtiments (sera utilisé pour les pillards)
   
 
 
