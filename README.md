@@ -1,6 +1,7 @@
 --- DESCRIPTION ---
 
-Projet 3D personnel qui est un prototype RTS (Real Time Strategy) qui permettra à 2 joueurs de s’affronter, dans un univers médiéval.
+Projet 3D personnel qui est un prototype RTS (Real Time Strategy) solo s’inscrivant dans un univers médiéval. 
+Le joueur devra développer sa colonie, faire prospérer son peuple et le défendre face aux attaques de pillard.
 
 
 --- CONTROLES ---
@@ -18,7 +19,7 @@ Clique gauche : Sélectionne unité(militaire)
 
 Clique droit(unité(s) sélectionnée(s)) : Déplacement seul ou en groupe(formation)
 
-Clique droit(unité(s) sélectionnée(s)) + cible ennemie) : Commande d'attaque
+Clique droit(unité(s) militaire(s) sélectionnée(s)) sur cible ennemie : Commande d'attaque
 
 
 
@@ -36,14 +37,15 @@ Clique droit(unité(s) sélectionnée(s)) + cible ennemie) : Commande d'attaque
 - Modèle(+ animation d'attente, de marche, de coupe et de transport de rondin) d'une nouvelle unité via Blender, le bûcheron (+ hache)
 - Modèle arbre + animation(chute)
 - Modèle(basique) du camp de bûcheron, du hall (bâtiment principal) et de l'entrepôt
+- Affectation et retrait(via UI) de la main d’œuvre au camp de bûcheron(Logger Camp)
 
 
 
 --- PRÉVISIONS ---
 
-- Affectation(via UI) de la main d’œuvre aux bâtiments de production (et retrait) → en cours
-- Système de construction (+ contrôle de placement sur terrain avec relief)
+- Système de construction (sur terrain plat) + UI : en cours
 - Modélisation d’une carte test, avec relief
+- Amélioration système de construction : Contrôle du placement sur terrain avec relief
   
 
 
