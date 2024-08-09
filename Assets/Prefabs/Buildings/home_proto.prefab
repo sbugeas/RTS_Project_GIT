@@ -44,8 +44,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.024273762, y: 0.03380127, z: 0.026254263}
-  m_Center: {x: -0.00033023595, y: 0.017469417, z: 0.00046693644}
+  m_Size: {x: 0.026039297, y: 0.03380127, z: 0.027228262}
+  m_Center: {x: -0.00030028104, y: 0.017469417, z: 0.0004165782}
 --- !u!114 &6141270893104353477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 2499351525788088231}
   m_Layer: 12
   m_Name: home_proto
-  m_TagString: home
+  m_TagString: wareHouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ Transform:
   m_GameObject: {fileID: 5899522998196455514}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -2.4860888, y: -67.5621, z: 27.731415}
-  m_LocalScale: {x: 200, y: 120, z: 300}
+  m_LocalScale: {x: 300, y: 170, z: 450}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1025852705688221878}
@@ -210,8 +210,8 @@ MonoBehaviour:
   woodCost: 8
   stoneCost: 2
   popGiven: 8
-  maxHealth: 100
-  currentHealth: 0
+  maxHealth: 400
+  currentHealth: 400
 --- !u!114 &2499351525788088231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,5 +224,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b728fa3153e984496026a18b9222a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBuildable: 1
+  isBuildable: 0
   buildingTmpCol: {fileID: 6141270893104353477}

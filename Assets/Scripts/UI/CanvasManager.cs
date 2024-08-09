@@ -26,12 +26,16 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI stoneMinerHut_woodCost_txt;
     [SerializeField] TextMeshProUGUI stoneMinerHut_stoneCost_txt;
+
+    [SerializeField] TextMeshProUGUI barrack_woodCost_txt;
+    [SerializeField] TextMeshProUGUI barrack_stoneCost_txt;
     //-----------------------------------
 
     //------------- PANELS ---------------
     [SerializeField] GameObject buildingPanel;
     [SerializeField] GameObject loggerCampPanel;
     [SerializeField] GameObject stoneMinerHutPanel;
+    [SerializeField] GameObject barrackPanel;
     //-----------------------------------
 
     //------------- BUTTONS ---------------
@@ -52,6 +56,7 @@ public class CanvasManager : MonoBehaviour
 
     private LoggerCamp loggerCamp;
     private StoneMinerHut stoneMinerHut;
+    //private Barrack barrack;
 
 
     private void Awake()
@@ -74,6 +79,15 @@ public class CanvasManager : MonoBehaviour
         UpdateTextCostOnBuildingPanel();
     }
 
+    /*
+    private void Update()
+    {
+        if(barrack != null) 
+        {
+            barrack
+        }
+    }
+    */
 
     //------------- GENERAL --------------
 
@@ -92,6 +106,10 @@ public class CanvasManager : MonoBehaviour
         {
             stoneMinerHut = _structure.GetComponent<StoneMinerHut>();
             OpenStoneMinerHutPanel();
+        }
+        else if (_structure.CompareTag("barrack")) 
+        { 
+            OpenBarrackPanel();
         }
     }
 
@@ -121,6 +139,7 @@ public class CanvasManager : MonoBehaviour
 
         CloseLoggerCampPanel();
         CloseStoneMinerHutPanel();
+        CloseBarrackPanel();
     }
 
     public void UpdateTextCostOnBuildingPanel() //Appelée une fois, au début (les coûts ne changent pas durant la partie)
@@ -136,10 +155,11 @@ public class CanvasManager : MonoBehaviour
         //Stone miner's hut
         stoneMinerHut_woodCost_txt.text = BuildingManager.instance.stoneMinerHutPrefab.GetComponent<BuildingData>().woodCost.ToString();
         stoneMinerHut_stoneCost_txt.text = BuildingManager.instance.stoneMinerHutPrefab.GetComponent<BuildingData>().stoneCost.ToString();
+
+        //Barrack
+        barrack_woodCost_txt.text = BuildingManager.instance.barrackPrefab.GetComponent<BuildingData>().woodCost.ToString();
+        barrack_stoneCost_txt.text = BuildingManager.instance.barrackPrefab.GetComponent<BuildingData>().stoneCost.ToString();
     }
-
-    //------------- GENERAL --------------
-
 
 
     //--------- LOGGER CAMP ------------
@@ -214,11 +234,8 @@ public class CanvasManager : MonoBehaviour
         UpdateLoggerCampPanel();
     }
 
-    //--------- LOGGER CAMP ------------
-
-
-
     //--------- STONE MINER HUT ------------
+
 
     //---- PANELS
 
@@ -292,13 +309,47 @@ public class CanvasManager : MonoBehaviour
     }
 
 
-    //--------- STONE MINER HUT ------------
-
-    
-    
-    
+    //--------- BARRACK ------------
 
 
+    //---- PANELS
+    public void OpenBarrackPanel()
+    {
+        //Update button
+        //addLoggerButton.onClick.RemoveAllListeners();
+        //addLoggerButton.onClick.AddListener(OnAddLoggerClick);
 
+        //Update UI
+        //UpdateBarrackPanel();
+
+        //Display UI
+        if (!barrackPanel.activeInHierarchy)
+        {
+            barrackPanel.SetActive(true);
+        }
+    }
+
+    public void CloseBarrackPanel()
+    {
+        barrackPanel.SetActive(false);
+    }
+
+    /*
+    public void UpdateBarrackPanel()
+    {
+        BuildingData buildingData = barrack.
+
+        //Update health bar
+        if (_buildingData != null)
+        {
+            int _maxHealth = _buildingData.maxHealth;
+            int _currentHealth = _buildingData.currentHealth;
+
+            stoneMinerHutSlider.maxValue = _maxHealth;
+            stoneMinerHutSlider.value = _currentHealth;
+        }
+    }
+    */
+  
 
 }

@@ -172,8 +172,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10306983, y: 0.11231026, z: 0.06825413}
-  m_Center: {x: -0.0005290413, y: 0.00023662568, z: 0.030825421}
+  m_Size: {x: 0.10721575, y: 0.11580506, z: 0.06825413}
+  m_Center: {x: -0.00044785498, y: -0.0005236435, z: 0.03082542}
 --- !u!114 &1221834232333132005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,8 +392,8 @@ MonoBehaviour:
   woodCost: 5
   stoneCost: 0
   popGiven: 0
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 500
+  currentHealth: 500
 --- !u!114 &2192435367659323772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,5 +406,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b728fa3153e984496026a18b9222a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBuildable: 1
+  isBuildable: 0
   buildingTmpCol: {fileID: 1221834232333132005}

@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b728fa3153e984496026a18b9222a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBuildable: 1
+  isBuildable: 0
   buildingTmpCol: {fileID: 7757082202092362343}
 --- !u!1 &1469037087993670631
 GameObject:

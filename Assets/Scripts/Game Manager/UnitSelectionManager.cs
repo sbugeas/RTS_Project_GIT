@@ -89,7 +89,7 @@ public class UnitSelectionManager : MonoBehaviour
                         selectedBuilding = hit.transform;
 
                         //On le sélectionne
-                        CanvasManager.instance.SelectBuilding(selectedBuilding);
+                        CanvasManager.instance.SelectBuilding(selectedBuilding); //
                     }
 
                     
