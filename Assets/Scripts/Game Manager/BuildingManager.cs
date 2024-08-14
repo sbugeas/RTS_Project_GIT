@@ -223,6 +223,7 @@ public class BuildingManager : MonoBehaviour
         dataScript.transform.Find("otherObstacleZones").gameObject.SetActive(true);
 
         //Activer script caserne(à faire)
+        dataScript.transform.GetComponent<Barrack>().enabled = true;
     }
 
     

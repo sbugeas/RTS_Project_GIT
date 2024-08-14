@@ -2,12 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Unit : MonoBehaviour
 {
     public bool isCommandedToMove;
     public bool isCommandedToAttack;
     public bool isAlive;
+
+    public bool nearOfDestination;
+    public bool hasOrCalculatePath;
 
     //DONNEES (ownerPlayer,stats etc...)
     public int unitHealth;
@@ -23,8 +27,7 @@ public class Unit : MonoBehaviour
     public Rigidbody rb;
 
     AttackController attackController;
-
-
+    
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -36,9 +39,9 @@ public class Unit : MonoBehaviour
         unitHealth = unitMaxHealth;
         unitHealthSlider.value = unitHealth;
 
-        isCommandedToMove = false;
-        isCommandedToAttack = false;
         isAlive = true;
+        isCommandedToAttack = false;
+
 
         //AJOUT LISTE UNITES
         UnitSelectionManager.instance.allUnitsList.Add(gameObject);
@@ -49,15 +52,29 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        if(agent.hasPath == false && !agent.pathPending || agent.remainingDistance <= agent.stoppingDistance) //L'unité a atteint sa destination
-        {             
-            isCommandedToMove = false;
-            animator.SetBool("isMoving", false);
-        }
-        else //L'unité a un chemin
+        nearOfDestination = agent.hasPath && (agent.remainingDistance <= agent.stoppingDistance);
+        hasOrCalculatePath = agent.hasPath || agent.pathPending;
+
+        //L'unité n'a pas de destination et n'en calcule pas
+        if (!hasOrCalculatePath)
         {
+            //Joue animation d'attente
+            animator.SetBool("isMoving", false);       
+        }
+        else //L'unité a une destination
+        {
+            //Joue animation de course
             animator.SetBool("isMoving", true);
-        }        
+        }
+
+        //Si l'unité est arrivée à destination
+        if (nearOfDestination)
+        {
+            //Immobilisation
+            agent.ResetPath();
+            isCommandedToMove = false;
+        }
+
 
     }
 

@@ -10,7 +10,7 @@ public class BuildingTmpCollider : MonoBehaviour
     {
         GameObject go = other.gameObject;
 
-        if (!go.CompareTag("ground"))
+        if (!go.CompareTag("ground") && !other.isTrigger)
         {
             collisionHit++;
         }
@@ -22,7 +22,7 @@ public class BuildingTmpCollider : MonoBehaviour
     {
         GameObject go = other.gameObject;
 
-        if (!go.CompareTag("ground"))
+        if (!go.CompareTag("ground") && !other.isTrigger)
         {
             collisionHit--;
         }

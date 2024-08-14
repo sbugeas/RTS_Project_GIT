@@ -43,7 +43,7 @@ public class AttackController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) //Modifié, OnTriggerStay normalement
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(enemyUnitTag))
         {

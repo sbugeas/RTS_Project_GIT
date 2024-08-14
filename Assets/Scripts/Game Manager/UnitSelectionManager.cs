@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class UnitSelectionManager : MonoBehaviour
 {
+    //Renommer la classe en SelectionManager
+    //Faire aussi un autre script(ex : UnitMovementManager pour les méthodes relatives au déplacement des unités (MoveUnitGroup,GivePosOfLineAndMove,MoveUnitToPosition etc...)
     public static UnitSelectionManager instance;
 
     public List<GameObject> allUnitsList = new List<GameObject>();
@@ -73,6 +75,9 @@ public class UnitSelectionManager : MonoBehaviour
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
+                //Deselect building
+                CanvasManager.instance.DeselectBuildings(); /////
+
                 //On détécte une unité
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, unitsLayer))
                 {
@@ -80,8 +85,8 @@ public class UnitSelectionManager : MonoBehaviour
                 }
                 else
                 {
+                    //Deselect units
                     DeselectAll();
-                    CanvasManager.instance.CloseAllOpenedPanel();
 
                     //On détécte un bâtiment
                     if (Physics.Raycast(ray, out hit, Mathf.Infinity, buildingLayerP1))
@@ -89,7 +94,7 @@ public class UnitSelectionManager : MonoBehaviour
                         selectedBuilding = hit.transform;
 
                         //On le sélectionne
-                        CanvasManager.instance.SelectBuilding(selectedBuilding); //
+                        CanvasManager.instance.SelectBuilding(selectedBuilding);
                     }
 
                     
@@ -99,6 +104,13 @@ public class UnitSelectionManager : MonoBehaviour
 
         }
 
+        if (Input.GetMouseButtonUp(0)) /////
+        {
+            if (selectedUnitsList.Count > 0)
+            {
+                CanvasManager.instance.DeselectBuildings();
+            }
+        }
 
 
         if (selectedUnitsList.Count > 0)
@@ -146,24 +158,10 @@ public class UnitSelectionManager : MonoBehaviour
                     groundMarker.transform.position = target;
                     groundMarker.transform.rotation = rotation;
 
-                    //Pour chaque unité sélectionnée
-                    foreach (GameObject unit in selectedUnitsList)
-                    {
-                        unit.GetComponent<Unit>().isCommandedToAttack = false;
-                        unit.GetComponent<Unit>().isCommandedToMove = true;
-
-                        //On retire la cible
-                        if (unit.GetComponent<AttackController>().targetToAttack != null) 
-                        {
-                            unit.GetComponent<AttackController>().targetToAttack = null;
-                        }
-
-                    }
-
                     //On envoie à la destination
                     if (totalSelectedUnits == 1)
                     {
-                        selectedUnitsList[0].gameObject.GetComponent<NavMeshAgent>().SetDestination(target);
+                        MoveUnitToPosition(selectedUnitsList[0], target);
                     }
                     else
                     {
@@ -179,7 +177,7 @@ public class UnitSelectionManager : MonoBehaviour
             
         }
 
-
+        //A mettre dans un autre script
         if (!attackCursorVisible && enemyDetected) 
         {
             SetWantedCursor(attackCursor);
@@ -262,8 +260,8 @@ public class UnitSelectionManager : MonoBehaviour
                 Vector3 targetRightUnit = refPoint + (lineDir * curGap);
                 Vector3 targetLeftUnit = refPoint - (lineDir * curGap);
 
-                _unitList[i].gameObject.GetComponent<NavMeshAgent>().SetDestination(targetRightUnit);
-                _unitList[i+1].gameObject.GetComponent<NavMeshAgent>().SetDestination(targetLeftUnit);
+                MoveUnitToPosition(_unitList[i], targetRightUnit);
+                MoveUnitToPosition(_unitList[i + 1], targetLeftUnit);
 
                 curGap += gapUnit;
             }
@@ -272,15 +270,16 @@ public class UnitSelectionManager : MonoBehaviour
         {
             curGap = gapUnit;
 
-            _unitList[0].gameObject.GetComponent<NavMeshAgent>().SetDestination(refPoint);
+            //_unitList[0].gameObject.GetComponent<NavMeshAgent>().SetDestination(refPoint);
+            MoveUnitToPosition(_unitList[0], refPoint); /////
 
             for (int i = 1; i < nbUnit; i += 2) 
             {   
                 Vector3 targetRightUnit = refPoint + (lineDir * curGap);
                 Vector3 targetLeftUnit = refPoint - (lineDir * curGap);
 
-                _unitList[i].gameObject.GetComponent<NavMeshAgent>().SetDestination(targetRightUnit);
-                _unitList[i + 1].gameObject.GetComponent<NavMeshAgent>().SetDestination(targetLeftUnit);
+                MoveUnitToPosition(_unitList[i],targetRightUnit);
+                MoveUnitToPosition(_unitList[i + 1], targetLeftUnit);
 
                 curGap += gapUnit;
             }
@@ -293,7 +292,16 @@ public class UnitSelectionManager : MonoBehaviour
 
     private void MoveUnitToPosition(GameObject unit, Vector3 unitPos)
     {
+        Unit unitScript = unit.GetComponent<Unit>();
+
+        //Remove target (attack)
+        unit.GetComponent<AttackController>().targetToAttack = null;
+        unitScript.isCommandedToAttack = false;
+
+        unitScript.isCommandedToMove = true;
+        //Go to destination
         unit.GetComponent<NavMeshAgent>().SetDestination(unitPos);
+            
     }
 
     private Vector3 GiveGrpMiddlePos(List<GameObject> unitGroup) 

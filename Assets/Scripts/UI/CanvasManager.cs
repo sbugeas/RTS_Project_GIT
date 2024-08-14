@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEngine.GraphicsBuffer;
+using UnityEngine.AI;
 
 //Script en cours/non terminé
 public class CanvasManager : MonoBehaviour
@@ -16,6 +18,8 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI stoneMinerCountTxt;
     [SerializeField] TextMeshProUGUI maxStoneMinerTxt;
+
+    [SerializeField] TextMeshProUGUI recruitedUnitNameTxt;
 
     //COST (UI) -> Building Panel
     [SerializeField] TextMeshProUGUI home_woodCost_txt;
@@ -47,16 +51,19 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] Button addStoneMinerButton;
     [SerializeField] Button removeStoneMinerButton;
 
+    [SerializeField] Button recruitSoldierButton;
+
     //-------------------------------------
 
     //------------- SLIDERS ----------------
     [SerializeField] Slider loggerCampSlider;
     [SerializeField] Slider stoneMinerHutSlider;
+    [SerializeField] Slider recruitmentBarSlider;
     //-------------------------------------
 
     private LoggerCamp loggerCamp;
     private StoneMinerHut stoneMinerHut;
-    //private Barrack barrack;
+    private Barrack barrack;
 
 
     private void Awake()
@@ -74,43 +81,95 @@ public class CanvasManager : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
+
         loggerCamp = null;
+        stoneMinerHut = null;
+        barrack = null;
 
         UpdateTextCostOnBuildingPanel();
     }
 
-    /*
+   
     private void Update()
     {
-        if(barrack != null) 
+        //----------------------------------------------------------------------- CHANGER CAR PAS PROPRE/PERFORMANT
+        if (barrack != null) //Caserne sélectionnée
         {
-            barrack
+            if(barrack.isRecruiting) //Si en recrutement
+            {
+                //Update progressbar
+                float recruitmentTime = barrack.timeToRecruitSoldier;
+                float curTime = barrack.curTime;
+
+                recruitmentBarSlider.value = curTime / recruitmentTime;
+            }
+
+            if(Input.GetMouseButtonDown(1)) //Clique droit
+            {
+                Transform _rallyFlag = barrack.transform.Find("rallyFlag").transform;
+
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                //On détécte un bâtiment
+                if(Physics.Raycast(ray, out hit, Mathf.Infinity, UnitSelectionManager.instance.buildingLayerP1))
+                {
+                    NavMeshHit _hit;
+
+                    //Si zone naviguable près du point de ralliement (rallyPosition)
+                    if (NavMesh.SamplePosition(hit.point, out _hit, 100f, NavMesh.AllAreas))
+                    {
+                        _rallyFlag.position = _hit.position;
+                    }
+                }
+                else if(Physics.Raycast(ray, out hit, Mathf.Infinity, UnitSelectionManager.instance.ground)) //On détecte le sol
+                {
+                    _rallyFlag.position = hit.point; //test
+                }
+            }
         }
+        //----------------------------------------------------------------------- CHANGER CAR PAS PROPRE/PERFORMANT
+
+
+
+
+
     }
-    */
+
 
     //------------- GENERAL --------------
 
     public void SelectBuilding(Transform _structure)
     {
-        loggerCamp = null;
-        stoneMinerHut = null;
-
-        //Si c'est un camp de bûcheron
+        //logger camp
         if (_structure.CompareTag("loggerCamp"))
         {
             loggerCamp = _structure.GetComponent<LoggerCamp>();
             OpenLoggerCampPanel();
         }
-        else if (_structure.CompareTag("stoneMinerHut")) //Si c'est une cabane de mineur de pierre
+        else if (_structure.CompareTag("stoneMinerHut")) //stone miner's hut
         {
             stoneMinerHut = _structure.GetComponent<StoneMinerHut>();
             OpenStoneMinerHutPanel();
         }
-        else if (_structure.CompareTag("barrack")) 
-        { 
+        else if (_structure.CompareTag("barrack")) //barrack
+        {
+            barrack = _structure.GetComponent<Barrack>();
+
+            barrack.isSelected = true;
+            barrack.transform.Find("rallyFlag").gameObject.SetActive(true); //ok
             OpenBarrackPanel();
         }
+    }
+
+    public void DeselectBuildings() /////
+    {
+        CloseAllOpenedPanel(); /////
+
+        //Reset
+        loggerCamp = null;
+        stoneMinerHut = null;
+        barrack = null;
     }
 
     public void OpenBuildingPanel()
@@ -136,10 +195,9 @@ public class CanvasManager : MonoBehaviour
             DisplayBuildingButton(true);
         }
 
-
+        CloseBarrackPanel();
         CloseLoggerCampPanel();
         CloseStoneMinerHutPanel();
-        CloseBarrackPanel();
     }
 
     public void UpdateTextCostOnBuildingPanel() //Appelée une fois, au début (les coûts ne changent pas durant la partie)
@@ -315,12 +373,19 @@ public class CanvasManager : MonoBehaviour
     //---- PANELS
     public void OpenBarrackPanel()
     {
-        //Update button
-        //addLoggerButton.onClick.RemoveAllListeners();
-        //addLoggerButton.onClick.AddListener(OnAddLoggerClick);
+        if (barrack.isRecruiting) 
+        {
+            DisplayRecruitmentInfos();
+        }
+        else 
+        {
+            ClearRecruitmentInfos();
+        }
 
-        //Update UI
-        //UpdateBarrackPanel();
+        //Update button
+        recruitSoldierButton.onClick.RemoveAllListeners();
+        recruitSoldierButton.onClick.AddListener(OnRecruitSoldierClick);
+
 
         //Display UI
         if (!barrackPanel.activeInHierarchy)
@@ -332,24 +397,47 @@ public class CanvasManager : MonoBehaviour
     public void CloseBarrackPanel()
     {
         barrackPanel.SetActive(false);
-    }
+        ClearRecruitmentInfos();
 
-    /*
-    public void UpdateBarrackPanel()
-    {
-        BuildingData buildingData = barrack.
-
-        //Update health bar
-        if (_buildingData != null)
+        if (barrack != null)
         {
-            int _maxHealth = _buildingData.maxHealth;
-            int _currentHealth = _buildingData.currentHealth;
-
-            stoneMinerHutSlider.maxValue = _maxHealth;
-            stoneMinerHutSlider.value = _currentHealth;
+            barrack.transform.Find("rallyFlag").gameObject.SetActive(false);
+            barrack.isSelected = false;
         }
     }
-    */
-  
+
+    
+    public void DisplayRecruitmentInfos()
+    {
+        //reset slider
+        recruitmentBarSlider.value = 0.0f;
+
+        //display
+        recruitmentBarSlider.gameObject.SetActive(true);
+        recruitedUnitNameTxt.enabled = true;
+
+        //Disable recruitment button
+        recruitSoldierButton.interactable = false;
+    }
+
+    public void ClearRecruitmentInfos()
+    {
+        recruitmentBarSlider.gameObject.SetActive(false);
+        recruitedUnitNameTxt.enabled = false;
+
+        //Enable recruitment button
+        recruitSoldierButton.interactable = true;
+
+    }
+
+    //---- BUTTONS
+    void OnRecruitSoldierClick()
+    {
+        if (barrack != null)
+        {
+            barrack.RecruitSoldier();
+        }
+    }
+
 
 }
