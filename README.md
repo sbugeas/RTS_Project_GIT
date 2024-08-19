@@ -25,31 +25,31 @@ Clique droit(unité(s) militaire(s) sélectionnée(s)) sur cible ennemie : Comma
 
 --- ACHEVÉ ---
 
-- Ajout gestion de la Caméra
-- Ajout sélection simple et multiple d'unité
-- Déplacement d’une ou plusieurs unités (via Navmesh)
-- Bases du mode construction. Proposition placement avec contrôle du terrain puis placement (à finir)
-- Modèle Soldat + armes(première unité de combat) + animations(Attente, course, garde et attaque) via Blender
-- Système de combat rapproché (+ Détection d’ennemi et suivi, automatiquement ou sur commande du joueur)
-- Ajout du curseur "de base" ainsi que le curseur de combat (indicateur pour le joueur)
-- Positionnement(formation) des unités suite à un déplacement en groupe
-- Logique de récolte du bois (Sera également utilisé pour la récolte de la pierre et du fer)
-- Modèle(+ animation d'attente, de marche, de coupe et de transport de rondin) d'une nouvelle unité via Blender, le bûcheron (+ hache)
-- Modèle arbre + animation(chute)
-- Modèle(basique) du camp de bûcheron, du hall (bâtiment principal) et de l'entrepôt
-- Gestion(via UI) de la main d’œuvre du camp de bûcheron(Logger Camp)
-- Logique de récolte de la pierre (légèrement différent de la récolte du bois)
-- Animation minage du mineur de pierre
-- Modèle rocher
-- Modèle cabane de mineur de pierre
-- Gestion(via UI) de la main d’œuvre de la cabane de mineur de pierre(Logger Camp)
-- Système de construction (sur terrain plat) + UI(menu de construction)
+- Gestion de la Caméra (déplacemebt, rotation, zoom)
+- Système de sélection unique et multiple d'unité(s)
+- Système de déplacement d’une ou plusieurs unités (via Navmesh)
+- Soldat : Modélisation, import et configuration, animations(Attente, course, garde et attaque), UI(barre de vie)
+- Système de combat rapproché du soldat(Détection d’ennemi et suivi, automatiquement ou sur commande du joueur)
+- Ajout du curseur "de base" ainsi que le curseur de combat (momentanément retiré mais présents dans le dossier du projet)
+- Système de positionnement(en formation) des unités suite à un déplacement en groupe
+- Système de récolte du bois (Sera également utilisée pour la récolte de la pierre et de l'or)
+- Bûcheron : Modélisation, import et configuration, animations (attente, marche, coupe, transport de rondin)
+- Arbre : Modélisation, import et configuration, animation(chute)
+- Modèle du hall (bâtiment principal) et de l'entrepôt
+- Camp de bûcheron : Modélisation, import et configuration, UI
+- Système de récolte de la pierre (légèrement différent de la récolte du bois)
+- Pioche
+- Animation minage
+- Rocher : Modélisation, import et configuration
+- Cabane de mineur de pierre (Stone miner's hut) : Modélisation, import et configuration, UI 
+- Système de construction (sur terrain plat) + UI du menu de construction 
+- Caserne : Modélisation, import et configuration, UI, logique de recrutement
 
 --- PRÉVISIONS ---
-- Modélisation(et import) + config + UI de la caserne(permettra recrutement de soldat) : en cours
-- Modélisation(et import) + config + UI de la mine d'or
-- Modélisation(et import) + config + UI de la ferme
-- Amélioration logique de combat pour permettre l'attaque de bâtiments (sera utilisé pour les pillards)
+- Réorganisation : Changement du système de construction pour utiliser une grille de placement --> en cours
+- Cabane de mineur d'or(Gold miner's hut) : Modèlisation, import et configuration, UI
+- Mineurs d'or : logique(states), animation(transport de minerai)
+- Amélioration de la logique du combat pour permettre l'attaque de bâtiments (sera utilisée pour les pillards)
   
 
 
