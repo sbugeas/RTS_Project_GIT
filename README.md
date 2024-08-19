@@ -4,7 +4,7 @@ Projet 3D personnel qui est un prototype RTS (Real Time Strategy) solo s’inscr
 Le joueur devra développer sa colonie, faire prospérer son peuple et le défendre face aux attaques de pillards.
 
 
---- CONTROLES ---
+--- CONTRÔLES ---
 
 
 Flèches directionnelles (↓↑←→) : Déplacer la caméra
@@ -23,7 +23,7 @@ Clique droit(unité(s) militaire(s) sélectionnée(s)) sur cible ennemie : Comma
 
 
 
---- ACHEVÉ ---
+--- ACHEVÉS ---
 
 - Gestion de la Caméra (déplacemebt, rotation, zoom)
 - Système de sélection unique et multiple d'unité(s)
