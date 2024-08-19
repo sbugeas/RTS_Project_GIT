@@ -13,13 +13,13 @@ Molette souris : Zoom caméra
 
 Molette souris(rester appuyé) : Rotation caméra
 
-T : Construire une maison (Temporaire/Pour tests)
+Clique gauche sur une unité : Sélectionne l'unité (maintenir pour en sélectionner plusieurs avec une boîte de sélection)
 
-Clique gauche : Sélectionne unité(militaire)
+Clique gauche sur un bâtiment : Sélectionne le bâtiment (si sélectionnable)
 
-Clique droit(unité(s) sélectionnée(s)) : Déplacement seul ou en groupe(formation)
+Clique droit sur le terrain : Déplacement des unités sélectionnées
 
-Clique droit(unité(s) militaire(s) sélectionnée(s)) sur cible ennemie : Commande d'attaque
+Clique droit sur une unité ennemie : Ordre d'attaque (unités sélectionnées)
 
 
 
