@@ -44,7 +44,7 @@ public class BuildingPlacement : MonoBehaviour
     {
         if (isBuildable) 
         {
-            SetOriginalColor();
+            SetYellowColor();
         }
         else 
         {
@@ -62,13 +62,26 @@ public class BuildingPlacement : MonoBehaviour
         }
     }
 
-    private void SetOriginalColor()
+    private void SetYellowColor() ////
     {
         //Pour chaque material
         for (int i = 0; i < materials.Length; i++)
         {
+            GetComponent<MeshRenderer>().materials[i].color = Color.green;
+        }
+    }
+
+    public void SetOriginalColorAndRemoveScript() //// appelée lors du placement
+    {
+        //Pour chaque material
+        for (int i = 0; i < materials.Length; i++)
+        {
+            //On applique leur couleur initiale
             GetComponent<MeshRenderer>().materials[i].color = originalColor[i];
         }
+
+        //On retire ce script de l'objet 
+        Destroy(this);
     }
 
     private void SaveOriginalColor() 
@@ -86,6 +99,6 @@ public class BuildingPlacement : MonoBehaviour
 
     private bool HasEnoughResources() 
     {
-        return ((_buildingData.woodCost <= ResourcesManager.instance.woodCound) && (_buildingData.stoneCost <= ResourcesManager.instance.stoneCount));
+        return ((_woodCost <= ResourcesManager.instance.woodCound) && (_stoneCost <= ResourcesManager.instance.stoneCount));
     }
 }

@@ -13,11 +13,13 @@ public class ResourcesManager : MonoBehaviour
 
     public int woodCound = 0;
     public int stoneCount = 0;
-    public int gold = 0;
+    public int goldOreCount = 0;
     //----------------------------
 
     public TextMeshProUGUI woodCountTxt;
     public TextMeshProUGUI stoneCountTxt;
+    public TextMeshProUGUI goldOreCountTxt;
+
     public TextMeshProUGUI totalPopulationCountTxt;
     public TextMeshProUGUI maxPopulationCountTxt;
 
@@ -46,8 +48,10 @@ public class ResourcesManager : MonoBehaviour
         UpdatePopulation();
         UpdateWood();
         UpdateStone();
+        UpdateGoldOre();
     }
 
+    //----------------------
     public void AddWood(int count) 
     {
         woodCound += count;
@@ -68,12 +72,13 @@ public class ResourcesManager : MonoBehaviour
 
     }
 
-    //Maj canvas
     private void UpdateWood() 
     {
         woodCountTxt.text = woodCound.ToString();
     }
+    //----------------------
 
+    //----------------------
     public void AddStone(int count)
     {
         stoneCount += count;
@@ -98,8 +103,36 @@ public class ResourcesManager : MonoBehaviour
     {
         stoneCountTxt.text = stoneCount.ToString();
     }
+    //----------------------
 
+    //----------------------
+    public void AddGoldOre(int count)
+    {
+        goldOreCount += count;
 
+        UpdateGoldOre();
+    }
+
+    public void RemoveGoldOre(int count)
+    {
+        goldOreCount -= count;
+
+        if (goldOreCount < 0)
+        {
+            goldOreCount = 0;
+        }
+
+        UpdateGoldOre();
+
+    }
+
+    private void UpdateGoldOre()
+    {
+        goldOreCountTxt.text = goldOreCount.ToString();
+    }
+    //----------------------
+
+    //----------------------
     private void UpdatePopulation() 
     {
         totalPopulationCountTxt.text = totalPopulation.ToString();
@@ -152,6 +185,7 @@ public class ResourcesManager : MonoBehaviour
         }
         UpdatePopulation();
     }
+    //----------------------
 
-    
+
 }
