@@ -27,7 +27,7 @@ public class CameraMotion : MonoBehaviour
     }
 
 
-
+    /*
     private bool IsInBounds(Vector3 _position)
     {
         return _position.x > -(_range.x) &&
@@ -35,6 +35,7 @@ public class CameraMotion : MonoBehaviour
                _position.z > -(_range.y) &&
                _position.z < _range.y;
     }
+    */
 
     private void GetInput()
     {
@@ -52,10 +53,14 @@ public class CameraMotion : MonoBehaviour
     {
         Vector3 nextTargetPosition = targetPosition + cameraMovement * speed;
 
+        /*
         if (IsInBounds(nextTargetPosition)) 
         {
             targetPosition = nextTargetPosition;
         }
+        */
+
+        targetPosition = nextTargetPosition;
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * _smoothing);
     }

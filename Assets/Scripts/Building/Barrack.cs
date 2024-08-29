@@ -58,6 +58,8 @@ public class Barrack : MonoBehaviour
             //Instanciation
             GameObject newSoldier = Instantiate(soldierPrefab, hit.position, Quaternion.identity);
             Unit unitScript = newSoldier.GetComponent<Unit>();
+            //Ajout à la population totale
+            ResourcesManager.instance.AddToTotalPop(1);
 
             //Si zone naviguable proche du point de ralliement (rallyPosition)
             if (NavMesh.SamplePosition(rallyPosition.position, out hit, 1.0f, NavMesh.AllAreas))

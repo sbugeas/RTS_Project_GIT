@@ -13,18 +13,20 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] Tilemap tilemap;
 
+    [SerializeField] GridDrawing gridDrawing;
+
     private GameObject instantiatedBuilding;
     private GameObject currentPrefab;
-    private float cell_size = 7.0f;
 
     public GameObject homePrefab;
     public GameObject loggerCampPrefab;
     public GameObject stoneMinerHutPrefab;
     public GameObject barrackPrefab;
-    public GameObject testPrefab; ///
 
     public LayerMask ground;
     public bool buildingInstantiated = false;
+
+    
 
     public static BuildingManager instance;
 
@@ -57,26 +59,16 @@ public class BuildingManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
-                //targetBuilding = hit.point; ///
-
-                //--------------------
-
                 // Convertir la position du monde en position sur la grille
                 Vector3Int gridPosition = tilemap.WorldToCell(hit.point);
 
                 // Convertir la position de la grille en position du monde
                 targetBuilding = tilemap.CellToWorld(gridPosition);
-
-                //Aligner au centre de la cellule
-                targetBuilding.x += (cell_size/2);
-                targetBuilding.z += (cell_size/2);
-                //--------------------
             }
             else
             {
                 //Si pas de hit
                 targetBuilding = instantiatedBuilding.transform.position;
-                //targetBuilding = Input.mousePosition;
             }
 
             //Prépositionnement du bâtiment
@@ -121,13 +113,6 @@ public class BuildingManager : MonoBehaviour
         currentPrefab = barrackPrefab;
     }
 
-    //--------------------------
-    public void SelectTestPrefab()
-    {
-        currentPrefab = testPrefab;
-    }
-    //--------------------------
-
     public void PrepareToCreateBuilding()
     {
         if(currentPrefab != null) 
@@ -143,6 +128,9 @@ public class BuildingManager : MonoBehaviour
             //Parentage
             Transform _buildings = GameObject.Find("Buildings").transform;
             instantiatedBuilding.transform.SetParent(_buildings);
+
+            //Fait apparaître la grille
+            gridDrawing.DisplayGrid(true);
 
             buildingInstantiated = true;
         }
@@ -200,6 +188,9 @@ public class BuildingManager : MonoBehaviour
             currentPrefab = null;
 
             CanvasManager.instance.CloseAllOpenedPanel();
+
+            //Fait disparaître la grille
+            gridDrawing.DisplayGrid(false);
         }
 
     }
@@ -212,6 +203,9 @@ public class BuildingManager : MonoBehaviour
         }
         instantiatedBuilding = null;
         buildingInstantiated = false;
+
+        //Fait disparaître la grille
+        gridDrawing.DisplayGrid(false);
     }
 
     private void SpendResources(BuildingData dataScript)

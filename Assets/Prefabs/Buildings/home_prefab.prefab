@@ -44,8 +44,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13895403, y: 0.13956608, z: 0.18705536}
-  m_Center: {x: -0.000057554244, y: -0.000032105447, z: 0.099116094}
+  m_Size: {x: 20.39495, y: 11.043974, z: 36.038322}
+  m_Center: {x: -0.21619034, y: 5.627817, z: 0.08570862}
 --- !u!114 &1721613474923960929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,8 +76,8 @@ GameObject:
   - component: {fileID: 1721613473464855543}
   - component: {fileID: 1721613473464855542}
   m_Layer: 0
-  m_Name: testBuilding_2
-  m_TagString: Untagged
+  m_Name: home_prefab
+  m_TagString: home
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,15 +89,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955986676034246309}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 100, z: 40}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1721613474923960928}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2864576048296903610
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955986676034246309}
-  m_Mesh: {fileID: -5495902117074765545, guid: 75fc92ae94d81d5448955f1d1d45956a, type: 3}
+  m_Mesh: {fileID: -5495902117074765545, guid: e4f086e6e8a6cdf48a81c3c42c43c36b, type: 3}
 --- !u!23 &10682807542396784
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -161,8 +161,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.14025207, y: 0.14000003, z: 0.19473746}
-  m_Center: {x: 0.00026093482, y: -1.3550658e-16, z: 0.09748661}
+  m_Size: {x: 14.053335, y: 10.226374, z: 28.000492}
+  m_Center: {x: -0.04339409, y: 5.043187, z: -0.004776001}
 --- !u!54 &1721613473464855537
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   woodCost: 2
   stoneCost: 0
-  popGiven: 0
+  popGiven: 5
   maxHealth: 100
   currentHealth: 0
 --- !u!114 &1721613473464855542

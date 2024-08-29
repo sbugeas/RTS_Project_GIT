@@ -157,7 +157,7 @@ public class CanvasManager : MonoBehaviour
             barrack = _structure.GetComponent<Barrack>();
 
             barrack.isSelected = true;
-            barrack.transform.Find("rallyFlag").gameObject.SetActive(true); //ok
+            barrack.transform.Find("rallyFlag").gameObject.SetActive(true);
             OpenBarrackPanel();
         }
     }
@@ -386,8 +386,7 @@ public class CanvasManager : MonoBehaviour
         recruitSoldierButton.onClick.RemoveAllListeners();
         recruitSoldierButton.onClick.AddListener(OnRecruitSoldierClick);
 
-
-        //Display UI
+        //Display panel
         if (!barrackPanel.activeInHierarchy)
         {
             barrackPanel.SetActive(true);
@@ -425,12 +424,17 @@ public class CanvasManager : MonoBehaviour
         recruitmentBarSlider.gameObject.SetActive(false);
         recruitedUnitNameTxt.enabled = false;
 
-        //Enable recruitment button
-        recruitSoldierButton.interactable = true;
-
+        //activate or NOT the recruitment button(if recruitment is possible)
+        ResourcesManager resourcesManager = ResourcesManager.instance;
+        EnableRecruitmentButton(resourcesManager.totalPopulation < resourcesManager.populationMax);
     }
 
     //---- BUTTONS
+    void EnableRecruitmentButton(bool _isEnabled)
+    {
+        recruitSoldierButton.interactable = _isEnabled;
+    }
+
     void OnRecruitSoldierClick()
     {
         if (barrack != null)
