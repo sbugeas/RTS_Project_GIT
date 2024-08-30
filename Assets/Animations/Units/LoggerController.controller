@@ -1065,7 +1065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f732b7415ab4f034db275eb3771dae0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depositRange: 3
 --- !u!1102 &7621590579848015274
 AnimatorState:
   serializedVersion: 6
@@ -1106,7 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa0bee493063f34aba2aea89f310110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoltingDistance: 4
+  recoltingDistance: 6
 --- !u!1101 &8632022947487862040
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

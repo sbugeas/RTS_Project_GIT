@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 7905304855915556345}
   - component: {fileID: 1288673287368040300}
   m_Layer: 12
-  m_Name: NEW_loggingCamp
+  m_Name: loggingCamp_prefab
   m_TagString: loggerCamp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

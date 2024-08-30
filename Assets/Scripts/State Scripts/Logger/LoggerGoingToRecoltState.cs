@@ -8,7 +8,7 @@ public class LoggerGoingToRecoltState : StateMachineBehaviour
     LoggerData loggerData;
     NavMeshAgent agent;
 
-    public float recoltingDistance = 3.0f;
+    public float recoltingDistance = 8.0f;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

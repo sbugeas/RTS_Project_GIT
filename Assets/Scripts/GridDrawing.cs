@@ -14,6 +14,10 @@ public class GridDrawing : MonoBehaviour
     [SerializeField] int cellNbX = 60;
     [SerializeField] int cellNbZ = 60;
 
+    //Pour afficher grille au dessus du terrain
+    [SerializeField] float gridHeight = 0.1f;
+
+
 
     void Start()
     {
@@ -58,8 +62,8 @@ public class GridDrawing : MonoBehaviour
         //Lignes verticales
         for (int x = bounds.x; x <= (bounds.x + cellNbX); x++)
         {
-            Vector3 cur_start = new Vector3 (x * cellSize, 0, bounds.z);
-            Vector3 cur_end = new Vector3 (x * cellSize, 0, (bounds.z + cellNbZ) * cellSize);
+            Vector3 cur_start = new Vector3 (x * cellSize, gridHeight, bounds.z);
+            Vector3 cur_end = new Vector3 (x * cellSize, gridHeight, (bounds.z + cellNbZ) * cellSize);
 
             DrawLine(cur_start, cur_end);
         }
@@ -67,8 +71,8 @@ public class GridDrawing : MonoBehaviour
         //Lignes horizontales
         for (int z = bounds.z; z <= (bounds.z + cellNbZ); z++)
         {
-            Vector3 cur_start = new Vector3(bounds.x, 0, z * cellSize);
-            Vector3 cur_end = new Vector3((bounds.x + cellNbX) * cellSize, 0, z * cellSize);
+            Vector3 cur_start = new Vector3(bounds.x, gridHeight, z * cellSize);
+            Vector3 cur_end = new Vector3((bounds.x + cellNbX) * cellSize, gridHeight, z * cellSize);
 
             DrawLine(cur_start, cur_end);
         }

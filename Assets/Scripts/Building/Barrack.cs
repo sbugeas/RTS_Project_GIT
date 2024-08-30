@@ -53,7 +53,7 @@ public class Barrack : MonoBehaviour
         NavMeshHit hit;
 
         //Si zone naviguable proche du spawn
-        if (NavMesh.SamplePosition(_target.position, out hit, 1.0f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(_target.position, out hit, 10.0f, NavMesh.AllAreas))
         {
             //Instanciation
             GameObject newSoldier = Instantiate(soldierPrefab, hit.position, Quaternion.identity);
@@ -62,7 +62,7 @@ public class Barrack : MonoBehaviour
             ResourcesManager.instance.AddToTotalPop(1);
 
             //Si zone naviguable proche du point de ralliement (rallyPosition)
-            if (NavMesh.SamplePosition(rallyPosition.position, out hit, 1.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(rallyPosition.position, out hit, 10.0f, NavMesh.AllAreas))
             {
                 unitScript.isCommandedToMove = true;
                 //Envoyer soldier au point de ralliement

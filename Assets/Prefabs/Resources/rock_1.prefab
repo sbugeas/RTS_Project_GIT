@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 171496263843512422}
   - component: {fileID: 2703762557631722668}
   - component: {fileID: 3622059691280001068}
-  - component: {fileID: 3622059691280001067}
   - component: {fileID: 1685513598176354254}
+  - component: {fileID: 3248637007809192724}
   m_Layer: 14
   m_Name: rock_1
   m_TagString: rock
@@ -97,24 +97,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.016315741, y: 0.018564008, z: 0.01269597}
-  m_Center: {x: 0.000786379, y: 0.00077560626, z: 0.0061717555}
---- !u!208 &3622059691280001067
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4505092526361564537}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.008, y: 0.009000001, z: 0.006}
-  m_MoveThreshold: 1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.001, y: 0.001, z: 0.006}
-  m_TimeToStationary: 0.5
+  m_Size: {x: 0.032098755, y: 0.034448624, z: 0.022766316}
+  m_Center: {x: 0.0014385829, y: 0.000752728, z: 0.01120693}
 --- !u!114 &1685513598176354254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,3 +114,19 @@ MonoBehaviour:
   maxStone: 6
   remainingStone: 6
   totalHitToRecolt: 4
+--- !u!208 &3248637007809192724
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4505092526361564537}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.016, y: 0.019000001, z: 0.013}
+  m_MoveThreshold: 1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.002, y: 0.002, z: 0.012}
+  m_TimeToStationary: 0.5
