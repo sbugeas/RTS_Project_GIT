@@ -27,7 +27,7 @@ public class StoneMinerGoToWarehouseState : StateMachineBehaviour
 
         //Réduction vitesse d'1/3 (+ save vitesse initiale)
         initialSpeed = agent.speed;
-        agent.speed = (initialSpeed / 2);
+        agent.speed = (initialSpeed / 1.5f);
 
         //On récupère le checkpoint de l'entrepôt et on y envoie le mineur
         wareHouse = stoneMinerData.workBuilding.GetComponent<StoneMinerHut>().warehouseCheckPoint;

@@ -86,6 +86,23 @@ public class BuildingManager : MonoBehaviour
             {
                 CancelConstruction();
             }
+            else if(Input.GetKeyDown(KeyCode.R)) //Building rotation
+            {
+                //Calcule la rotation
+                float currYRot = instantiatedBuilding.transform.eulerAngles.y;
+                float newYRotation = currYRot - 90;
+
+                //Modulo
+                if(newYRotation <= -360) 
+                {
+                    newYRotation += 360;
+                }
+
+                //Applique la rotation
+                instantiatedBuilding.transform.eulerAngles = new Vector3(instantiatedBuilding.transform.eulerAngles.x, newYRotation, instantiatedBuilding.transform.eulerAngles.z);
+
+                
+            }
             
         }
 
