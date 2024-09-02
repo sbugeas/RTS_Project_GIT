@@ -41,6 +41,10 @@ public class Barrack : MonoBehaviour
 
     public void RecruitSoldier() 
     {
+        //Retire cout
+        int _soldierCost = soldierPrefab.GetComponent<Unit>().costToRecruit;
+        ResourcesManager.instance.RemoveGoldBar(_soldierCost);
+
         //On débute le recrutement
         curTime = 0.0f;
         CanvasManager.instance.DisplayRecruitmentInfos();

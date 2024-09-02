@@ -69,14 +69,15 @@ public class UnitSelectionManager : MonoBehaviour
         {
             selectedBuilding = null;
 
+            DeselectAll();
+
             //Si ne cible pas un élément de l'UI
             if (EventSystem.current.IsPointerOverGameObject() == false)
             {
+                CanvasManager.instance.DeselectBuildings();
+
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-
-                //Deselect building
-                CanvasManager.instance.DeselectBuildings(); /////
 
                 //On détécte une unité
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, unitsLayer))
@@ -86,7 +87,7 @@ public class UnitSelectionManager : MonoBehaviour
                 else
                 {
                     //Deselect units
-                    DeselectAll();
+                    //DeselectAll(); <--
 
                     //On détécte un bâtiment
                     if (Physics.Raycast(ray, out hit, Mathf.Infinity, buildingLayerP1))

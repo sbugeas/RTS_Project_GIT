@@ -13,12 +13,11 @@ public class Unit : MonoBehaviour
     public bool nearOfDestination;
     public bool hasOrCalculatePath;
 
-    //DONNEES (ownerPlayer,stats etc...)
     public int unitHealth;
     public int unitMaxHealth = 200;
     public int unitDamage = 10;
-
     public float attackCooldown = 1.0f;
+    public int costToRecruit = 1; //test
 
     public Canvas unitCanvas;
     public Slider unitHealthSlider;

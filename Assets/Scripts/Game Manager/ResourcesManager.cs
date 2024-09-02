@@ -14,14 +14,19 @@ public class ResourcesManager : MonoBehaviour
     public int woodCound = 0;
     public int stoneCount = 0;
     public int goldOreCount = 0;
+    public int goldBarCount = 0;
     //----------------------------
 
     public TextMeshProUGUI woodCountTxt;
     public TextMeshProUGUI stoneCountTxt;
     public TextMeshProUGUI goldOreCountTxt;
+    public TextMeshProUGUI goldBarCountTxt;
 
     public TextMeshProUGUI totalPopulationCountTxt;
     public TextMeshProUGUI maxPopulationCountTxt;
+
+    //Pour accès aux données(ex : cost)
+    public GameObject soldierPrefab; //test
 
     public static ResourcesManager instance;
 
@@ -43,12 +48,23 @@ public class ResourcesManager : MonoBehaviour
 
     }
 
+    //test (pas d'Update initialement // à retirer)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            AddGoldBar(1);
+        }
+    }
+    //test
+
     public void UpdateResourcesPanel() 
     {
         UpdatePopulation();
         UpdateWood();
         UpdateStone();
         UpdateGoldOre();
+        UpdateGoldBar();
     }
 
     //----------------------
@@ -129,6 +145,36 @@ public class ResourcesManager : MonoBehaviour
     private void UpdateGoldOre()
     {
         goldOreCountTxt.text = goldOreCount.ToString();
+    }
+    //----------------------
+
+    //----------------------
+    public void AddGoldBar(int count)
+    {
+        goldBarCount += count;
+
+        UpdateGoldBar();
+    }
+
+    public void RemoveGoldBar(int count)
+    {
+        goldBarCount -= count;
+
+        if (goldBarCount < 0)
+        {
+            goldBarCount = 0;
+        }
+
+        UpdateGoldBar();
+
+    }
+
+    private void UpdateGoldBar()
+    {
+        goldBarCountTxt.text = goldBarCount.ToString();
+
+        //Update recruitement button (if enough goldBar) //test
+        CanvasManager.instance.UpdateRecruitmentButton();
     }
     //----------------------
 

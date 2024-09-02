@@ -21,6 +21,9 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI recruitedUnitNameTxt;
 
+    [SerializeField] TextMeshProUGUI soldierCostLabel; //test
+    [SerializeField] TextMeshProUGUI soldierCostVal; //test
+
     //COST (UI) -> Building Panel
     [SerializeField] TextMeshProUGUI home_woodCost_txt;
     [SerializeField] TextMeshProUGUI home_stoneCost_txt;
@@ -87,6 +90,9 @@ public class CanvasManager : MonoBehaviour
         barrack = null;
 
         UpdateTextCostOnBuildingPanel();
+
+        //Update unit cost (recruitment)
+        soldierCostVal.text = ResourcesManager.instance.soldierPrefab.GetComponent<Unit>().costToRecruit.ToString();
     }
 
    
@@ -411,6 +417,10 @@ public class CanvasManager : MonoBehaviour
         //reset slider
         recruitmentBarSlider.value = 0.0f;
 
+        //hide cost
+        soldierCostLabel.enabled = false;
+        soldierCostVal.enabled = false;
+
         //display
         recruitmentBarSlider.gameObject.SetActive(true);
         recruitedUnitNameTxt.enabled = true;
@@ -421,18 +431,27 @@ public class CanvasManager : MonoBehaviour
 
     public void ClearRecruitmentInfos()
     {
+        //hide slider and unit name
         recruitmentBarSlider.gameObject.SetActive(false);
         recruitedUnitNameTxt.enabled = false;
 
-        //activate or NOT the recruitment button(if recruitment is possible)
-        ResourcesManager resourcesManager = ResourcesManager.instance;
-        EnableRecruitmentButton(resourcesManager.totalPopulation < resourcesManager.populationMax);
+        //display cost
+        soldierCostLabel.enabled = true;
+        soldierCostVal.enabled = true;
+
+        UpdateRecruitmentButton();
     }
 
     //---- BUTTONS
-    void EnableRecruitmentButton(bool _isEnabled)
+
+    //Enable or disable recruitment button(enough population and resources)
+    public void UpdateRecruitmentButton()
     {
-        recruitSoldierButton.interactable = _isEnabled;
+        ResourcesManager resourcesManager = ResourcesManager.instance;
+        bool isRecruitmentPossible = (resourcesManager.totalPopulation < resourcesManager.populationMax) &&
+        (resourcesManager.goldBarCount >= resourcesManager.soldierPrefab.GetComponent<Unit>().costToRecruit);
+
+        recruitSoldierButton.interactable = isRecruitmentPossible;
     }
 
     void OnRecruitSoldierClick()
