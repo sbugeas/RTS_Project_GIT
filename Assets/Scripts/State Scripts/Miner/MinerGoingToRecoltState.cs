@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class StoneMinerGoingToRecoltState : StateMachineBehaviour
+public class MinerGoingToRecoltState : StateMachineBehaviour
 {
-    StoneMinerData stoneMinerData;
+    MinerData minerData;
     NavMeshAgent agent;
 
     public float recoltingDistance = 3.0f;
@@ -13,15 +13,15 @@ public class StoneMinerGoingToRecoltState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        stoneMinerData = animator.GetComponent<StoneMinerData>();
+        minerData = animator.GetComponent<MinerData>();
 
         //Active & désactive bons objets
-        stoneMinerData.carriedStone.SetActive(false);
-        stoneMinerData.stoneMinerPick.SetActive(true);
+        minerData.carriedResource.SetActive(false);
+        minerData.minerPick.SetActive(true);
 
-        if (stoneMinerData.targetRock != null)
+        if (minerData.targetResource != null)
         {
-            agent.SetDestination(stoneMinerData.targetRock.position);
+            agent.SetDestination(minerData.targetResource.position);
         }
 
     }
@@ -29,7 +29,7 @@ public class StoneMinerGoingToRecoltState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Transform target = stoneMinerData.targetRock;
+        Transform target = minerData.targetResource;
 
         if (target == null)
         {

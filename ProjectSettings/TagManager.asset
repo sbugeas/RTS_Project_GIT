@@ -17,6 +17,10 @@ TagManager:
   - rock
   - stoneMinerHut
   - barrack
+  - stoneMiner
+  - goldMiner
+  - goldMinerHut
+  - goldOre
   layers:
   - Default
   - TransparentFX
@@ -33,7 +37,7 @@ TagManager:
   - buildingPlayer_1
   - buildingPlayer_2
   - rock
-  - 
+  - goldOre
   - 
   - 
   - 

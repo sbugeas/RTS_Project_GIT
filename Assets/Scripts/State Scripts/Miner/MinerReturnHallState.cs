@@ -3,37 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class StoneMinerReturnHallState : StateMachineBehaviour
+public class MinerReturnHallState : StateMachineBehaviour
 {
     NavMeshAgent agent;
-    StoneMinerData stoneMinerData;
+    MinerData minerData;
     Vector3 target;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //Get component
         agent = animator.transform.GetComponent<NavMeshAgent>();
-        stoneMinerData = animator.transform.GetComponent<StoneMinerData>();
+        minerData = animator.transform.GetComponent<MinerData>();
 
         //Update parameters
         animator.SetBool("isWorking", false);
         animator.SetBool("isIntoTheHut", false);
         animator.SetBool("isGoingToRecolt", false);
         animator.SetBool("isRecolting", false);
-        animator.SetBool("isCarryingStone", false);
+        animator.SetBool("isCarryingResource", false);
 
         //Disable axe & log
-        stoneMinerData.carriedStone.SetActive(false);
-        stoneMinerData.stoneMinerPick.SetActive(false);
+        minerData.carriedResource.SetActive(false);
+        minerData.minerPick.SetActive(false);
 
         //Immobilisation(for reset target)
         agent.SetDestination(animator.transform.position);
 
         //Get hall checkpoint position
-        target = stoneMinerData.workBuilding.GetComponent<StoneMinerHut>().hallCheckpoint.position;
+        target = minerData.workBuilding.GetComponent<MinerHut>().hallCheckpoint.position;
         agent.stoppingDistance = 0;
 
-        stoneMinerData.RemoveWorkBuilding();
+        minerData.RemoveWorkBuilding();
 
         //Go to hall
         agent.SetDestination(target);

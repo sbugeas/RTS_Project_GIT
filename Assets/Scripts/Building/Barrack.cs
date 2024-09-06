@@ -93,4 +93,8 @@ public class Barrack : MonoBehaviour
         } 
     }
 
+    public float GetRecruitmentProgress() ///
+    {
+        return (curTime / timeToRecruitSoldier);
+    }
 }

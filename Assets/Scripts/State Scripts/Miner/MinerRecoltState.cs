@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class StoneMinerRecoltState : StateMachineBehaviour
+public class MinerRecoltState : StateMachineBehaviour
 {
-    StoneMinerData stoneMinerData;
+    MinerData minerData;
     NavMeshAgent agent;
     NavMeshObstacle obstacle;
 
@@ -19,14 +19,14 @@ public class StoneMinerRecoltState : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         obstacle = animator.GetComponent<NavMeshObstacle>();
 
-        stoneMinerData = animator.GetComponent<StoneMinerData>();
+        minerData = animator.GetComponent<MinerData>();
 
         //Active & désactive bons objets
-        stoneMinerData.carriedStone.SetActive(false);
-        stoneMinerData.stoneMinerPick.SetActive(true);
+        minerData.carriedResource.SetActive(false);
+        minerData.minerPick.SetActive(true);
 
         agent.SetDestination(animator.transform.position);
-        animator.transform.LookAt(stoneMinerData.targetRock);
+        animator.transform.LookAt(minerData.targetResource);
 
         //Immobilisation
         agent.enabled = false;
@@ -39,10 +39,10 @@ public class StoneMinerRecoltState : StateMachineBehaviour
     {
         timeSinceLastHit += Time.deltaTime;
 
-        if (stoneMinerData.targetRock != null)
+        if (minerData.targetResource != null)
         {
             //On regarde le rocher
-            animator.transform.LookAt(stoneMinerData.targetRock);
+            animator.transform.LookAt(minerData.targetResource);
 
             //Si cooldown atteint, on mine
             if (timeSinceLastHit >= recolt_cooldown)
@@ -60,9 +60,9 @@ public class StoneMinerRecoltState : StateMachineBehaviour
             agent.enabled = true;
 
             //Si stock > 0 et n'a pas été renvoyé entre temps
-            if (stoneMinerData.stock > 0 && !animator.GetBool("isFired"))
+            if (minerData.stock > 0 && !animator.GetBool("isFired"))
             {
-                animator.SetBool("isCarryingStone", true);
+                animator.SetBool("isCarryingResource", true);
             }
 
             animator.SetBool("isRecolting", false);

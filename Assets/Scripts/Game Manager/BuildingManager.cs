@@ -21,12 +21,11 @@ public class BuildingManager : MonoBehaviour
     public GameObject homePrefab;
     public GameObject loggerCampPrefab;
     public GameObject stoneMinerHutPrefab;
+    public GameObject goldMinerHutPrefab;
     public GameObject barrackPrefab;
 
     public LayerMask ground;
     public bool buildingInstantiated = false;
-
-    
 
     public static BuildingManager instance;
 
@@ -125,6 +124,11 @@ public class BuildingManager : MonoBehaviour
         currentPrefab = stoneMinerHutPrefab;
     }
 
+    public void SelectGoldMinerHutPrefab()
+    {
+        currentPrefab = goldMinerHutPrefab;
+    }
+
     public void SelectBarrackPrefab()
     {
         currentPrefab = barrackPrefab;
@@ -159,6 +163,7 @@ public class BuildingManager : MonoBehaviour
         if(instantiatedBuilding != null)
         {
             BuildingData dataScript = instantiatedBuilding.GetComponent<BuildingData>();
+            string buildingTag = instantiatedBuilding.transform.tag;
 
             //Retirer collider de construction
             GameObject BuildingTmpCollider = instantiatedBuilding.transform.Find("buildingTmpCollider").gameObject;
@@ -184,21 +189,21 @@ public class BuildingManager : MonoBehaviour
             SpendResources(dataScript);
 
             //Si c'est une maison
-            if (instantiatedBuilding.CompareTag("home"))
+            if (buildingTag == "home")
             {
                 BuildHome(dataScript);
             }
-            else if (instantiatedBuilding.CompareTag("loggerCamp")) //Si c'est un camp de bûcheron
+            else if (buildingTag == "loggerCamp") //Si c'est un camp de bûcheron
             {
                 BuildLoggerCamp(dataScript);
             }
-            else if (instantiatedBuilding.CompareTag("stoneMinerHut")) //Si c'est une cabane de mineur
-            {
-                BuildStoneMinerHut(dataScript);
-            }
-            else if (instantiatedBuilding.CompareTag("barrack"))
+            else if (buildingTag == "barrack") //Si c'est une cabane de mineur
             {
                 BuildBarrack(dataScript);
+            }
+            else
+            {
+                BuildMinerHut(dataScript);
             }
 
             instantiatedBuilding = null;
@@ -245,11 +250,11 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    private void BuildStoneMinerHut(BuildingData dataScript)
+    private void BuildMinerHut(BuildingData dataScript)
     {
-        if (dataScript.transform.GetComponent<StoneMinerHut>() != null)
+        if (dataScript.transform.GetComponent<MinerHut>() != null)
         {
-            dataScript.transform.GetComponent<StoneMinerHut>().enabled = true;
+            dataScript.transform.GetComponent<MinerHut>().enabled = true;
         }
     }
 

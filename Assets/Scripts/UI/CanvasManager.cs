@@ -19,10 +19,13 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI stoneMinerCountTxt;
     [SerializeField] TextMeshProUGUI maxStoneMinerTxt;
 
+    [SerializeField] TextMeshProUGUI goldMinerCountTxt; ///
+    [SerializeField] TextMeshProUGUI maxGoldMinerTxt; ///
+
     [SerializeField] TextMeshProUGUI recruitedUnitNameTxt;
 
-    [SerializeField] TextMeshProUGUI soldierCostLabel; //test
-    [SerializeField] TextMeshProUGUI soldierCostVal; //test
+    [SerializeField] TextMeshProUGUI soldierCostLabel;
+    [SerializeField] TextMeshProUGUI soldierCostVal;
 
     //COST (UI) -> Building Panel
     [SerializeField] TextMeshProUGUI home_woodCost_txt;
@@ -34,6 +37,9 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI stoneMinerHut_woodCost_txt;
     [SerializeField] TextMeshProUGUI stoneMinerHut_stoneCost_txt;
 
+    [SerializeField] TextMeshProUGUI goldMinerHut_woodCost_txt; ///
+    [SerializeField] TextMeshProUGUI goldMinerHut_stoneCost_txt; ///
+
     [SerializeField] TextMeshProUGUI barrack_woodCost_txt;
     [SerializeField] TextMeshProUGUI barrack_stoneCost_txt;
     //-----------------------------------
@@ -42,6 +48,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject buildingPanel;
     [SerializeField] GameObject loggerCampPanel;
     [SerializeField] GameObject stoneMinerHutPanel;
+    [SerializeField] GameObject goldMinerHutPanel; ///
     [SerializeField] GameObject barrackPanel;
     //-----------------------------------
 
@@ -54,6 +61,9 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] Button addStoneMinerButton;
     [SerializeField] Button removeStoneMinerButton;
 
+    [SerializeField] Button addGoldMinerButton; ///
+    [SerializeField] Button removeGoldMinerButton; ///
+
     [SerializeField] Button recruitSoldierButton;
 
     //-------------------------------------
@@ -61,11 +71,12 @@ public class CanvasManager : MonoBehaviour
     //------------- SLIDERS ----------------
     [SerializeField] Slider loggerCampSlider;
     [SerializeField] Slider stoneMinerHutSlider;
+    [SerializeField] Slider goldMinerHutSlider; ///
     [SerializeField] Slider recruitmentBarSlider;
     //-------------------------------------
 
     private LoggerCamp loggerCamp;
-    private StoneMinerHut stoneMinerHut;
+    private MinerHut minerHut;
     private Barrack barrack;
 
 
@@ -86,7 +97,7 @@ public class CanvasManager : MonoBehaviour
         cam = Camera.main;
 
         loggerCamp = null;
-        stoneMinerHut = null;
+        minerHut = null;
         barrack = null;
 
         UpdateTextCostOnBuildingPanel();
@@ -130,7 +141,7 @@ public class CanvasManager : MonoBehaviour
                 }
                 else if(Physics.Raycast(ray, out hit, Mathf.Infinity, UnitSelectionManager.instance.ground)) //On détecte le sol
                 {
-                    _rallyFlag.position = hit.point; //test
+                    _rallyFlag.position = hit.point;
                 }
             }
         }
@@ -155,8 +166,13 @@ public class CanvasManager : MonoBehaviour
         }
         else if (_structure.CompareTag("stoneMinerHut")) //stone miner's hut
         {
-            stoneMinerHut = _structure.GetComponent<StoneMinerHut>();
+            minerHut = _structure.GetComponent<MinerHut>();
             OpenStoneMinerHutPanel();
+        }
+        else if (_structure.CompareTag("goldMinerHut"))
+        {
+            minerHut = _structure.GetComponent<MinerHut>();
+            OpenGoldMinerHutPanel();
         }
         else if (_structure.CompareTag("barrack")) //barrack
         {
@@ -168,13 +184,13 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    public void DeselectBuildings() /////
+    public void DeselectBuildings()
     {
-        CloseAllOpenedPanel(); /////
+        CloseAllOpenedPanel();
 
         //Reset
         loggerCamp = null;
-        stoneMinerHut = null;
+        minerHut = null;
         barrack = null;
     }
 
@@ -204,6 +220,7 @@ public class CanvasManager : MonoBehaviour
         CloseBarrackPanel();
         CloseLoggerCampPanel();
         CloseStoneMinerHutPanel();
+        CloseGoldMinerHutPanel();
     }
 
     public void UpdateTextCostOnBuildingPanel() //Appelée une fois, au début (les coûts ne changent pas durant la partie)
@@ -301,7 +318,7 @@ public class CanvasManager : MonoBehaviour
     //--------- STONE MINER HUT ------------
 
 
-    //---- PANELS
+    //---- PANELS 
 
     public void OpenStoneMinerHutPanel()
     {
@@ -325,14 +342,14 @@ public class CanvasManager : MonoBehaviour
     //Maj panel StoneMinerHut selon données du bâtiment sélectionné
     public void UpdateStoneMinerHutPanel()
     {
-        if (stoneMinerHut != null)
+        if (minerHut != null)
         {
             //Update text
-            stoneMinerCountTxt.text = stoneMinerHut.stoneMinerCount.ToString();
-            maxStoneMinerTxt.text = stoneMinerHut.maxStoneMiner.ToString();
+            stoneMinerCountTxt.text = minerHut.minerCount.ToString();
+            maxStoneMinerTxt.text = minerHut.maxMiners.ToString();
 
             //Update health bar
-            BuildingData buildingData = stoneMinerHut.GetComponent<BuildingData>();
+            BuildingData buildingData = minerHut.GetComponent<BuildingData>();
 
             if (buildingData != null)
             {
@@ -357,21 +374,94 @@ public class CanvasManager : MonoBehaviour
 
     void OnAddStoneMinerClick()
     {
-        if (stoneMinerHut != null)
+        if (minerHut != null)
         {
-            stoneMinerHut.AddStoneMiners(1);
+            minerHut.AddMiner(1);
         }
         UpdateStoneMinerHutPanel();
     }
     void OnRemoveStoneMinerClick()
     {
-        if (stoneMinerHut != null)
+        if (minerHut != null)
         {
-            stoneMinerHut.RemoveStoneMiners(1);
+            minerHut.RemoveMiner(1);
         }
         UpdateStoneMinerHutPanel();
     }
 
+    //--------- GOLD MINER HUT ------------
+
+
+    //---- PANELS 
+
+    public void OpenGoldMinerHutPanel()
+    {
+        //Update button
+        addGoldMinerButton.onClick.RemoveAllListeners();
+        addGoldMinerButton.onClick.AddListener(OnAddGoldMinerClick);
+        removeGoldMinerButton.onClick.RemoveAllListeners();
+        removeGoldMinerButton.onClick.AddListener(OnRemoveGoldMinerClick);
+
+        //Update UI
+        UpdateGoldMinerHutPanel();
+
+        //Display UI
+        if (!goldMinerHutPanel.activeInHierarchy)
+        {
+            goldMinerHutPanel.SetActive(true);
+        }
+    }
+
+
+    //Maj panel StoneMinerHut selon données du bâtiment sélectionné
+    public void UpdateGoldMinerHutPanel()
+    {
+        if (minerHut != null)
+        {
+            //Update text
+            goldMinerCountTxt.text = minerHut.minerCount.ToString();
+            maxGoldMinerTxt.text = minerHut.maxMiners.ToString();
+
+            //Update health bar
+            BuildingData buildingData = minerHut.GetComponent<BuildingData>();
+
+            if (buildingData != null)
+            {
+                int _maxHealth = buildingData.maxHealth;
+                int _currentHealth = buildingData.currentHealth;
+
+                stoneMinerHutSlider.maxValue = _maxHealth;
+                stoneMinerHutSlider.value = _currentHealth;
+            }
+
+        }
+
+
+    }
+
+    public void CloseGoldMinerHutPanel()
+    {
+        goldMinerHutPanel.SetActive(false);
+    }
+
+    //---- BUTTONS
+
+    void OnAddGoldMinerClick()
+    {
+        if (minerHut != null)
+        {
+            minerHut.AddMiner(1);
+        }
+        UpdateGoldMinerHutPanel();
+    }
+    void OnRemoveGoldMinerClick()
+    {
+        if (minerHut != null)
+        {
+            minerHut.RemoveMiner(1);
+        }
+        UpdateGoldMinerHutPanel();
+    }
 
     //--------- BARRACK ------------
 

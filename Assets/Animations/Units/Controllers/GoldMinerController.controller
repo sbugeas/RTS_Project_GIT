@@ -84,7 +84,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isCarryingStone
+    m_ConditionEvent: isCarryingResource
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4910745615127078654}
@@ -123,7 +123,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9a815db8447881649992681f24ac0a9c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 495c6da6a92121046aeb6a026abbf8eb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -239,7 +239,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: af99435a558049f4b919718f210fc00c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 67d97230aeb5e774abc9eb635bea56b9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -303,7 +303,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isCarryingStone
+    m_ConditionEvent: isCarryingResource
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8107130819478612712}
@@ -397,7 +397,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0095178a9a312634da85bf0be6db8690, type: 2}
+  m_Motion: {fileID: 7400000, guid: 5b77970c610818545b524819dd182cb0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -439,7 +439,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StoneMinerController
+  m_Name: GoldMinerController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isGoingToRecolt
@@ -454,7 +454,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: isCarryingStone
+  - m_Name: isCarryingResource
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -558,7 +558,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 69da164be9d9d4f4e9e140f6ef61c1a4, type: 2}
+  m_Motion: {fileID: 7400000, guid: 65894883f96795748ab3d592d534703e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1006,7 +1006,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isCarryingStone
+    m_ConditionEvent: isCarryingResource
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isFired
@@ -1059,7 +1059,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isCarryingStone
+    m_ConditionEvent: isCarryingResource
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isFired
@@ -1100,7 +1100,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: af9182259a2e56f40a5eb26f9eb30a08, type: 2}
+  m_Motion: {fileID: 7400000, guid: c7b5bbbdbc478ba49a34811b6be0e271, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1115,7 +1115,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isCarryingStone
+    m_ConditionEvent: isCarryingResource
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isFired

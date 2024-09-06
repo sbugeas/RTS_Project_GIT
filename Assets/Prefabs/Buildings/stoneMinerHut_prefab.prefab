@@ -173,9 +173,9 @@ GameObject:
   - component: {fileID: 5206411372756633572}
   - component: {fileID: 5505242930005684681}
   - component: {fileID: 1309401225679982972}
-  - component: {fileID: 6190590371467341865}
-  - component: {fileID: 346447621815759762}
-  - component: {fileID: 6468838125934469097}
+  - component: {fileID: 411504783677713516}
+  - component: {fileID: 9025587364251011698}
+  - component: {fileID: 8456408083356887058}
   m_Layer: 12
   m_Name: stoneMinerHut_prefab
   m_TagString: stoneMinerHut
@@ -299,7 +299,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &6190590371467341865
+--- !u!114 &411504783677713516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,7 +316,7 @@ MonoBehaviour:
   popGiven: 0
   maxHealth: 500
   currentHealth: 500
---- !u!114 &346447621815759762
+--- !u!114 &9025587364251011698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -328,18 +328,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415fba8644e082e46be669943a0075de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stoneMinerCount: 0
-  maxStoneMiner: 4
-  starterMinerCount: 2
-  stoneMiners: []
-  inactiveStoneMiners: []
+  minerCount: 0
+  maxMiners: 4
+  startMinerCount: 2
+  miners: []
+  inactiveMiners: []
   minerPrefab: {fileID: 2479594351723225317, guid: 95c912f82dadf194e8f953fae85a8cc9, type: 3}
   hallCheckpoint: {fileID: 0}
   warehouseCheckPoint: {fileID: 0}
-  rockLayer:
+  resourceLayer:
     serializedVersion: 2
     m_Bits: 16384
---- !u!114 &6468838125934469097
+--- !u!114 &8456408083356887058
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

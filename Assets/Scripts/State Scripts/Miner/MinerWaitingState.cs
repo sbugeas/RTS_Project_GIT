@@ -3,34 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class StoneMinerWaitingState : StateMachineBehaviour
+public class MinerWaitingState : StateMachineBehaviour
 {
     Transform target;
 
     NavMeshAgent agent;
 
-    StoneMinerData stoneMinerData;
-    StoneMinerHut stoneMinerHut;
+    MinerData minerData;
+    MinerHut minerHut;
 
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.transform.GetComponent<NavMeshAgent>();
-        stoneMinerData = animator.transform.GetComponent<StoneMinerData>();
-        stoneMinerHut = stoneMinerData.workBuilding.GetComponent<StoneMinerHut>();
+        minerData = animator.transform.GetComponent<MinerData>();
+        minerHut = minerData.workBuilding.GetComponent<MinerHut>();
 
         //Active & désactive objets selon état (hache et rondin)
-        stoneMinerData.carriedStone.SetActive(false);
-        stoneMinerData.stoneMinerPick.SetActive(false);
+        minerData.carriedResource.SetActive(false);
+        minerData.minerPick.SetActive(false);
 
-        //Ajout dans la liste de bûcherons inactifs
-        stoneMinerHut.inactiveStoneMiners.Add(animator.transform.gameObject);
+        //Ajout dans la liste de mineurs inactifs
+        minerHut.inactiveMiners.Add(animator.transform.gameObject);
 
         //Détermine index de position d'attente
-        int ind = stoneMinerHut.inactiveStoneMiners.Count - 1;
+        int ind = minerHut.inactiveMiners.Count - 1;
 
         //On accède à l'enfant "checkPoints" (qui contient les emplacements d'attente)
-        Transform checkPoints = stoneMinerHut.transform.Find("checkPoints");
+        Transform checkPoints = minerHut.transform.Find("checkPoints");
 
         //On récupère le checkpoint
         target = checkPoints.transform.GetChild(ind);
@@ -42,7 +42,7 @@ public class StoneMinerWaitingState : StateMachineBehaviour
 
             if(target == null) 
             {
-                target = stoneMinerHut.transform;
+                target = minerHut.transform;
             }
         }
 

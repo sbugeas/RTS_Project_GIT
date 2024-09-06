@@ -86,9 +86,6 @@ public class UnitSelectionManager : MonoBehaviour
                 }
                 else
                 {
-                    //Deselect units
-                    //DeselectAll(); <--
-
                     //On détécte un bâtiment
                     if (Physics.Raycast(ray, out hit, Mathf.Infinity, buildingLayerP1))
                     {

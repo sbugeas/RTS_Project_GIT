@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class StoneMinerIdleState : StateMachineBehaviour
+public class MinerIdleState : StateMachineBehaviour
 {
-    StoneMinerData stoneMinerData;
+    MinerData minerData;
     NavMeshAgent agent;
 
-    StoneMinerHut stoneMinerHut;
+    MinerHut minerHut;
     Transform target;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -17,17 +17,17 @@ public class StoneMinerIdleState : StateMachineBehaviour
         animator.SetBool("isRecolting", false);
 
         agent = animator.transform.GetComponent<NavMeshAgent>();
-        stoneMinerData = animator.transform.GetComponent<StoneMinerData>();
+        minerData = animator.transform.GetComponent<MinerData>();
 
         agent.stoppingDistance = 1;
 
         //Si pas de cible (ET stock nul)
-        if ((stoneMinerData.targetRock == null) && (stoneMinerData.stock == 0))
+        if ((minerData.targetResource == null) && (minerData.stock == 0))
         {
-            stoneMinerHut = stoneMinerData.workBuilding.GetComponent<StoneMinerHut>();
+            minerHut = minerData.workBuilding.GetComponent<MinerHut>();
 
             //On essaie d'en attribuer une
-            target = stoneMinerHut.GiveNearestValidRock();
+            target = minerHut.GiveNearestValidResource();
 
             if (target == null)
             {
@@ -35,7 +35,7 @@ public class StoneMinerIdleState : StateMachineBehaviour
             }
             else
             {
-                stoneMinerData.targetRock = target;
+                minerData.targetResource = target;
                 animator.SetBool("isGoingToRecolt", true);
             }
 
